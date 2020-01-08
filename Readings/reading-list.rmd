@@ -1,0 +1,153 @@
+---
+title: 'PPOL561 | Reading List'
+date: 'Spring 2020'
+output: 
+  html_document:
+    css: style.css
+    theme: spacelab
+    highlight: default
+    toc_depth: 3
+    toc: true
+    toc_collapsed: true
+    toc_float: true
+---
+
+### [Home](../index.html)
+
+
+### Week 1: Course Introduction & Research Design
+
+- **_Required Readings_**:
+
+  - Please review course syllabus. 
+  
+### Week 2: Data wrangling in R
+
+- **_Required Readings_**:
+    
+  - Grolemund & Wickham. 2017. "R for Data Science".
+  
+      + [Ch. 5: Data Transformation](https://r4ds.had.co.nz/transform.html) 
+      + [Ch. 10: Tibbles](https://r4ds.had.co.nz/tibbles.html) - `r4ds`
+      + [Ch. 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html) 
+      + [Ch. 13: Relational Data](https://r4ds.had.co.nz/relational-data.html)
+      + [Ch. 18: Pipes](https://r4ds.had.co.nz/pipes.html) 
+      + [Ch. 15: Dates and Times](https://r4ds.had.co.nz/dates-and-times.html) 
+      
+### Week 3: OLS Review 
+
+- **_Required Readings_**:
+  
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Chapters. 5 - 7
+  
+### Week 4: Binary Outcomes
+
+- **_Required Readings_**:
+  
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Review Chapter 12
+      
+  - Long. 2016. "Regression models for categorical and limited dependent variables".
+    
+      + Chapter 3 (Canvas)
+      
+      
+### Week 5: Ordered & Multinomial Outcomes
+
+- **_Required Readings_**:
+  
+  - Read Lecture Summary handouts:
+    
+      - Ordered Outcomes (Canvas)
+      
+      - Multinomial Outcomes (Canvas)
+    
+- **_Suggested Reading_**:
+
+  - Long. 2016. "Regression models for categorical and limited dependent variables".
+    
+      + Chapter 5 & 6 (Canvas)
+      
+### Week 6: Selection
+
+- **_Required Readings_**:
+
+  - Bailey. Draft Chapter. "Selection" (Canvas)
+  
+  - Wooldridge. "Introductory Econometrics". Pg. 627 - 633. (Canvas)
+  
+- **_Suggested Reading_**:
+
+  - Berinsky, Adam. 1999. “The Two Faces of Public Opinion” American Journal of Political Science 43: 1209-1230.
+  
+  - Lemke, Douglas and William Reed. 2001. “War and Rivalry among Great Powers” American Journal of Political Science 45: 457-469.
+  
+  
+### Week 7: Introduction to Causal Inference
+
+- **_Required Readings_**:
+  
+  - Cunningham. 2018. "Causal Inference: The Mixtape".
+      
+      + Chapter 4: "Directed Acyclical Graphs" (Canvas)
+          
+      + Chapter 5: "Potential Outcomes Causal Model" (Canvas)
+      
+    
+### Week 8: Panel Data & Difference-in-Difference
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Review Chapter 8
+      
+      
+### Week 9: Instrumental Variables
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Review Chapter 9
+      
+      
+### Week 11: Experiments
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Review Chapter 10
+      
+### Week 12: Regression Discontinuity
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Review Chapter 11
+      
+### Week 13: Matching
+
+- **_Required Readings_**:
+  
+  - Ho et. al 2007 (Canvas)
+  
+- **_Suggested Reading_**:
+  
+  - King and Neilson 2018 (Canvas)
+  - Austin 2010 (Canvas)  
+  - matchit.pdf (Canvas)
+
+### Week 14: Synthetic Control
+
+- **_Required Readings_**:
+
+  - Cunningham. 2018. "Causal Inference: The Mixtape".
+      
+      + Chapter 11: "Synthetic Control" (Canvas)
+ 

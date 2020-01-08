@@ -1,0 +1,16 @@
+Week,Date,Topic,Assignment,Presentation Group
+1,15-Jan,Course Introduction + Research Design,,
+2,22-Jan,Data Wrangling and Presentation in R,,
+3,29-Jan,OLS Review,Assignment 1 Due,1
+4,5-Feb,Binary Outcomes,,2
+5,12-Feb,Ordered & Multinomial Outcome,,3
+6,19-Feb,Selection,Assignment 2 Due,4
+7,26-Feb,Introduction to Causal Inference,,5
+8,4-Mar,Panel Data + DID,,6
+9,18-Mar,Instrumental variables,Assignment 3 Due,7
+10,25-Mar,Midterm Exam,Assignment 4 Due,
+11,1-Apr,Experiments,,8
+12,8-Apr,Regression Discontinuity,Assignment 5 Due,9
+13,15-Apr,Matching,Assignment 6 Due,10
+14,22-Apr,Synthetic Control,,11
+Final,7-May,Final Exam (12:30 - 3:00),,

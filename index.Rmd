@@ -1,0 +1,172 @@
+---
+title: "PPOL561"
+output: 
+  html_document:
+    css: style.css
+    theme: spacelab
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+---
+
+```{r,include=F}
+knitr::opts_chunk$set(error = F,message = F,comment = F,warning = F)
+# Packages for reading in the tables
+require(tidyverse)
+require(kableExtra)
+```
+
+
+
+<center><h1>Accelerated Statistics for Public Policy II</h1></center>
+<center>**Spring 2020**</center>
+<center>**Georgetown University**</center>
+
+<br>
+
+
+
+# Course Outline {.tabset .tabset-fade .tabset-pills}
+
+## Course Schedule
+
+<br>
+<br>
+
+
+```{r,echo=F,message=F,results='asis'}
+read_csv('Syllabus/spring-2020-timeline.csv') %>%
+  filter(Topic != "No Class") %>% 
+  {.[is.na(.)]="";.} %>% 
+  kable(., "html", booktabs = T,align = c('c','l','l')) %>%
+  kable_styling(latex_options = c("striped", 
+                                  "scale_down","repeat_header"),
+                full_width = T,font_size = 24) %>% 
+  column_spec(1,width = '.5in') %>% 
+  column_spec(2,width = '1in') %>% 
+  column_spec(3,width = '4in') 
+```
+
+<br>
+<br>
+<br>
+<br>
+
+
+## Syllabus
+
+<br>
+<br>
+
+- Access an [**Online Version**](Syllabus/PPOL561-Accelerated-Statistics-for-Public-Policy-02.html)
+- [**Download**](Syllabus/PPOL561-Accelerated-Statistics-for-Public-Policy-02.pdf) a `.pdf` version locally. 
+
+<br>
+<br>
+<br>
+<br>
+
+## Readings
+
+<br>
+
+List of [**all required and suggested readings**](Readings/reading-list.html)
+
+<br>
+<br>
+<br>
+<br>
+
+
+## Installation
+
+<br>
+<br>
+
+The following are installation instructions for `R` and `RStudio`.
+
+<br>
+<br>
+
+**`R` Software**
+
+To install `R`, download `R` from CRAN via the following:
+ 
+- Windows: https://cran.r-project.org/bin/windows/base/ (Links to an external site.)
+- Mac: https://cran.r-project.org/bin/macosx/
+ 
+To install `RStudio`, download from the following (scroll to the bottom):
+
+- https://www.rstudio.com/products/rstudio/download/ (Links to an external site.)
+
+
+<br>
+<br>
+<br>
+<br>
+
+## Recitation
+
+<br>
+<br>
+
+Recitation meets most weeks on Wednesdays from 4:00 to 5:00 in **Old North**. Below is the schedule for when there is a lab. 
+
+```{r,echo=F}
+read_csv("Syllabus/lab-schedule-spring2020.csv") %>% 
+  kable(., "html", booktabs = T,align = c('c','l','l')) %>%
+  # kable(., "latex", booktabs = T,align = c('c','l','l')) %>%
+  kable_styling(latex_options = c("striped", 
+                                  "scale_down","repeat_header"),
+                full_width = T,font_size = 16) %>% 
+  column_spec(1,width = '1in') %>% 
+  column_spec(2,width = '1in') %>% 
+  column_spec(3,width = '4in') 
+```
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+## Contact
+
+<br>
+
+#### [Eric Dunford](www.ericdunford.com) (Professor)
+
+- **Office**: 404 Old North
+- **Office Hours**: Tuesdays 1pm to 3pm
+- **Email**: [eric.dunford@georgetown.edu](mailto:eric.dunford@georgetown.edu)
+
+<br>
+
+#### [Madeline Pickens](https://mccourt.georgetown.edu/news/profile/maddie-pickens/) (Teaching Assistant)
+
+- **Office Hours**: by appointment 
+- **Email**: [mp1595@georgetown.edu](mailto:mp1595@georgetown.edu)
+
+<br>
+
+#### Class
+
+- **Slack**: class communications will primarily take place through [Slack](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members). Please follow the [**_invite link_**](https://join.slack.com/t/ppol561accele-ilo1311/shared_invite/enQtODk3MTAzNjIxNDMxLWMzYmI3OGRjZGE2MTU1NWViNTA4YzQ1ZDYxNDU4NmI3MzNkYjBkNTYxNTkyZTE2YzM3ZTNmNWM3ZTA5NjIyODg) to be added to the class Slack channel.
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+# Lecture Materials
+
+<br>
+<br>
+
+
+---
