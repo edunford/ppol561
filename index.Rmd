@@ -38,15 +38,16 @@ require(kableExtra)
 
 ```{r,echo=F,message=F,results='asis'}
 read_csv('Syllabus/spring-2020-timeline.csv') %>%
-  filter(Topic != "No Class") %>% 
+  select(-`Presentation Group`) %>% 
   {.[is.na(.)]="";.} %>% 
   kable(., "html", booktabs = T,align = c('c','l','l')) %>%
   kable_styling(latex_options = c("striped", 
                                   "scale_down","repeat_header"),
-                full_width = T,font_size = 24) %>% 
+                full_width = T,font_size = 22) %>% 
   column_spec(1,width = '.5in') %>% 
   column_spec(2,width = '1in') %>% 
-  column_spec(3,width = '4in') 
+  column_spec(3,width = '4in') %>% 
+  column_spec(4,width = '2in') 
 ```
 
 <br>
@@ -120,7 +121,7 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
   # kable(., "latex", booktabs = T,align = c('c','l','l')) %>%
   kable_styling(latex_options = c("striped", 
                                   "scale_down","repeat_header"),
-                full_width = T,font_size = 16) %>% 
+                full_width = T,font_size = 20) %>% 
   column_spec(1,width = '1in') %>% 
   column_spec(2,width = '1in') %>% 
   column_spec(3,width = '4in') 

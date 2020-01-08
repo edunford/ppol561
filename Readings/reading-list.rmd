@@ -26,13 +26,13 @@ output:
 - **_Required Readings_**:
     
   - Grolemund & Wickham. 2017. "R for Data Science".
-  
-      + [Ch. 5: Data Transformation](https://r4ds.had.co.nz/transform.html) 
+      
       + [Ch. 10: Tibbles](https://r4ds.had.co.nz/tibbles.html) - `r4ds`
       + [Ch. 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html) 
-      + [Ch. 13: Relational Data](https://r4ds.had.co.nz/relational-data.html)
-      + [Ch. 18: Pipes](https://r4ds.had.co.nz/pipes.html) 
       + [Ch. 15: Dates and Times](https://r4ds.had.co.nz/dates-and-times.html) 
+      + [Ch. 5: Data Transformation](https://r4ds.had.co.nz/transform.html) 
+      + [Ch. 18: Pipes](https://r4ds.had.co.nz/pipes.html) 
+      + [Ch. 7: Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
       
 ### Week 3: OLS Review 
 
@@ -40,7 +40,7 @@ output:
   
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
-      + Chapters. 5 - 7
+      + Refresh on Chapters. 5 - 7
   
 ### Week 4: Binary Outcomes
 
@@ -103,7 +103,7 @@ output:
 
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
-      + Review Chapter 8
+      + Chapter 8
       
       
 ### Week 9: Instrumental Variables
@@ -112,7 +112,7 @@ output:
 
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
-      + Review Chapter 9
+      + Chapter 9
       
       
 ### Week 11: Experiments
@@ -121,7 +121,7 @@ output:
 
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
-      + Review Chapter 10
+      + Chapter 10
       
 ### Week 12: Regression Discontinuity
 
@@ -129,7 +129,7 @@ output:
 
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
-      + Review Chapter 11
+      + Chapter 11
       
 ### Week 13: Matching
 
