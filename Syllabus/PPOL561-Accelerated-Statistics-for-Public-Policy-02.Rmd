@@ -1,18 +1,18 @@
 ---
 fontsize: 12pt
 output:
-  # pdf_document: default
-  html_document:
-    css: style.css
-    theme: spacelab
-    highlight: default
-    toc_depth: 3
-    toc: true
-    toc_collapsed: true
-    toc_float: true
+  pdf_document: default
+  # html_document:
+  #   css: style.css
+  #   theme: spacelab
+  #   highlight: default
+  #   toc_depth: 3
+  #   toc: true
+  #   toc_collapsed: true
+  #   toc_float: true
 ---
 
-### [Home](../index.html)
+<!-- ### [Home](../index.html) -->
 
 \begin{center}
  
@@ -51,7 +51,7 @@ require(kableExtra)
 
 # Course Description
 
-This is the second course in the two-course sequence on quantitative methods for social science. The course builds on students’ understanding of multivariate regression and introduces advanced, but commonly used, methods of statistical analysis. The course can be broadly be divided into two part: advanced modeling and causal inference. Instruction will concentrate on how to determine the appropriate econometric approach in addressing various types of policy questions, while highlighting the challenges in isolating causal effects. The emphasis is on applied learning; formal proofs and mathematical rigor are presented but not the principal focus of the course. This course will be taught using `R`. As part of our effort to teach effective communication skills, students will make presentations about applications using the techniques being studied in class.
+This is the second course in the two-course sequence on quantitative methods for social science. The course builds on students’ understanding of multivariate regression and introduces advanced, but commonly used, methods of statistical analysis. The course is broadly divided into two part: advanced modeling and causal inference. Instruction will concentrate on how to determine the appropriate econometric approach in addressing various types of policy questions, while highlighting the challenges in isolating causal effects. The emphasis is on applied learning; formal proofs and mathematical rigor are presented but not the principal focus of the course. This course will be taught using `R`. As part of our effort to teach effective communication skills, students will make presentations about applications using the techniques being studied in class.
 
 # Course Objectives
 
@@ -273,11 +273,11 @@ More information about campus resources and reporting sexual misconduct can be f
 ```{r,echo=F,message=F,results='asis'}
 read_csv('spring-2020-timeline.csv') %>% 
   {.[is.na(.)]="";.} %>% 
-  # kable(., "latex", booktabs = T,align = c('c','c','l','l','c')) %>%
-  kable(., "html", booktabs = T,align = c('c','c','l','l','c')) %>%
+  kable(., "latex", booktabs = T,align = c('c','c','l','l','c')) %>%
+  # kable(., "html", booktabs = T,align = c('c','c','l','l','c')) %>%
   kable_styling(latex_options = c("striped", "scale_down","repeat_header"),
-                font_size = 20,
-                # font_size = 12,
+                # font_size = 20,
+                font_size = 12,
                 full_width = T) %>% 
   column_spec(1,width = '.5in') %>% 
   column_spec(2,width = '.75in') %>% 
