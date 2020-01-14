@@ -97,7 +97,7 @@ The following rubrics outlines how presenters will be evaluated when presenting 
 ## Timing (Points ___/10)
 
   - **_Criteria_**
-    + **Unsatisfactory** (0-3 points): _Presentation went 2+/- minutes over/under the required 10 minutes (instuctor had to stop them). Presenters rushed through material._
+    + **Unsatisfactory** (0-3 points): _Presentation went 2+/- minutes over/under the required 10 minutes (instructor had to stop them). Presenters rushed through material._
     + **Acceptable** (4-7 points): _Presentation went 1+/- minute over/under the required 10 minutes. Good flow; presenters rushed through some parts of the material._
     + **Excellent** (8-10 points): _Presentation took exactly 10 minutes. Well executed; presenters did not appear to rush._
   - **_Notes_**:
