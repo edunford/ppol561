@@ -21,13 +21,18 @@ output:
 
   - Please review course syllabus. 
   
+- **_Suggested Reading_**:
+  
+  - King, G., Keohane, R.O. and Verba, S., 1994. "Designing social inquiry: Scientific inference in qualitative research." _Princeton university press_.
+
+  
 ### Week 2: Data wrangling in R
 
 - **_Required Readings_**:
     
   - Grolemund & Wickham. 2017. "R for Data Science".
       
-      + [Ch. 10: Tibbles](https://r4ds.had.co.nz/tibbles.html) - `r4ds`
+      + [Ch. 10: Tibbles](https://r4ds.had.co.nz/tibbles.html)
       + [Ch. 12: Tidy Data](https://r4ds.had.co.nz/tidy-data.html) 
       + [Ch. 15: Dates and Times](https://r4ds.had.co.nz/dates-and-times.html) 
       + [Ch. 5: Data Transformation](https://r4ds.had.co.nz/transform.html) 
@@ -48,7 +53,7 @@ output:
   
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
-      + Review Chapter 12
+      + Refresh on Chapter 12
       
   - Long. 2016. "Regression models for categorical and limited dependent variables".
     

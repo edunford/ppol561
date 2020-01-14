@@ -80,6 +80,44 @@ List of [**all required and suggested readings**](Readings/reading-list.html)
 <br>
 <br>
 
+## Presentation
+
+<br>
+<br>
+
+The presentation is a 10 minute in-class presentation with slides on a paper related to the material we are discussing. These presentations will be done in teams of two. Each team will be responsible for locating a research paper published in a peer-reviewed journal. The presentation should summarize the substantive and statistical issues addressed in the paper and provide context and a critique. 
+
+Students will be evaluate along 5 categories: preparedness, presentation performance, slides, critiques, and timing. Please see the rubric for specifics. 
+
+<br>
+
+<center>
+
+[**Presentation Rubric**](Assignments/Presentations/presentation_rubric_PPOL561.pdf)
+
+</center>
+
+<br>
+
+The **presentation schedule** for the Spring 2020 semester: 
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+read_csv(here::here('Students/presentation_schedule.csv')) %>% 
+  mutate(Week=c(3:9,11:14)) %>% 
+  select(Group,Week,everything()) %>% 
+  {.[is.na(.)]="";.} %>% 
+  select(-contains('email')) %>% 
+  kable(., "html", booktabs = T,align = c('c','c','c')) %>%
+  kable_styling(latex_options = c("striped", "scale_down","repeat_header"),
+                full_width = T,
+                font_size = 18,
+                row_label_position = 'c') 
+```
+
+<br>
+<br>
+<br>
+<br>
 
 ## Installation
 
@@ -113,7 +151,7 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <br>
 <br>
 
-Recitation meets most weeks on Wednesdays from 4:00 to 5:00 in **Old North**. Below is the schedule for when there is a lab. 
+Recitation meets most weeks on Wednesdays from 4:00 to 5:00 in **Old North G-02**. Below is the schedule for when there is a lab. 
 
 ```{r,echo=F}
 read_csv("Syllabus/lab-schedule-spring2020.csv") %>% 

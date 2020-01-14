@@ -1,0 +1,112 @@
+---
+title: | 
+  | PPOL561 | Accelerated Statistics for Public Policy II
+  | Presentation Rubric
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Presenter(s) _____________________________
+# Date ________ (Week: _____ )
+
+# Overview
+
+The presentation is a 10 minute in-class presentation with slides on a paper related to the material we are discussing. These presentations will be done in teams of two. Each team will be responsible for locating a research paper published in a peer-reviewed journal. The presentation should summarize the substantive and statistical issues addressed in the paper and provide context and a critique. 
+
+The following rubrics outlines how presenters will be evaluated when presenting in PPOL561. A total of 50 points are available across 5 categories: preparedness, presentation performance, slides, critique, and timing. Grades will not be assigned to student until _all_ student groups have presented to ensure that grades appropriately reflect the performance distribution of the entire class. Students will be graded individually although there will likely be high correlation between grades of their partner. 
+
+# Rubric
+
+## Total Points: ____/50
+
+## Prepared (Points ___/10)
+
+  - **_Criteria_**
+    + **Unsatisfactory** (0-3 points): _Little time practicing and preparing presentation; no evidence that the team practiced together; did not send slides to instructor the day before._
+    + **Acceptable** (4-7 points): _Spent time practicing and preparing presentation but parts were choppy; some evidence that the team practiced together; sent slides to instructor the day before._
+    + **Excellent** (8-10 points): _Clearly spent time practicing and preparing presentation; strong evidence that the team practiced together; sent slides to instructor the day before._
+  - **_Notes_**:
+```
+  
+  
+  
+  
+```
+\pagebreak
+
+## Presentation (Points ___/10)
+
+  - **_Criteria_**
+    + **Unsatisfactory** (0-3 points): _The team members did not  present well together (stumbling often when transitioning between speakers); concepts/logic were difficult to follow; presenters were difficult to understand. Presenters crammed too much (or not enough) material into the presentation; unclear why the presenters focused on what they presented. Presenters read off of their slides._
+    + **Acceptable** (4-7 points): _The team members presented well enough together (stumbling at times when transitioning between speakers); concepts were at times difficult to follow; presenters enunciated most of the time and generally spoke in manner that others could understand, but at times they were difficult to follow. Presenters did crammed a lot of material into the presentation (tried to cover most of the paper and/or focused on specific aspect of the paper but it was unclear why). Presenters sometimes read off of their slides._
+    + **Excellent** (8-10 points): _The team members presented well together (rarely if ever stumbling when transitioning between speakers); Presentation was well crafted to the audience;  concepts were easy to follow; presenters enunciated well and spoke in manner that others could understand and follow. Presenters did not cram too much material into the presentation (clearly focused on specific aspect of the paper and made this known). Presenters never read off of their slides._
+  - **_Notes_**:
+```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+```
+
+## Slides (Points ___/10)
+
+  - **_Criteria_**
+    + **Unsatisfactory** (0-3 points): _The team members presented well together (rarely if ever stumbling when transitioning between speakers); Presentation was well crafted to the audience;  concepts were easy to follow; presenters enunciated well and spoke in manner that others could understand and follow. Presenters did not cram too much material into the presentation (clearly focused on specific aspect of the paper and made this known). Presenters never read off of their slides._
+    + **Acceptable** (4-7 points): _Good slides; a bit wordy at times; used graphics but they were not visually appealing; relied on tables at parts._
+    + **Excellent** (8-10 points): _Clean and clear slides; limited number of words on each slide; compelling graphics; little or no tables; slides transitioned well._
+  - **_Notes_**:
+```
+  
+  
+  
+  
+```
+  
+\pagebreak
+
+## Critique (Points ___/10)
+
+  - **_Criteria_**
+    + **Unsatisfactory** (0-3 points): _Offered a poor critique of the paper (if any); did not include an explanation for why their critique would alter the results/conclusions made in the paper (or their explanation was poorly formulated)_
+    + **Acceptable** (4-7 points): _Offered an satisfactory critique of the paper; included an okay explanation for why their critique would alter the results/conclusions made in the paper._
+    + **Excellent** (8-10 points): _Well formulated critique of the paper; included a compelling explanation for why their critique would alter the results/conclusions made in the paper._
+  - **_Notes_**:
+```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+```
+  
+
+## Timing (Points ___/10)
+
+  - **_Criteria_**
+    + **Unsatisfactory** (0-3 points): _Presentation went 2+/- minutes over/under the required 10 minutes (instuctor had to stop them). Presenters rushed through material._
+    + **Acceptable** (4-7 points): _Presentation went 1+/- minute over/under the required 10 minutes. Good flow; presenters rushed through some parts of the material._
+    + **Excellent** (8-10 points): _Presentation took exactly 10 minutes. Well executed; presenters did not appear to rush._
+  - **_Notes_**:
+```
+  
+  
+  
+  
+  
+  
+
+```
