@@ -138,7 +138,7 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 
 <br>
 
-#### [Eric Dunford](www.ericdunford.com) (Professor)
+#### [Eric Dunford](http://ericdunford.com/) (Professor)
 
 - **Office**: 404 Old North
 - **Office Hours**: Tuesdays 1pm to 3pm
