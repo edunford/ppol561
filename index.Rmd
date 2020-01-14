@@ -52,6 +52,9 @@ read_csv('Syllabus/spring-2020-timeline.csv') %>%
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -66,6 +69,9 @@ read_csv('Syllabus/spring-2020-timeline.csv') %>%
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -77,6 +83,9 @@ List of [**all required and suggested readings**](Readings/reading-list.html)
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -116,6 +125,9 @@ read_csv(here::here('Students/presentation_schedule.csv')) %>%
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -143,6 +155,9 @@ To install `RStudio`, download from the following (scroll to the bottom):
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -168,6 +183,9 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -197,6 +215,9 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 
 <br>
 <br>
+
+---
+
 <br>
 <br>
 
@@ -207,9 +228,8 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 <br>
 <br>
 
-### _Week 1_: Course Introduction & Research Design
+### _Week 1_: [Course Introduction & Research Design](Lectures/week_01/week-01_ppol561.html)
 
-- [**Lecture**](Lectures/week_01/week-01_ppol561.html)
 
 
 
