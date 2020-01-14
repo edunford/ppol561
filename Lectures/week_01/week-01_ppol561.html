@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 1       Course Introduction   &amp;   Research Design</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  eric.dunford@georgetown.edu" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/d3-3.3.8/d3.min.js"></script>
+    <script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+    <link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+    <script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/chromatography-0.1/chromatography.js"></script>
+    <script src="libs/DiagrammeR-binding-1.0.1/DiagrammeR.js"></script>
+    <link rel="stylesheet" href="gu-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font> <font size=6, face="bold"> Week 1 </font> <br> <br> <font size=100, face="bold"> Course Introduction <br> &amp; <br> Research Design </font>
+### <font class = "title-footer">  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  <a href="mailto:eric.dunford@georgetown.edu" class="email">eric.dunford@georgetown.edu</a></font>
+
+---
+
+
+
+
+layout: true
+
+&lt;div class="slide-footer"&gt;&lt;span&gt; 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+Week 1 &lt;!-- Week of the Footer Here --&gt;
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+Introduction &amp; Research &lt;!-- Title of the lecture here --&gt;
+
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+class: outline
+
+# Outline for Today 
+
+&lt;br&gt;
+&lt;br&gt;
+
+
+- **Course Overview**
+
+- **Presentations**
+
+- **Research Design**
+
+---
+
+class: newsection
+
+# Course Overview
+
+---
+
+.center[&lt;img src="Figures/rally-photo.png" width="800"&gt;]
+
+---
+
+## General
+
+- **_Meet_**: Wednesdays 12:30 to 3:00 PM in **Healy 104**
+
+- **_Recitation_**: Wednesdays from 4:00 to 5:00 in **Old North G-02**
+
+- **_Teaching Assistant_**: Maddie Pickens 
+
+- **_Office Hours_**: 
+  - _Professor_: 1pm to 3pm Tuesdays
+  - _TA_: by appointment (email/slack)
+
+- **_Class Website_** (https://ericdunford.com/ppol561) &amp;rarr; Lecture materials 
+  
+- **_Canvas_** &amp;rarr; Readings
+
+- **_Slack_** &amp;rarr; Communication
+
+---
+
+## Course Goals
+
+![:space 3]
+
+1. **Causality**: understand the challenge of isolating causal effects via random assignment, experiments, instrumental variables and other methods;
+
+2. **Modeling**: understand and implement advanced statistical models, such as limited dependent variable models (binary, ordered, and multinomial outcomes), selection models, and panel models;
+
+3. **`R` Programming**: use `R` to manipulate data and conduct advanced statistical analysis.
+
+4. **Communication/Presentation**: effectively communicate statistical analysis and present publication-quality tables and graphics.
+
+---
+  
+## Course Calendar
+
+&lt;center&gt; 
+
+&lt;table class="table" style="font-size: 17px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Week &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Topic &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Assignment &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Presentation Group &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15-Jan &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Course Introduction + Research Design &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22-Jan &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Data Wrangling and Presentation in R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 29-Jan &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; OLS Review &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Assignment 1 Due &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5-Feb &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Binary Outcomes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 12-Feb &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ordered &amp;amp; Multinomial Outcome &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 19-Feb &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Selection &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Assignment 2 Due &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 26-Feb &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Introduction to Causal Inference &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4-Mar &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Panel Data + DID &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 18-Mar &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Instrumental Variables &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Assignment 3 Due &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25-Mar &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Midterm Exam &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Assignment 4 Due &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1-Apr &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Experiments &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8-Apr &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Regression Discontinuity &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Assignment 5 Due &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15-Apr &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Matching &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Assignment 6 Due &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22-Apr &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Synthetic Control &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8-May &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Final Exam (12:30 - 2:30) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Course Policies
+
+![:space 4]
+
+- **Attendance/Participation**
+
+- **Late Assignments**
+
+- **Proof of Diligent Debugging**
+
+- **No Practice Exams**
+
+- **Sit with someone different each class**
+
+- **Instructional Continuity**
+
+- **Use of Class Materials**
+
+---
+
+## Work Load
+
++ Six homework assignments
++ One 10-minute "group" presentation
++ Two 2-hour written exams (midterm and final)
+
+![:space 5]
+
+.center[
+
+| **![:text_size 7](Assignment)** | **![:text_size 7](Percentage)** | 
+|----------------|----------------|
+| ![:text_size 6](Participation)	 |	![:text_size 6](10%)       |
+| ![:text_size 6](Problem sets)	   |		![:text_size 6](20%)       |
+| ![:text_size 6](Presentation)	   |		![:text_size 6](15%)       |
+| ![:text_size 6](Midterm exam) 	 |	![:text_size 6](25%)       |
+| ![:text_size 6](Final exam)   	 |	![:text_size 6](30%)       |
+
+]
+
+---
+
+## Succeeding in this course
+
+&lt;br&gt;&lt;br&gt;
+
+- **Come Prepared**
+
+- **Ask Questions**
+
+- **Collaborate**
+
+- **Start Homeworks Early**
+
+- **Utilize the Teaching Assistant**
+
+---
+
+## Concerns
+
+- **_![:text_color darkred](Different backgrounds)_**
+  
+  + Some have a lot of previous methods exposure; others less so.
+  + We all have different substantive interests
+
+- **_![:text_color darkred](Going too fast)_** 
+
+  + Slow me down
+  + Ask Questions
+  + I will re-schedule the course calendar if we need time
+
+- **_![:text_color darkred](Being called on)_** 
+
+  + I will call on you. Read, follow along with the lecture, and you'll be fine
+
++ **_![:text_color darkred](Presenting)_**
+
+---
+
+
+class:newsection
+
+# Presentations
+
+---
+
+## General
+
+- **_Randomly paired_** with another student; presentation date also randomly assigned. 
+
+- **_10 minute, in-class presentation with slides_** on a paper related to the material we are discussing. 
+
+- Presentations will be given at the **_start of class_** each week. 
+  + Presenters should set up their slides prior to the start of class.
+  + First presentation is on January 29th (and every week thereafter, except for the week of the midterm)
+
+- **![:text_color darkred](Email me a copy of the presentation the _day before_ your scheduled presentation time)**
+
+- [**Presentation Rubric**](presentation_rubric_PPOL561.pdf)
+
+---
+
+## Presentation Schedule
+
+&lt;center&gt;
+
+&lt;table class="table" style="font-size: 24px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Group &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Week &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Partner 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Partner 2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Allen Church &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Valarie Bryant &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Anjali Taneja &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Nerissa Lemon &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Huizhi Gong &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Xiyang Xu &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Emma Farber &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Andy Green &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Xi Li &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Marissa Joy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Digvijay Ghotane &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Shahid Amina &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Tianwei Liu &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Wei Xin &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Yuanfeng Hu &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Adam Hearn &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Jingjing Tu &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Bingrui Li &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Erden-Yichen Sang &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Eric Larose &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Zhenyun Guo &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## Main things to hit
+
+![:space 5]
+
+- What is the issue and why is it **interesting**?
+
+- Why is it **hard to answer** the question?
+
+- What is the **inferential** issue?
+
+- How did this paper **meet the challenge**?
+
+- What did they **find**?
+
+---
+
+![:space 7]
+
+- **Be interesting**
+
+  + Do **_![:text_color darkred](not)_** read notes
+  
+  + Don't pack too much in
+
+  + Start strong with a “hook” and with interesting context
+  
+
+&lt;br&gt;
+
+- **Know your audience**
+
+  + They have advanced statistical knowledge
+
+  + But they have not read the paper
+
+
+---
+
+![:space 7]
+
+- **Be Concise**
+
+  + You can't cover everything so don't try
+  
+  + Do not show huge tables of numbers &amp;rarr; in fact, don't copy and paste any tables into your slide.
+  
+  + Generate compelling visuals.
+
+  + If something is on a slide, explain it clearly.  (Otherwise cut it!)
+  
+
+- **Be Ready**
+
+  + Practice out-loud at least twice (preferably to someone who hasn’t read the paper)
+  
+  + 10 minutes – not more, not less
+  
+  + Prepare for questions
+
+
+---
+
+## Critiques require context
+
+An effective critique includes an explanation of how your point would change results
+
+&lt;br&gt;
+
+- **![:text_color darkred](Bad)**: 
+&gt; There are too many variables!
+
+- **![:text_color darkgreen](Better)**: 
+&gt; Multicollinearity of variable `\(X_1\)` and `\(X_2\)` could increase the variance of the `\(\beta_1\)` and could explain its statistical insignificance
+
+
+---
+
+## Critiques require context
+
+An effective critique includes an explanation of how your point would change results
+
+&lt;br&gt;
+
+- **![:text_color darkred](Bad)**:
+&gt; They didn’t include a variable for `\(Z\)`
+
+- **![:text_color darkgreen](Better)**:
+&gt; `\(Z\)` was omitted and we believe that excluding it matters as `\(Z\)` is likely correlated with variable `\(X\)`, making us wonder if omitted variable bias has distorted the estimate of the effect of `\(X\)` on `\(Y\)`
+
+
+---
+
+## Critiques require context
+
+An effective critique includes an explanation of how your point would change results
+
+
+- **![:text_color darkred](Bad)**: 
+
+&gt; The study was only of California.
+
+- **![:text_color darkgreen](Better, but still bad)**:
+&gt; The study was only of California, which is a very diverse state.
+
+- **![:text_color darkgreen](Better)**:
+&gt; I’m concerned about the generalizability of the findings because I expect the coefficient on X to be different in a diverse state such as California due to …
+
+---
+
+## Critiques require context
+
+![:space 7]
+- Better to have 1 or 2 critique well explained than many poorly explained
+
+- It's okay to piggy-back on some of the critiques addressed in subsequent publications; but you need think critically here. 
+
+- Be clear and explicit about why you think your proposed adjustment might change the outcome of the analysis. 
+
+- Be fair
+
+  + Avoid "collect more data"-type critiques.
+
+---
+
+## Tips
+
+- **_Start preparing early_**
+
+- **_Coordinate_** &amp; **_communicate_** with your partner  
+
+- Hunt for an **_interesting paper_** (makes the exercise far more enjoyable)
+
+  + Have a paper you already think is really interesting? Look at other papers in that journal. Georgetown subscribes to hundreds of academic journals.
+  
+  + Check out Media publications of academic work, such as the [Monkey Cage](https://www.washingtonpost.com/news/monkey-cage/). These will point to published political science/public policy related work. 
+  
+- Keep in mind the paper must be a **_peer-reviewed_**, empirical article; ideally using one or more of the methods covered in this class
+
+---
+
+class: newsection
+
+# Research Design
+
+---
+
+![:space 5]
+
+.pull-left[
+&lt;br&gt;
+&lt;br&gt;
+- **Inference**: a belief based on evidence _and_ rules for processing that evidence
+
+&lt;br&gt;
+
+- **Methodology**: tools for gathering and analyzing data to make valid inferences
+]
+
+.pull-right[
+
+<div id="htmlwidget-badc663bd6a6c3d36d2e" style="width:504px;height:650px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-badc663bd6a6c3d36d2e">{"x":{"diagram":"\ngraph TB\n  A(Questions)-->B{Data}\n  B-->C(Methodology)\n  C-->D[Beliefs]\n  D-->E[Claims]\n  E-->A\n  D-->A\n"},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+###Two Types of Inference
+
+![:space 5]
+
+**Descriptive Inference** &amp;rarr; What are the facts?
+
++ Is the climate changing?
++ Is the United States politically polarized? 
++ Is global terrorism increasing?
++ Is Azerbaijan a democracy?
+
+--
+
+**Causal Inference** &amp;rarr; Why does something occur?
+
+- _Why_ is the climate changing?
+- _Why_ is the United States politically polarized?
+- _Why_ is (or is not) global terrorism increasing?
+- _Why_ is (or is not) Azerbaijan a democracy?
+
+---
+
+### A Causal Research Question
+
+Typically start with either
+
+- (1) an **outcome** (dependent variable)
+
+  - If what, then `\(Y\)`?
+  - What _causes_ `\(Y\)`?
+  - Associated with a search for causes, e.g. what causes climate change?
+
+--
+
+- (2) a **cause** (independent variable)
+
+  - If `\(X\)`, then what? 
+  - What happens if `\(X\)` goes up or down?
+  - Associated with “experimentation”; e.g. What happens if we release greenhouse gases into the air?
+  
+  
+---
+
+### Which of these is a causal research question?
+
+![:space 10]
+
+- Will Democrats win the next U.S. presidential election?
+
+- What factors increased the likelihood of Hillary Clinton's defeat in the 2016 election?
+
+- How has electoral performance for the Republican party changed over the last three decades?
+
+- What was the result of the last U.S. presidential election?
+
+- What role did the economy have on the last U.S. presidential election?
+
+---
+
+### Which of these is a causal research question?
+
+![:space 10]
+
+- ![:text_color lightgrey](Will Democrats win the next UK general election?)
+
+- What factors increased the likelihood of Hillary Clinton's defeat in the 2016 election?
+
+- ![:text_color lightgrey](How has electoral performance for the Republican party changed over the last three decades?)
+
+- ![:text_color lightgrey](What was the result of the last U.S. presidential election?)
+
+- What role did the economy have on the last U.S. presidential election?
+
+---
+
+### Falsifiability
+
+One of the tenets behind the scientific method is that any scientific hypothesis and resultant experimental design must be inherently _falsifiable_.
+
+--
+
+**Falsifiability** is the assertion that for any hypothesis to have credence, it must be inherently disprovable before it can become accepted as a scientific hypothesis or theory.
+
+--
+
+.center[**![:text_color darkred](Unfalsifiable)**]
+
+.center[![:text_color darkred](Can _never_ shown to be false)]
+
+.center[**![:text_color darkgreen](Falsifiable)**]
+
+.center[![:text_color darkgreen](Can be shown to be false.)]
+
+
+---
+
+### Falsifiability
+
+One of the tenets behind the scientific method is that any scientific hypothesis and resultant experimental design must be inherently _falsifiable_.
+
+**Falsifiability** is the assertion that for any hypothesis to have credence, it must be inherently disprovable before it can become accepted as a scientific hypothesis or theory.
+
+.center[**![:text_color darkred](Unfalsifiable)**]
+&gt; ![:text_color darkred](Social welfare spending by the government appears to sometimes alleviate poverty in the country.)
+
+.center[**![:text_color darkgreen](Falsifiable)**]
+&gt; ![:text_color darkgreen](_Increased levels_ of social welfare spending by the government _reduces_ the average level of poverty in the country.)
+
+---
+
+# Good research questions
+
+### 1. Start from political problem or puzzle 
+
+- Something important
+
+- Not obvious
+
+--
+
+### 2. Builds on an existing research literature/Knowledge
+
+- "Stand on the shoulders of giants"
+
+- Don't reinvent the wheel
+
+--
+
+### 3. Falsifiable
+
+
+---
+
+## Generating Questions
+
+### Puzzle-driven 
+
+- Given what we know, we expect A but observe B. How interesting!
+
+--
+
+### Theory-driven 
+
+- Deduction
+
+--
+
+### Data/Method-driven 
+
+- Induction
+
+--
+
+### "Should"-driven
+
+- normative
+
+---
+
+## Generating Theories
+
+![:space 10]
+
+![:center_img](Figures/theory_analysis.png)
+
+---
+
+## Generating Theories
+
+### Approach 1: Reason _Inductively_
+
+- Induction works by drawing generalities from specific observations
+
+- Sometimes called “bottom-up” theorizing
+
+--
+
+&lt;br&gt;
+
+### Approach 2: Reason _Deductively_
+
+- Deduction begins from general, assumed principles/axioms to reach more specific observable realities
+
+- e.g. Rational choice theory
+
+---
+
+## Generating Theories
+
+
+What makes for a **_good theory_**:
+
+- **Truth**: Maps to reality
+
+- **Relevance**: Matters
+
+- **Coherence**: Is clear
+
+- **Falsifiability**: Can be disproven 
+
+- **Precision**: Captures the concepts of interest
+
+- **Generality**: Theories that can explain more are preferred over theories that can explain less
+
+- **Parsimony**: Simple theories are preferred over complex theories
+
+---
+
+## Generating Hypotheses
+
+- What would evidence consistent/inconsistent with the theory be? 
+
+- Think about **_observable_ implications** derived from the theory
+
+- Use causal ("if-then") logic
+
+- **_Falsifiable_**
+
+- Avoid **_Observational Equivalence_**
+  
+  - All hypotheses for two (or more) theories are identical
+  
+  - Different drivers yield the same results
+  
+  - Get around this by establishing clear scope conditions; reformulating question/theory/concept
+
+---
+
+### (_Social_) Scientific Method
+
+![:space 2]
+
+.center[
+
+**Research question(s)** 
+
+**Clarify the core concepts** 
+
+**Develop (causal) theory**
+
+**Derive speciﬁc, testable hypotheses**
+
+**Plan data collection**
+
+**Gather data/evidence**
+
+**Analyze data**
+
+**Draw inferences**
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": true,
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

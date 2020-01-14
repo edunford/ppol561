@@ -207,5 +207,9 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 <br>
 <br>
 
+### _Week 1_: Course Introduction & Research Design
 
----
+- [**Lecture**](Lectures/week_01/week-01_ppol561.html)
+
+
+

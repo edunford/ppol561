@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 13       Research &amp; Review</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  eric.dunford@georgetown.edu" />
+    <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+    <script src="libs/d3-3.3.8/d3.min.js"></script>
+    <script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+    <link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+    <script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/chromatography-0.1/chromatography.js"></script>
+    <script src="libs/DiagrammeR-binding-1.0.1/DiagrammeR.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link rel="stylesheet" href="gu-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font> <font size=6, face="bold"> Week 13 </font> <br> <br> <font size=100, face="bold"> Research &amp; Review </font>
+### <font class = "title-footer">  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  <a href="mailto:eric.dunford@georgetown.edu" class="email">eric.dunford@georgetown.edu</a></font>
+
+---
+
+
+
+
+layout: true
+
+&lt;div class="slide-footer"&gt;&lt;span&gt; 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+Week 13 &lt;!-- Week of the Footer Here --&gt;
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+Research &amp; Review &lt;!-- Title of the lecture here --&gt;
+
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+class: outline
+
+# Outline for Today 
+
+- Brief Discussion on **Research Design**
+
+- Open **review** of concepts covered in this course
+
+&lt;br&gt;
+
+### Final
+
+**Friday, May 10 (12:30-2:30pm)**	
+
+**Healy 104** (This room)
+
+**17-18 questions; exact same format as the midterm**
+
+
+---
+
+class: newsection
+
+# Research Design
+
+---
+
+![:space 5]
+
+.pull-left[
+&lt;br&gt;
+&lt;br&gt;
+- **Inference**: a belief based on evidence _and_ rules for processing that evidence
+
+&lt;br&gt;
+
+- **Methodology**: tools for gathering and analyzing data to make valid inferences
+]
+
+.pull-right[
+
+<div id="htmlwidget-dfad3ca843d6eaad6e72" style="width:504px;height:650px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dfad3ca843d6eaad6e72">{"x":{"diagram":"\ngraph TB\n  A(Questions)-->B{Data}\n  B-->C(Methodology)\n  C-->D[Beliefs]\n  D-->E[Claims]\n  E-->A\n  D-->A\n"},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+###Two Types of Inference
+
+![:space 5]
+
+**Descriptive Inference** &amp;rarr; What are the facts?
+
++ Is the climate changing?
++ Is the United States politically polarized? 
++ Is global terrorism increasing?
++ Is Azerbaijan a democracy?
+
+--
+
+**Causal Inference** &amp;rarr; Why does something occur?
+
+- _Why_ is the climate changing?
+- _Why_ is the United States politically polarized?
+- _Why_ is (or is not) global terrorism increasing?
+- _Why_ is (or is not) Azerbaijan a democracy?
+
+---
+
+### A Causal Research Question
+
+Typically start with either
+
+- (1) an **outcome** (dependent variable)
+
+  - If what, then `\(Y\)`?
+  - What _causes_ `\(Y\)`?
+  - Associated with a search for causes, e.g. what causes climate change?
+
+--
+
+- (2) a **cause** (independent variable)
+
+  - If `\(X\)`, then what? 
+  - What happens if `\(X\)`?
+  - Associated with “Experimentation”; e.g. What happens if we release greenhouse gases into the air?
+  
+  
+---
+
+### Which of these is a causal research queston?
+
+![:space 10]
+
+- Will Democrats win the next U.S. presidential election?
+
+- What factors increased the likelihood of Hillary Clinton's defeat in the 2016 election?
+
+- How has electoral performance for the Republican party changed over the last three decades?
+
+- What was the result of the last U.S. presidential election?
+
+- What role did the economy have on the last U.S. presidential election?
+
+---
+
+### Which of these is a causal research queston?
+
+![:space 10]
+
+- ![:text_color lightgrey](Will Democrats win the next UK general election?)
+
+- What factors increased the likelihood of Hillary Clinton's defeat in the 2016 election?
+
+- ![:text_color lightgrey](How has electoral performance for the Republican party changed over the last three decades?)
+
+- ![:text_color lightgrey](What was the result of the last U.S. presidential election?)
+
+- What role did the economy have on the last U.S. presidential election?
+
+---
+
+### Falsifiability
+
+One of the tenets behind the scientific method is that any scientific hypothesis and resultant experimental design must be inherently _falsifiable_.
+
+--
+
+**Falsifiability** is the assertion that for any hypothesis to have credence, it must be inherently disprovable before it can become accepted as a scientific hypothesis or theory.
+
+--
+
+.center[**![:text_color darkred](Unfalsifiable)**]
+
+.center[![:text_color darkred](Can _never_ shown to be false)]
+
+.center[**![:text_color darkgreen](Falsifiable)**]
+
+.center[![:text_color darkgreen](Can be shown to be false.)]
+
+
+---
+
+### Falsifiability
+
+One of the tenets behind the scientific method is that any scientific hypothesis and resultant experimental design must be inherently _falsifiable_.
+
+**Falsifiability** is the assertion that for any hypothesis to have credence, it must be inherently disprovable before it can become accepted as a scientific hypothesis or theory.
+
+.center[**![:text_color darkred](Unfalsifiable)**]
+&gt; ![:text_color darkred](Social welfare spending by the government appears to alleviate poverty in the country.)
+
+.center[**![:text_color darkgreen](Falsifiable)**]
+&gt; ![:text_color darkgreen](_Increased levels_ of social welfare spending by the government _reduces_ the average level of poverty in the country.)
+
+---
+
+# Good research questions
+
+### 1. Start from political problem or puzzle 
+
+- Something important
+
+- Not obvious
+
+--
+
+### 2. Builds on an existing research literature/Knowledge
+
+- "Stand on the shoulders of giants"
+
+- Don't reinvent the wheel
+
+--
+
+### 3. Falsifiable
+
+
+---
+
+## Generating Questions
+
+### Puzzle-driven 
+
+- Given what we know, we expect A but observe B. How interesting!
+
+--
+
+### Theory-driven 
+
+- Deduction
+
+--
+
+### Data/Method-driven 
+
+- Induction
+
+--
+
+### "Should"-driven
+
+- normative
+
+---
+
+## Generating Theories
+
+![:space 10]
+
+![:center_img](Figures/theory_analysis.png)
+
+---
+
+## Generating Theories
+
+### Approach 1: Reason _Inductively_
+
+- Induction works by drawing generalities from specific observations
+
+- Sometimes called “bottom-up” theorizing
+
+--
+
+&lt;br&gt;
+
+### Approach 2: Reason _Deductively_
+
+- Deduction begins from general, assumed principles/axioms to reach more specific observable realities
+
+- e.g. Rational choice theory
+
+---
+
+## Generating Theories
+
+
+What makes for a **_good theory_**:
+
+- **Truth**: Maps to reality
+
+- **Relevance**: Matters
+
+- **Coherence**: Is clear
+
+- **Falsifiability**: Can be disproven 
+
+- **Precision**: Captures the concepts of interest
+
+- **Generality**: Theories that can explain more are preferred over theories that can explain less
+
+- **Parsimony**: Simple theories are preferred over complex theories
+
+---
+
+## Generating Hypotheses
+
+- What would evidence consistent/inconsistent with the theory be? 
+
+- Think about **_observable_ implications** derived from the theory
+
+- Use causal ("if-then") logic
+
+- **_Falsifiable_**
+
+- Avoid **_Observational Equivalence_**
+  
+  - All hypotheses for two (or more) theories are identical
+  
+  - Different drivers yield the same results
+  
+  - Get around this by estabilishing clear scope conditions; reformulating question/theory/concept
+
+---
+
+### (_Social_) Scientific Method
+
+![:space 2]
+
+.center[
+
+**Research question(s)** 
+
+**Clarify the core concepts** 
+
+**Develop (causal) theory**
+
+**Derive speciﬁc, testable hypotheses**
+
+**Plan data collection**
+
+**Gather data/evidence**
+
+**Analyze data**
+
+**Draw inferences**
+
+]
+
+---
+
+class: newsection
+
+## Review 
+
+---
+
+![:space 10]
+
+.center[
+&lt;table class="table" style="font-size: 25px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Topics Covered &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; OLS Review and Simulations &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Panel Data &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Binary Outcomes &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Ordered &amp;amp; Multinomial Outcome &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Selection &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Instrumental variables &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Experiments &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Regression Discontinuity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Matching &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Time Series &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+![:space 15]
+### Question 
+
+The difference in means of the treated and control groups is not a good measure of the treatment effect when randomization fails to create balanced treatment and control groups.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+True
+
+---
+
+![:space 15]
+### Question 
+
+Pooled OLS models are biased when:
+
+- (a) The fixed effects are correlated with the independent variable.
+- (b) The fixed effects are correlated with the dependent variable.
+- (c) The fixed effects model is used but in reality there are no fixed effects in the data.
+- (d) We don't know the direction of the fixed effects.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+A
+
+---
+
+![:space 15]
+### Question 
+
+A key assumption for regression discontinuity is that the error term does not jump at the point of discontinuity.
+
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+True
+
+---
+
+![:space 15]
+### Question 
+
+Describe how to asses if other variables act differently at the point of discontinuity, and explain the consequence of other variables jumping at the point of discontinuity.
+
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+If other variables jump at the point of discontinuity, we may wonder if the people involved are somehow self-selecting (or being selected) based on some additional factors. If so, it could be that these other factors, not the treatment, are jumping at the discontinuity and causing a jump in `\(Y\)`.
+
+---
+
+### Question 
+
+Suppose we wish to know if long prison sentences reduce the probability of recidivism. The basic model is `$$Repeat crime_i = \beta_0 + \beta_1Sentence length_i + \epsilon_i$$` where `\(Repeatcrime\)` is 1 for released prisoners who end up being sent back to jail after release. Which of the following is viable as an instrumental variable?
+
+- (a) A variable indicating the severity of the initial crime.
+- (b) A variable indicating that the person had been randomly assigned to a judge with a record of harsh sentencing.
+- (c) A variable indicating that the person had been randomly assigned to an educational program while in prison.
+- (d) A variable indicating whether the person was a high school dropout.
+
+
+--
+
+### Answer: B
+
+---
+
+![:space 15]
+### Question 
+
+Matching guarantees the identification of a causal relationship from observational data.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+False
+
+---
+
+![:space 15]
+### Question 
+
+A compliance problem can lead to endogeneity because non-compliance is generally not random.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+True
+
+
+---
+
+![:space 15]
+### Question 
+
+Explain why a fixed effects model is not necessary when fixed effects exist but are not correlated with the independent variable.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+In this case, the conditions for omitted variable bias are not satisfied, and omission of the fixed effects will therefore not cause bias.
+
+---
+
+![:space 15]
+### Question 
+
+If `\(Z\)` is a weak instrument, explain how its use will influence the variance of `\(\beta_j\)`.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+A weak instrument is one that does a poor job of explaining `\(X_1\)` when controlling for other factors. Its use in the model leads to a higher variance of `\(\beta_j\)` because will completely depend on the other independent variables (meaning the `\(R^2\)` of a regression predicting `\(X_1\)` as a function of the non-instrumental variables will be high).
+
+
+---
+
+![:space 15]
+### Question 
+
+We employ binned graphs in order to:
+
+- (a) Help us ignore the functional form of the model and allow us to use a liner model regardless of the true relationship.
+- (b) Help us determine the functional form of the model.
+- (c) Increase the statistical power of the model.
+- (d) Deal with endogeneity.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+B
+
+
+---
+
+![:space 15]
+### Question 
+
+Which of the following is false?
+
+- (a) Fitted values from probit models and logit models are very similar when they are based on the same data.
+- (b) The coefficients in probit models and logit models are very similar when they are based on the same data.
+- (c) Probit models are slightly more accurate than logit models.
+- (d) Logit models make sense when using logged variables.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+B
+
+
+---
+
+![:space 15]
+### Question 
+
+When matching, every treated observation must be precisely matched with a complementary control observation?
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+False
+
+---
+
+![:space 15]
+### Question 
+
+One way to check for balance between the treatment and control groups is to look for a statistically significant coefficient on the treatment dummy variable in a model in which variable `\(X_1\)` is the dependent variable.
+
+--
+
+&lt;br&gt;
+
+### Answer
+
+True
+
+---
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+.center[
+### Good Luck with Finals and the End of the Semester!
+]
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&gt; Remember: The Final is on May 10 from 12:30 to 2:30 in Healy 104. See you then!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
