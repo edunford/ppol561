@@ -37,7 +37,24 @@ output:
       + [Ch. 15: Dates and Times](https://r4ds.had.co.nz/dates-and-times.html) 
       + [Ch. 5: Data Transformation](https://r4ds.had.co.nz/transform.html) 
       + [Ch. 18: Pipes](https://r4ds.had.co.nz/pipes.html) 
+      + [Ch. 3: Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
       + [Ch. 7: Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
+      
+- **_Suggested Reading_**:
+
+  - [Data Types and Structures](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/index.html) - Software Carpentry
+  
+  - Grolemund & Wickham. 2017. "R for Data Science".
+  
+      + [Ch. 20: Vectors](https://r4ds.had.co.nz/vectors.html) 
+      + [Ch. 21: Iteration](https://r4ds.had.co.nz/iteration.html) 
+      + [Ch. 19: Functions](https://r4ds.had.co.nz/functions.html)
+      + [Ch. 14: Strings](https://r4ds.had.co.nz/strings.html)
+      + [Ch. 11: Import Data](https://r4ds.had.co.nz/data-import.html)
+      + [Ch. 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html)
+      + [Ch. 8: Workflow: Projects](https://r4ds.had.co.nz/workflow-projects.html)
+      
+
       
 ### Week 3: OLS Review 
 
