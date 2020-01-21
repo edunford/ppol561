@@ -1,5 +1,5 @@
 ---
-title: "Week 4 - Data Wrangling - Practice"
+title: "PPOL 561 | Week 2 - Data Wrangling - Practice"
 subtitle: "ANSWER KEY"
 output:
   html_notebook:
@@ -18,7 +18,7 @@ require(nycflights13)
 ```
 
 For information on the dataset, please consult the documentation.
-```{r}
+```{r,eval=F}
 ?flights
 ```
 
