@@ -232,7 +232,7 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 
 ### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html)
 
-- **Lecture Table of Contents**
+- **Table of Contents**
   + [Data Wrangling](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#3)
   + [Reading & Writing Data](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#7)
   + [Data Manipulation](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#11)
