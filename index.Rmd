@@ -221,14 +221,24 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 <br>
 <br>
 
-
-
 # Lecture Materials
 
 <br>
 <br>
 
 ### _Week 1_: [Course Introduction & Research Design](Lectures/week_01/week-01_ppol561.html)
+
+<br>
+
+### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html)
+
+- **Walkthrough**:
+  + Generating regression tables using `stargazer` - [`.rmd`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.Rmd), [`.html`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.html)
+
+- **Practice**:
+  + Practice  <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling.Rmd" download> wrangling data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
+  + Practice <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping.Rmd" download> joining and reshaping data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
+  + Practice <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization.Rmd" download> data visualization using `ggplot2` (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
 
 
 

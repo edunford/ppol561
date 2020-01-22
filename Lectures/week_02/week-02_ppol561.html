@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 1       Data Wrangling &amp; Presentation</title>
+    <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 2       Data Wrangling &amp; Presentation</title>
     <meta charset="utf-8" />
     <meta name="author" content="  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  eric.dunford@georgetown.edu" />
     <link rel="stylesheet" href="gu-theme.css" type="text/css" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font> <font size=6, face="bold"> Week 1 </font> <br> <br> <font size=100, face="bold"> Data Wrangling &amp; Presentation </font>
+# <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font> <font size=6, face="bold"> Week 2 </font> <br> <br> <font size=100, face="bold"> Data Wrangling &amp; Presentation </font>
 ### <font class = "title-footer">  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  <a href="mailto:eric.dunford@georgetown.edu" class="email">eric.dunford@georgetown.edu</a></font>
 
 ---
@@ -40,6 +40,8 @@ class: outline
 # Outline for Today 
 
 Cover how to 
+
+  - **_reading in_**
 
   - **_manipulating_** 
   
@@ -110,7 +112,63 @@ install.packages('tidyverse')
 # Load the package
 require(tidyverse)
 ```
+---
+
+class: newsection
+
+# Reading &amp; Writing Data
   
+---
+
+# Data Packages
+
+![:space 5]
+
+We can import a large variety of data file types into the `R` programming environment. 
+
+We are going to focus on **three packages** to import different (but common) data types:
+
+- `readr` --- an expansive array of functions to read different data types
+- `readxl` --- for excel spreadsheets
+- `haven` --- for SPSS, SAS, and .dta
+
+
+```r
+require(readr) # Imported with tidyverse
+require(readxl)
+require(haven)
+```
+
+---
+
+# Importing/Exporting
+
+![:space 15]
+.center[
+
+| ![:text_size 6](File type) | ![:text_size 6](package) | ![:text_size 6](read) | ![:text_size 6](write) |
+|-----------|---------|--------------|---------------|
+| `.csv`    | `readr` | `read_csv()` | `write_csv()` |
+| `.dta`    | `haven` | `read_dta()` | `write_dta()` |
+| `.xlsx`   | `readxl` | `read_excel()` | `write_excel()` |
+| `.Rdata`   | Base `R` | `load()` | `save()` |
+| `.rds`   | `readr` | `read_rds()` | `write_rds()` |
+| `.tab`    | `readr` | `read_tsv()` | `write_tsv()` |
+| generic   | `readr` | `read_table()` | `write_table()` |
+
+]
+
+---
+
+## `tibble()` data frames
+
+![:space 10]
+
+Differences between `tibbles` and `data.frames`
+
+1. Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data.
+
+2. More explicit errors: tibbles are strict. They throw lots of errors, meaning we catch mistakes early. 
 
 ---
 
@@ -129,18 +187,6 @@ The `dplyr` package (part of the `tidyverse`) offers an intuitive **verb based**
 ![:space 5]
 
 The goal of the `dplyr` logic is to provide an easy, intuitive naming convention for ubiquitous to data management tasks.
-
----
-
-## `tibble()` data frames
-
-![:space 10]
-
-Differences between `tibbles` and `data.frames`
-
-1. Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data.
-
-2. More explicit errors: tibbles are strict. They throw lots of errors, meaning we catch mistakes early. 
 
 ---
 
@@ -1627,7 +1673,7 @@ Use the `ggplot()` function to establish the coordinate system.
 ggplot(data=diamonds)
 ```
 
-&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -1660,7 +1706,7 @@ What variables from the data do we want to map to the projected space?
 ggplot(data=diamonds,aes(x=price,y=carat))
 ```
 
-&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1674,7 +1720,7 @@ ggplot(data=diamonds,aes(x=price,y=carat)) +
 * geom_point()
 ```
 
-&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-51-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1702,7 +1748,7 @@ ggplot(data=diamonds,
   geom_point() 
 ```
 
-&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-51-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -1836,7 +1882,7 @@ my_plot &lt;- ggplot(cars,aes(speed,dist)) + geom_point()
 my_plot
 ```
 
-&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="week-02_ppol561_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /&gt;
 
 --
 

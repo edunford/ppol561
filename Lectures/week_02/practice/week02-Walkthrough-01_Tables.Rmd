@@ -1,0 +1,69 @@
+---
+title: "PPOL 561 | Week 2 - Walkthrough 1"
+subtitle: "Generating Publication Quality Tables for Regression Results"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message = F, comment = F, error = F, warning = F)
+require(tidyverse)
+```
+
+
+# Overview
+
+In this walk through, we'll briefly presenting model output as a table in html, text, and latex using the `stargazer` package. 
+
+`R` is powerful because there are some many different statistical models that can be run. Many of the model output from different models share a common data structure. Packages like [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf), [`xtable`](https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf), `kable`/[`kableExtra`](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) and [`gt](https://github.com/rstudio/gt) are all packages designed to generate publishable quality tables. In this walkthrough, we'll briefly cover how to generate a publishable quality table using `stargazer`. In future lectures we'll discuss ways to summarize model output when the `stargazer` package no longer interfaces with the model output (which is common when using a third party package to estimate a more advanced model).
+
+```{r}
+require(stargazer) # For tables
+require(gapminder) # For data
+```
+
+
+# Generating a basic table
+
+First, let's run a simple linear model for demonstrative purposes. We'll use the `gapminder` dataset for this.
+```{r}
+d = gapminder %>% mutate(gdpPercap = log(gdpPercap),pop=log(pop))
+model <- lm(lifeExp ~ gdpPercap + pop, data = d)
+model
+```
+
+As we can see, model output is pretty basic, but when using the `summary()` function, we get back a much richer summary of the model fit. 
+
+```{r}
+summary(model)
+```
+
+The question now is: how do we get this into a publishable quality table (like the ones we see in all the journals)? There are many answers to this question (the worst of which being arduously building your own). `stargazer` was developed by Marek Hlavac is one of the most robust and flexible model-to-table packages. 
+
+Much like `summary()`, we simply drop the model output into the `stargazer()` function. What results is a latex table that we can instantly copy and paste into a latex document. 
+```{r}
+stargazer(model)
+```
+
+That said there are other output modes if you're not using latex, such as text and html. 
+
+```{r}
+stargazer(model,type="text")
+```
+
+```{r,results="asis"}
+stargazer(model,type="html")
+```
+
+# Customizing `stargazer` tables
+
+Let's now customize the output from the `stargazer` table to include necessary features like variable names and a title. We'll use the `text` output type just we we can better observe the rendered version below. 
+```{r}
+stargazer(model,type="text",
+          title="Population and economic growth on life expectancy",
+          dep.var.caption = "",dep.var.labels = "Life Expectancy",
+          covariate.labels = c("GDP Per Capita","Population"),
+          notes=c("All independent variables are logged."),
+          ci = T,digits = 1,keep.stat = c("n",'rsq',"f"))
+```
+
+To **export** a table, provide a file path to the `out=` argument.

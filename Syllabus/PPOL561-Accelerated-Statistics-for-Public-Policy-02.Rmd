@@ -1,18 +1,18 @@
 ---
 fontsize: 12pt
 output:
-  # pdf_document: default
-  html_document:
-    css: style.css
-    theme: spacelab
-    highlight: default
-    toc_depth: 3
-    toc: true
-    toc_collapsed: true
-    toc_float: true
+  pdf_document: default
+  # html_document:
+  #   css: style.css
+  #   theme: spacelab
+  #   highlight: default
+  #   toc_depth: 3
+  #   toc: true
+  #   toc_collapsed: true
+  #   toc_float: true
 ---
 
-### [Home](../index.html)
+<!-- ### [Home](../index.html) -->
 
 \begin{center}
  
@@ -116,7 +116,7 @@ Holidays/Breaks (No class):
 
 |Assignment | Date Assigned |   Date Due   |
 |-----------|---------------|--------------|
-    No. 1   |  January 29   | February 5
+    No. 1   |  January 22   | January 29
     No. 2   |  February 12  | February 19   
     No. 3   |  March 4      | March 18
     No. 4   |  March 18     | April 25
@@ -133,12 +133,12 @@ The presentation schedule for the Spring 2020 semester is as follows:
 read_csv(here::here('Students/presentation_schedule.csv')) %>% 
   {.[is.na(.)]="";.} %>% 
   select(-contains('email')) %>% 
-  # kable(., "latex", booktabs = T,align = c('c','c','c')) %>%
-  kable(., "html", booktabs = T,align = c('c','c','c')) %>%
+  kable(., "latex", booktabs = T,align = c('c','c','c')) %>%
+  # kable(., "html", booktabs = T,align = c('c','c','c')) %>%
   kable_styling(latex_options = c("striped", "scale_down","repeat_header"),
                 full_width = T,
-                # font_size = 10,
-                font_size = 18,
+                font_size = 10,
+                # font_size = 18,
                 row_label_position = 'c') 
 ```
 
@@ -277,11 +277,11 @@ More information about campus resources and reporting sexual misconduct can be f
 ```{r,echo=F,message=F,results='asis'}
 read_csv('spring-2020-timeline.csv') %>% 
   {.[is.na(.)]="";.} %>% 
-  # kable(., "latex", booktabs = T,align = c('c','c','l','l','c')) %>%
-  kable(., "html", booktabs = T,align = c('c','c','l','l','c')) %>%
+  kable(., "latex", booktabs = T,align = c('c','c','l','l','c')) %>%
+  # kable(., "html", booktabs = T,align = c('c','c','l','l','c')) %>%
   kable_styling(latex_options = c("striped", "scale_down","repeat_header"),
-                font_size = 20,
-                # font_size = 12,
+                # font_size = 20,
+                font_size = 12,
                 full_width = T) %>% 
   column_spec(1,width = '.5in') %>% 
   column_spec(2,width = '.75in') %>% 
