@@ -915,7 +915,7 @@ dat %>% spread(key = year, value = Y, fill = 0)
 
 class:newsection
 
-# Grammar of Graphics
+# Visualization
 
 ---
 
@@ -1119,7 +1119,7 @@ $$\vdots$$
 | Expression   | Function   |     |
 |----|----|-----|
 | Continuous Points  | `geom_point()` | <img src = "Figures/geom_point.png">  | 
-| Continous Lines  | `geom_line()` | <img src = "Figures/geom_line.png">  | 
+| Continuous Lines  | `geom_line()` | <img src = "Figures/geom_line.png">  | 
 | Discrete Counts  | `geom_count()` | <img src = "Figures/geom_count.png">  | 
 | Continuous and Discrete Distributions  | `geom_boxplot()` | <img src = "Figures/geom_boxplot.png">  | 
 | Densities  | `geom_hex()` | <img src = "Figures/geom_hex.png">  | 
