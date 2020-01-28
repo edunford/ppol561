@@ -605,7 +605,7 @@ $$var(\hat{\beta_j}) = \frac{\hat{\sigma}^2}{N\times var(x_j)(1-R^2_j)}$$
 
 ## Question!
 
-Suppose $x_3$ is a randomly assigned treament in the model:
+Suppose $x_3$ is a randomly assigned treatment in the model:
 
 <br>
 
@@ -652,7 +652,7 @@ class: newsection
 
 Process of deciding what variables go in a model.
 
-- "even minor changes in model specification can lead to coefficient estimates that bounce around like a box full of gerbils on methamphetamines" (Schrodt 2006)
+- "even minor changes in model specification can lead to coefficient estimates that bounce around like a box full of gerbils on methamphetamines" (Schrodt 2014)
 
 - Beware of **model fishing**, which occurs when researchers add and subtract variables until they get just the answer they were looking for. 
 
@@ -674,7 +674,7 @@ class: newsection
 
 ![:space 10]
 
-A bivariate OLS model taht assess the effect of an experimental treatment is 
+A bivariate OLS model that assess the effect of an experimental treatment is 
 
 $$y_i = \beta_0 + \beta_1 x_i + \epsilon_i \\
 = \beta_0 + \beta_1 Treatment_i + \epsilon_i$$
