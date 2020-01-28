@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 3       OLS Review</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  eric.dunford@georgetown.edu" />
+    <link rel="stylesheet" href="gu-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font> <font size=6, face="bold"> Week 3 </font> <br> <br> <font size=100, face="bold"> OLS Review </font>
+### <font class = "title-footer">  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  <a href="mailto:eric.dunford@georgetown.edu" class="email">eric.dunford@georgetown.edu</a></font>
+
+---
+
+
+
+
+layout: true
+
+&lt;div class="slide-footer"&gt;&lt;span&gt; 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+Week 3 &lt;!-- Week of the Footer Here --&gt;
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+OLS Review &lt;!-- Title of the lecture here --&gt;
+
+&lt;/span&gt;&lt;/div&gt;
+
+---
+class: outline
+
+# Outline for Today 
+
+- Using **simulation** as a tool to better understand statistical concepts
+
+- **Multivariate model** to fight endogeneity
+
+- **Omitted variable bias**
+
+- **Precision** of estimates
+
+- **Model specification**
+
+- **Dummy variables** &amp; **interactions**
+
+---
+
+class: newsection
+
+# Using simulations
+
+---
+
+## Generating random distributions
+
+.center[| Distribution | Function | Arguments |   
+| ----- | ------ |  ---------- |
+| Normal (Gaussian) | `rnorm()` | `n=`,`mean=`,`sd=`|
+| Binomial | `rbinom()` | `n=`, `size=`, `prob=` |
+| Uniform | `runif()` | `n=`, `min=`, `max=` |
+| Poisson | `runif()` | `n=`, `lambda=` |
+| Negative Binomial | `rnbinom()` | `n=`, `size=`,`prob=`, `mu=`|
+| Beta | `rbeta()` | `n=`, `shape1=`, `shape2=` |
+| Chi-Squared | `rchisq()` | `n=`, `df=` |
+| Exponential | `rexp()` | `n=`, `rate=` |
+| Gamma | `rgamma()` | `n=`, `rate=`,`scale=`|
+]
+
+And many more...
+
+---
+
+## Getting a feeling for the shape...
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+.center[&lt;img src="Figures/probability-connections.png" width="500px"&gt;]
+
+.center[[Play around with it!](https://dunforde.shinyapps.io/distribution_intuition/)]
+
+---
+
+## The Aim
+
+![:space 10]
+
+The goal is to mimic the distributional properties of the model that we're aiming to simulate. 
+
+To get a best linear unbiased estimator, OLS requires that:
+
+- `\(E[\epsilon] = 0\)`
+
+- `\(var(\epsilon)\)` is constant. 
+
+- `\(cor(\textbf{X},\epsilon) = 0\)`
+
+---
+
+## Simulating error 
+
+We can easily simulate these assumptions using the following:
+
+
+```r
+error &lt;- rnorm(n = 1000, mean = 0, sd = 1)
+hist(error,col="grey30",border="white",binwidth = 10)
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### "Ideal" error
+
+![:space 10]
+
+
+```r
+mean(error) # expected value approx. 0
+```
+
+```
+## [1] -0.04546332
+```
+
+
+```r
+var(error) # constant variance 
+```
+
+```
+## [1] 0.9677243
+```
+
+ 
+
+---
+
+## Simulating an independent variable
+
+This synthetic variable could be **normal**
+
+```r
+x &lt;- rnorm(n = 1000, mean = 0, sd = 1)
+hist(x,col="steelblue",border="white")
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+Or **uniform**
+
+```r
+x2 &lt;- runif(n = 1000,min = 0,max = 100)
+hist(x2,col="forestgreen",border="white")
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+Or **binomial**
+
+```r
+x3 &lt;- rbinom(n = 1000,size = 1,prob = .3)
+hist(x3,col="gold",border="white")
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+OLS makes no distributional assumptions about the independent variables. Only the dependent variable and the resulting errors.
+
+---
+
+# Simulating the dependent variable
+
+![:space 5]
+
+Recall that `\(y_i\)`, our continuous outcome, is thought to be a function (linearly related) to our independent variables. 
+
+We want to write simulate a `\(y\)` that is a **function** of `\(x\)`, plus some error.
+
+
+```r
+intercept = 1
+slope = 2
+
+# Simulate y as a function of x1 + error
+y = intercept + slope*x + error
+```
+
+---
+
+![:space 5]
+
+
+```r
+# Plot
+plot(x,y,pch = 16, col=scales::alpha('grey30',.5))
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+```r
+# Estimate a linear model...
+model = lm(y ~ x)
+alpha = model$coefficients['(Intercept)']
+beta = model$coefficients['x']
+
+# Scatter Plot
+plot(x,y,pch = 16, col=scales::alpha('grey30',.5))
+
+# Plot the fitted line...
+abline(alpha,beta,col="blue",lwd=4) # best linear unbiased estimator
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+Look at the **residuals**. Why don't they perfectly map?
+
+
+```r
+# Model error
+hist(model$residuals,col=scales::alpha("grey30",.8),
+     main="Residuals",xlab="residuals")
+
+# Simulated error
+hist(error,add=T,col=scales::alpha("dodgerblue2",.5))
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+## Give it a try
+
+What happens when we play around with these features composing the model?
+
+That is, 
+
+- What happens if we changed the variance on the error?
+
+- What happens if we changed the mean of the error to something other than 0?
+
+- What happens if we change the slope? 
+
+&lt;br&gt;&lt;br&gt;
+
+.center[[Try here!]( https://dunforde.shinyapps.io/ols-simulation/)]
+
+---
+
+# The point of simulation
+
+- **We know the answer**: we can specify values for the slope and see if we can recover them. 
+
+- **Viable testing ground**: 
+  - we can break models on purpose; 
+  - try to build the symptoms that cause a model to break down; do the proscribed corrections actually correct?
+  - Simulation offers us a way to make sure we're actually solving the problem.
+
+- **Use as a tool to gain an intuitive understanding of statistical concepts**
+
+---
+
+class: newsection
+
+# Mulivariate models
+
+---
+
+![:space 10]
+
+**Multivariate OLS** is used to estimate a model with multiple independent variables:
+&lt;br&gt;
+`$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \dots + \beta_k x_{ki} + \epsilon_i$$`
+
+&lt;br&gt;
+&lt;br&gt;
+
+--
+
+When we add a variable to the model, we "pull" it out of the error term
+
+- For **observational** data: multivariate OLS can reduce bias and increase precision 
+
+- For **experimental** data: multivariate OLS can increase precision 
+
+
+---
+
+.center[&lt;img src="Figures/shopping-sales-01.png" width="700px"&gt;]
+
+
+---
+
+.center[&lt;img src="Figures/shopping-sales-02.png" width="700px"&gt;]
+
+---
+
+.center[&lt;img src="Figures/shopping-sales-03.png" width="700px"&gt;]
+
+---
+
+# Assumptions about the error
+
+![:space 5]
+
+**Key Assumption**: No Endogeneity &amp;rarr; Errors uncorrelated with independent variables
+
+![:space 5]
+
+Other assumptions for OLS standard errors to be correct:
+
+1. No autocorrelation
+
+2. Homoscedasticity (error has constant variance)
+
+3. Either have a larger sample or a normally distributed error term
+
+---
+
+class: newsection
+
+# Omitted Variable Bias
+
+---
+
+## Omitted variable bias
+
+&lt;br&gt;
+&lt;br&gt;
+
+**True model**
+&lt;br&gt;
+
+`$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \nu_i$$`
+
+&lt;br&gt;
+&lt;br&gt;
+
+--
+
+What happens if we omit `\(X_2\)` and estimate the following model?
+
+`$$y_i = \beta_0^{Omit~x_2} + \beta_1^{Omit~x_2} x_{1i} + \epsilon_i$$`
+
+---
+
+## Simulate omitted variable bias
+
+
+```r
+set.seed(123) # seed to reproduce results
+x1 &lt;- rnorm(100) 
+x2 &lt;- rnorm(100)
+error &lt;- rnorm(100) # Random error terms
+b0 &lt;- 1; b1 &lt;- 2; b2 &lt;- 3 # coefficients
+y = b0 + b1*x1 + b2*x2 + error # y as a func of x1 and x2
+D = tibble(y,x1,x2) # Combine into DF
+pairs(D,col='steelblue',pch=16) # Plot correlations 
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Simulate omitted variable bias
+
+Recall `\(\beta_0 = 1\)`, `\(\beta_1 = 2\)`, and `\(\beta_2 = 3\)`
+
+
+```r
+broom::tidy(lm(y ~ x1,data=D))
+```
+
+```
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic    p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 (Intercept)    0.824     0.310      2.66 0.00915   
+## 2 x1             1.71      0.340      5.03 0.00000222
+```
+
+--
+
+
+```r
+broom::tidy(lm(y ~ x1 + x2,data=D))
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     1.14    0.0961      11.8 1.81e-20
+## 2 x1              1.87    0.105       17.8 2.53e-32
+## 3 x2              3.02    0.0990      30.5 1.46e-51
+```
+
+---
+
+## Omitted variable bias
+
+There is still some bias, even though `\(x_1\)` and `\(x_2\)` are uncorrelated. However, that bias increases if there exists a relationship between the two variables.
+
+&lt;br&gt;
+
+`$$x_{2i} = \delta_0 + \delta_1 x_{1i} + \tau_i$$`
+
+&lt;br&gt;
+
+- if `\(\delta_1 = 0\)` then `\(x_1\)` and `\(x_2\)` are not linearly related, and the issues associated with omission are reduced.
+
+- if `\(|\delta_1| &gt; 0\)` then `\(x_1\)` and `\(x_2\)` are linearly related. The issue increases as `\(|\delta_1|\)` grows.
+
+---
+
+
+```r
+set.seed(123) 
+x1 &lt;- rnorm(100) 
+d0 &lt;- 1; d1 &lt;- -2; tau &lt;- rnorm(100)
+x2 &lt;- d0 + d1*x1 + tau
+```
+
+Now construct the same simulated model as before
+
+```r
+error &lt;- rnorm(100) # Random error terms
+b0 &lt;- 1; b1 &lt;- 2; b2 &lt;- 3 # coefficients
+y = b0 + b1*x1 + b2*x2 + error # y as a func of x1 and x2
+D = tibble(y,x1,x2) # Combine into DF
+pairs(D,col='steelblue',pch=16) # Plot correlations 
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Simulate omitted variable bias
+
+Recall `\(\beta_0 = 1\)`, `\(\beta_1 = 2\)`, and `\(\beta_2 = 3\)`
+
+
+```r
+broom::tidy(lm(y ~ x1,data=D))
+```
+
+```
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     3.82     0.310      12.3 1.15e-21
+## 2 x1             -4.29     0.340     -12.6 2.68e-22
+```
+
+--
+
+
+```r
+broom::tidy(lm(y ~ x1 + x2,data=D))
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     1.11    0.130       8.52 2.12e-13
+## 2 x1              1.91    0.229       8.37 4.26e-13
+## 3 x2              3.02    0.0990     30.5  1.46e-51
+```
+
+---
+
+## Omitted variable bias
+
+![:space 5]
+
+If we substitute the equation for `\(x_2\)` into the main equation, re-arrange, and relabel, we get.
+&lt;br&gt;
+&lt;br&gt;
+`$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2(\delta_0 + \delta_1 x_{1i} + \tau_i) + \nu_i\\
+y_i = (\beta_0 + \beta_2\delta_0 ) + (\beta_1 + \delta_1 \beta_2)x_{1i} + (\beta_2\tau_i + \nu_i) \\
+y_i = \beta_0^{Omit~x_2} + \beta_1^{Omit~x_2} x_{1i} + \epsilon_i$$`
+
+This means 
+
+`$$\beta_1^{Omit~x_2} = (\beta_1 + \delta_1 \beta_2)$$`
+
+---
+
+## Omitted variable bias
+
+&lt;br&gt;
+
+&lt;br&gt;
+
+Omitted variable bias occurs when &lt;u&gt;**both**&lt;/u&gt; of the following conditions are met
+&lt;br&gt;
+&lt;br&gt;
+1. The omitted variable affects the dependent variable.
+
+2. The omitted variable is correlated with the included independent variable.
+
+---
+
+class: newsection
+
+# Precision of Estimates
+
+---
+
+## Variance of Estimates
+
+Variance of a coefficient estimate in a multivariate model:
+
+`$$var(\hat{\beta_j}) = \frac{\hat{\sigma}^2}{N\times var(x_j)(1-R^2_j)}$$`
+
+where `\(R^2_j\)` is the `\(R^2\)` for an "auxiliary regression", 
+
+and
+
+`$$\hat{\sigma}^2 = \frac{\sum_{i=1}^N(y_i - \hat{y_i})^2}{N-k}$$`
+
+where `\(k\)` is the number of parameters in the model.
+
+---
+
+## Auxiliary Regressions
+
+There is a different `\(R^2_j\)` for each independent variable. If our model is 
+
+`$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i$$`
+
+&lt;br&gt;
+
+there will be two different `\(R^2_j\)`s:
+
+- `\(R^2_1\)` is the `\(R^2\)` from `\(x_{1i} = \gamma_1 x_2 + \tau_i\)`
+
+- `\(R^2_2\)` is the `\(R^2\)` from `\(x_{2i} = \phi_1 x_1 + \omega_i\)`
+
+&lt;br&gt;
+
+These `\(R^2_j\)`s tell us how much the other variables explain `\(x_j\)`.
+
+---
+
+## Multicolinearity
+
+&lt;br&gt;
+
+Multicollinearity refers to the **strength of linear relationships among independent variables**
+
+![:space 5]
+
+1. Multicollinearity causes the variance of `\(\hat{\beta_1}\)` to be higher than if there were no multicollinearity.
+
+2. Multicollinearity does not cause the `\(\hat{\beta_1}\)` estimates to be biased.
+
+3. The standard `\(se(\hat{\beta_1})\)` produced by OLS accounts for multicollinearity. 
+
+
+---
+
+## Consistency
+
+- Connection to the variance of the coefficient equation
+
+- Connection to statistical power
+
+&lt;br&gt;
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Confidence Intervals
+
+Interpreting a 95% confidence interval:
+
+1. The lower bound of a 95% confidence interval will be a value of `\(\beta_1\)` such that there is less than a 2.5% probability of observing a `\(\hat{\beta_1}\)` as high as the `\(\hat{\beta_1}\)` actually observed.
+
+2. The upper bound of a 95% confidence interval will be a value of `\(\beta_1\)` such that there is less than a 2.5% probability of observing a `\(\hat{\beta_1}\)` as low as the `\(\hat{\beta_1}\)` actually observed. 
+
+.center[
+| Confidence Level | Critical Value | Confidence Interval |
+| ----- | ------ | -------| 
+| 90% | 1.64 | `\(\hat{\beta_1} \pm 1.64 \times se(\hat{\beta_1})\)` |
+| 95% | 1.96 | `\(\hat{\beta_1} \pm 1.96 \times se(\hat{\beta_1})\)` |
+| 99% | 2.58 | `\(\hat{\beta_1} \pm 2.58 \times se(\hat{\beta_1})\)` |
+]
+
+---
+
+## Precision: summary
+
+`$$var(\hat{\beta_j}) = \frac{\hat{\sigma}^2}{N\times var(x_j)(1-R^2_j)}$$`
+
+**Four factors influence the variance of multivariate `\(\hat{\beta_j}\)` estimates**:
+
+1. **Model fit**: the better the model fits, the lower the `\(\hat{\sigma}^2\)` and `\(var(\hat{\beta_j})\)` will be.
+2. **Variation in `\(x_j\)`**: the more `\(x_j\)` varies, the lower the `\(var(\hat{\beta_j})\)` will be.
+3. **Sample size**: the more observations, the lower the `\(var(\hat{\beta_j})\)` will be.
+4. **Multicollinearity**: the less the other independent variables explain `\(x_j\)`, the lower the `\(R^2_j\)` and `\(var(\hat{\beta_j})\)` will be.
+
+---
+
+
+## Question!
+
+Suppose `\(x_3\)` is a randomly assigned treament in the model:
+
+&lt;br&gt;
+
+`$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \beta_3 x_{3i} + \epsilon_i$$`
+
+&lt;br&gt;
+&lt;br&gt;
+
+&gt; Approximately what is the value of `\(R^2_3\)`?
+
+---
+
+## Question!
+
+
+```r
+N = 1000
+x1 &lt;- rnorm(N); x2 &lt;- rnorm(N); x3 &lt;- rnorm(N)
+m = summary(lm(x3 ~ x2 + x1))
+m$r.squared
+```
+
+```
+## [1] 0.0009237113
+```
+
+--
+vs.
+
+
+
+```r
+N = 1000
+x1 &lt;- rnorm(N); x2 &lt;- rnorm(N)
+x3 &lt;- -2*x1 + 3*x2 + rnorm(N)
+m = summary(lm(x3 ~ x2 + x1))
+m$r.squared
+```
+
+```
+## [1] 0.9344326
+```
+
+
+---
+
+class: newsection
+
+# Model Specification
+
+---
+
+## Model Specification
+
+Process of deciding what variables go in a model.
+
+- "even minor changes in model specification can lead to coefficient estimates that bounce around like a box full of gerbils on methamphetamines" (Schrodt 2006)
+
+- Beware of **model fishing**, which occurs when researchers add and subtract variables until they get just the answer they were looking for. 
+
+- Solutions:
+  
+  + Multiple specifications
+  
+  + Replication files (and actually running them!)
+  
+---
+
+class: newsection
+
+# Dummy variables
+
+---
+
+## Difference of Means Test
+
+![:space 10]
+
+A bivariate OLS model taht assess the effect of an experimental treatment is 
+
+`$$y_i = \beta_0 + \beta_1 x_i + \epsilon_i \\
+= \beta_0 + \beta_1 Treatment_i + \epsilon_i$$`
+
+Where `Treatment` is a dummy variable (or dichotomous variable), a variable that takes on values of either 1 or 0. 
+ 
+ 
+---
+
+## Interpretation of coefficients
+
+![:space 5]
+
+$$ y_i = \beta_0 + \beta_1 Treatment_i + \epsilon_i$$
+
+![:space 5]
+
+- `\(\hat{\beta}_0\)` is the predicted value of `\(y\)` for the control group.
+
+- `\(\hat{\beta}_0 + \hat{\beta}_1\)` is the predicted value of `\(y\)` for the treatment group. 
+
+- `\(\hat{\beta}_1\)` is the difference between the treatment and control groups. 
+
+---
+
+## Home advantage in soccer?
+
+.center[&lt;img src="Figures/away-game-dummy-01.png" width="500px"&gt;]
+
+---
+
+## Home advantage in soccer?
+
+.center[&lt;img src="Figures/away-game-dummy-02.png" width="500px"&gt;]
+
+---
+
+## Home advantage in soccer?
+
+.center[&lt;img src="Figures/away-game-dummy-03.png" width="500px"&gt;]
+
+---
+
+## Home advantage in soccer?
+
+
+.center[&lt;img src="Figures/away-game-dummy-04.png" width="500px"&gt;]
+
+---
+
+### `\(GoalDiff_i = \beta_0 + \beta_1 Home_i + \beta_2 OppQual_i + \epsilon_i\)`
+
+&lt;br&gt; 
+
+.center[&lt;img src="Figures/away-game-dummy-05.png" width="500px"&gt;]
+
+---
+
+### `\(GoalDiff_i = \beta_0 + \beta_1 Home_i + \beta_2 OppQual_i + \epsilon_i\)`
+
+.center[&lt;img src="Figures/away-game-dummy-06.png" width="700px"&gt;]
+
+---
+
+## Dummy interactions
+
+![:space 5]
+
+Membership in the `\(Dummy_i = 1\)` group can also interact with other independent variables. 
+
+![:space 5]
+
+The following OLS models allows the effect of `\(x\)` to differ across groups. 
+
+$$ y_i = \beta_0 + \beta_1 x_i + \beta_2 Dummy_i + \beta_3 Dummy_i \times x_i + \epsilon_i$$
+
+---
+
+class: center
+
+### `\(GoalDiff_i = \beta_0 + \beta_1 Home_i + \beta_2 OppQual_i +\\ \beta_3 OppQual_i \times Home_i + \epsilon_i\)`
+
+.center[&lt;img src="Figures/away-game-dummy-07.png" width="500px"&gt;]
+
+---
+
+
+
+```r
+# Simulate this scenario 
+
+set.seed(123)
+
+N=1000
+
+x = rnorm(N)
+
+dummy = rbinom(N,1,.5)
+
+e = rnorm(N)
+
+y = 1 + -1*x + -1*dummy + -4*dummy*x + e
+
+*D = tibble(y,x,dummy) # tibble data frame
+
+D
+```
+
+```
+## # A tibble: 1,000 x 3
+##         y       x dummy
+##     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+##  1  0.739 -0.560      0
+##  2  0.923 -0.230      0
+##  3 -1.46   1.56       0
+##  4  0.275  0.0705     1
+##  5  1.99   0.129      0
+##  6 -6.45   1.72       1
+##  7  0.905  0.461      0
+##  8  1.39  -1.27       0
+##  9  2.71  -0.687      0
+## 10  2.35  -0.446      0
+## # … with 990 more rows
+```
+
+---
+
+
+```r
+# Plot
+
+ggplot(D,aes(x,y,color=factor(dummy)))+
+  geom_point(alpha=.2) +
+  labs(color="dummy") +
+  geom_smooth(method='lm') +
+  theme_light()
+```
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Coefficient interpretation
+
+![:space 5]
+
+For the `\(Dummy_i = 0\)` group, the fitted value equation simplifies to 
+
+`$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i \\
+= \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 (0) + \hat{\beta}_3 (0) \times x_i\\
+= \hat{\beta}_0 + \hat{\beta}_1 x_1$$`
+
+
+For the `\(Dummy_i = 1\)` group, the fitted value equation simplifies to 
+
+`$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i \\
+= \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 (1) + \hat{\beta}_3 (1) \times x_i\\
+= (\hat{\beta}_0 +\hat{\beta}_2)  + (\hat{\beta}_1 + \hat{\beta}_3)  x_1$$`
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+.center[&lt;img src="Figures/interpreting-dummy.png" width="450px"&gt;]
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+What are the signs for 
+
+- `\(\hat{\beta}_0\)`
+- `\(\hat{\beta}_1\)`
+- `\(\hat{\beta}_2\)`
+- `\(\hat{\beta}_3\)`
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+What are the signs for 
+
+- `\(\hat{\beta}_0\)` **+**
+- `\(\hat{\beta}_1\)` **+**
+- `\(\hat{\beta}_2\)` **+**
+- `\(\hat{\beta}_3\)` **+**
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+What are the signs for 
+
+- `\(\hat{\beta}_0\)`
+- `\(\hat{\beta}_1\)`
+- `\(\hat{\beta}_2\)`
+- `\(\hat{\beta}_3\)`
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+What are the signs for 
+
+- `\(\hat{\beta}_0\)` **+**
+- `\(\hat{\beta}_1\)` **+**
+- `\(\hat{\beta}_2\)` **-**
+- `\(\hat{\beta}_3\)` **+**
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+What are the signs for 
+
+- `\(\hat{\beta}_0\)` 
+- `\(\hat{\beta}_1\)` 
+- `\(\hat{\beta}_2\)` 
+- `\(\hat{\beta}_3\)` 
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### `$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 Dummy_i + \hat{\beta}_3 Dummy_i \times x_i$$`
+
+What are the signs for 
+
+- `\(\hat{\beta}_0\)` **+**
+- `\(\hat{\beta}_1\)` **+**
+- `\(\hat{\beta}_2\)` **+**
+- `\(\hat{\beta}_3\)` **-**
+
+&lt;img src="week-03_ppol561_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: newsection
+
+## Standard errors 
+
+&lt;font color="white", size = 5&gt; for interactions using dummy variables &lt;/font&gt;
+
+
+---
+
+## Properties of variance
+
+&lt;br&gt;&lt;br&gt;
+
+(1) The variance of a constant plus a random variable is the variance of the random variable. That is, let `\(k\)` be a fixed number and `\(\epsilon\)` be a random variable with variance `\(\sigma^2\)`, then 
+
+![:space 5]
+
+`$$var(k + \epsilon) = var(k) + var(\epsilon)\\
+= 0 + var(\epsilon)\\
+= \sigma^2$$`
+
+---
+
+## Properties of variance
+
+&lt;br&gt;&lt;br&gt;
+
+(2) The variance of a random variable times a constant is the constant squared times the variance of the random variable.
+
+![:space 5]
+
+`$$var(k\epsilon) = k^2var(\epsilon)\\
+= k^2\sigma^2$$`
+
+---
+
+## Properties of variance
+
+&lt;br&gt;&lt;br&gt;
+
+(3) When random variables are correlated, the variance of a sum (or difference) of random variables depends on the variance and covariance of the variables.
+
+![:space 5]
+
+`$$var(\epsilon_i + \epsilon_j) = var(\epsilon_i) + var(\epsilon_j) + 2 cov(\epsilon_i,\epsilon_j)$$`
+![:space 5]
+
+where `\(cov(\epsilon_i,\epsilon_j)\)` refers to the covariance of `\(\epsilon_i\)` and `\(\epsilon_j\)` 
+
+---
+
+# Marginal effect
+
+![:space 5]
+
+`$$y_i = \beta_0 + \beta_1 x_1 + \beta_2 Dummy_i + \beta_3 Dummy_i \times x_i + \epsilon_i$$`
+
+The marginal effect of the continuous variable is
+
+`$$\frac{\partial y_i}{\partial x_i} = \beta_1 + \beta_2Dummy_i$$`
+
+Applying variance rules: variance of the marginal effect of the continuous variable is
+
+`$$var(\frac{\partial y_i}{\partial x_i}) = var(\beta_1 + \beta_2Dummy_i)$$`
+
+$$ = var(\beta_1) + var(\beta_2)Dummy_i^2 + 2Dummy_i \times cov(\beta_1,\beta_3)$$
+---
+
+## Does being taller mean you'll get paid more?
+
+$$wage_i = \beta_0 + \beta_1 height_i + \beta_2 male_i + \beta_3 height_i\times male_i  + \epsilon_i $$
+
+&lt;br&gt;&lt;br&gt;
+
+```
+Number of obs =    6772
+      wage96 |      Coef.   Std. Err.   P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------
+    height81 |   .3073594   .1816449     0.091    -.0487218    .6634407
+        male |  -18.49539   15.67199     0.238    -49.21743    12.22664
+MaleHeight81 |   .2615556   .2353578     0.266    -.1998198    .7229309
+       _cons |   -6.26018   11.66878     0.592    -29.13465    16.61429
+```
+
+---
+
+.center[&lt;img src="Figures/height-example-01.png" width="700px"&gt;]
+
+---
+
+&lt;br&gt;&lt;br&gt;
+
+.center[&lt;img src="Figures/height-example-02.png" width="800px"&gt;]
+
+---
+
+
+&lt;br&gt;&lt;br&gt;
+
+.center[&lt;img src="Figures/height-example-03.png" width="800px"&gt;]
+
+---
+
+## Connection between confidence interval and t-test
+
+![:space 5]
+
+If `\(\hat{\beta}_1\)` is statistically significant (at `\(\alpha = .05\)`, two tailed) then either
+
+1. `\(\frac{\hat{\beta_1}}{\sigma_{\hat{\beta_1}}} &gt; 1.96\)` or
+
+2. `\(\frac{\hat{\beta_1}}{\sigma_{\hat{\beta_1}}} &lt; -1.96\)` 
+
+If No. 1, the lower bound of the confidence interval is above zero. If No. 2, the upper bound of the confidence interval is below zero.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": true,
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -250,5 +250,21 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
   + Practice <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization.Rmd" download> data visualization using `ggplot2` (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
 
 
+<br>
 
+### _Week 3_: [OLS Review](Lectures/week_03/week-03_ppol561.html)
 
+- **Table of Contents**
+  + [Using Simulations](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#3)
+  + [Multivariate Models](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#19)
+  + [Omitted Variable Bias](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#26)
+  + [Precision of Estimates](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#38)
+  + [Model Specification](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#48)
+  + [Dummy Variables](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#50)
+  + [Standard Errors](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#71)
+  
+  
+  
+  
+  
+  
