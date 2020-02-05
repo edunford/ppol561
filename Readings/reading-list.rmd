@@ -63,6 +63,11 @@ output:
   - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
     
       + Refresh on Chapters. 5 - 7
+      
+- **_Suggested Reading_**:
+
+  - Schrodt. 2014. "Seven deadly sins of contemporary quantitative political analysis".
+  
   
 ### Week 4: Binary Outcomes
 
@@ -72,7 +77,11 @@ output:
     
       + Refresh on Chapter 12
       
-  - Long. 2016. "Regression models for categorical and limited dependent variables".
+  - Hanmer and Kalkan. 2013. "Behind the Curve: Clarifying the Best Approach to Calculating Predicted Probabilities and Marginal Effects from Limited Dependent Variable Models"
+      
+- **_Suggested Reading_**:
+
+  - Long. 1997. "Regression models for categorical and limited dependent variables".
     
       + Chapter 3 (Canvas)
       
@@ -89,7 +98,7 @@ output:
     
 - **_Suggested Reading_**:
 
-  - Long. 2016. "Regression models for categorical and limited dependent variables".
+  - Long. 1997. "Regression models for categorical and limited dependent variables".
     
       + Chapter 5 & 6 (Canvas)
       
