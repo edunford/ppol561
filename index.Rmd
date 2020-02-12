@@ -276,11 +276,11 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
   
 <br>  
   
-### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ppol561.html)
+### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ordered-multinomial_ppol561.html)
 
 - **Table of Contents**
-  + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ppol561.html#3)
-  + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ppol561.html#31)
+  + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#3)
+  + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#31)
   
   
   
