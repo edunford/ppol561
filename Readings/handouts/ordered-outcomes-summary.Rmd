@@ -1,0 +1,339 @@
+---
+title: |
+  | PPOL561 | Summary
+  | Ordered Dependent Variables
+output: pdf_document
+fontsize: 12pt 
+header-includes:
+   - \usepackage{floatrow}
+   - \floatsetup[figure]{capposition=top}
+---
+
+```{r,include=F}
+knitr::opts_chunk$set(echo = T,message=F,error=F,warning = F,cache=T,fig.pos = 'h')
+require(tidyverse)
+```
+
+_Document prepared by Eric Dunford for circulation in PPOL561. Please do not cite or distribute without permission._
+
+# Overview 
+
+The following offers a summary of main points when dealing with ordered dependent variables. These notes summarize some of the main points from the Long reading and the lectures. For a more detailed discussion, please review Chapter 5 from the Long reading (See Canvas).
+
+## Ordered Responses
+
+Ordered dependent variables are outcomes that retain some inherent but discrete ordering. These sorts of dependent variables are encountered often in survey data (e.g. "Strongly Disagree", "Disagree", "Somewhat Disagree", "Somewhat Agree", ... ). 
+
+The distance between each category is of some different but ultimately unknown size. For example, 
+"Somewhat Disagree" or "Somewhat Agree" may be very close (i.e. there is little difference between the two choices on the scale), or may be far apart (i.e. there is a huge difference between agreeing or disagreeing even somewhat)
+
+More examples of these types of ordered scales:
+
+- _Likert Scales_: disagree, neutral, agree
+- _Policy options_: privatize social security, paritally privatize, leave unchanged
+- _Ranks_: some high school, high school grad, some college, college grad, etc.
+
+One thing to keep in mind is that just because an outcome _can_ be treated as an ordinal variable, doesn't mean it _should_ be analyzed as an ordinal variable. When the proper ordering of a variable is ambiguous, multinomial models should be considered (see the handout on multinomial models).
+
+## Why not OLS
+
+- Encounter the same problems as when using regression with a binary outcome.
+  + heteroskedastic
+  + non-sensical predictions: predictions for $y$ can fall outside a plausible range. 
+
+- Requires us to assume that the distance between categories is equal. That is, a one unit change moves us from one category to the next at an equal rate. 
+
+- Difficult to interpret: what is a unit change in $x$ with respect to $y$? E.g. if $y$ is an ordered outcome in the model $y = \beta_0 + \beta_1 x + \epsilon$, what does $beta_1 = 1.2$ mean? A change in $x$ corresponds with a 1.2 change in a category ranking?
+
+
+## Ordered Dependent Variable Model
+
+When discussing binary models, remember we spoke about things in terms of a continuous **latent variable** $y^*$. 
+
+$$y_i^* = \beta_0 + \beta_1x_i + \epsilon_i$$
+
+
+When $y^*$ is above a threshold $\tau_1$ we observe $y=1$, otherwise we observe $y=0$. In this model, we assumed that this threhold (or "cutpoint") was 0 ($\tau_1 = 0$). We can visualize what this looks like in Figure 1. 
+
+```{r,echo=F,fig.align="center",fig.width=6,fig.height=3,cache=T,fig.cap="\\label{fig:fig1}Latent Variable for a Binary Response"}
+set.seed(123)
+tibble(x=seq(-3,3,.1),pr=dnorm(seq(-3,3,.1))) %>% 
+  mutate(pr2 = ifelse(x>=0,pr,0),
+         x2 = ifelse(x>=0,x,0)) %>% 
+ggplot(aes(x,pr)) +
+  geom_area(alpha=.5,fill="grey60") +
+  geom_area(aes(y=pr2,x2),alpha=.5,fill="steelblue") +
+  geom_vline(xintercept = 0,color="darkred",size=1) +
+  geom_label(x=0,y=.4,label=latex2exp::TeX("$\\tau_1"),size=4) +
+  geom_text(x=2,y=.4,label="y = 1",size=3,color="steelblue") +
+  geom_text(x=-2,y=.4,label="y = 0",size=3,color="grey20") +
+  ylim(0,.45) +
+  labs(x = latex2exp::TeX("$\\y^*$"),
+       y="Density",
+       title="") +
+  theme_bw() +
+  theme(plot.title = element_text(family='serif',face='bold',size = 11),
+        axis.title = element_text(family='serif',face='bold',size = 11),
+        axis.text = element_text(family='serif',face='bold',size = 11)) 
+```
+
+
+Let's now consider the relationship between some observed variable $y$ where the the values are ordered, $y \in \{1,2,3\}$ as an underlying latent variable $y*$. We can visualize what this looks like in Figure 2. 
+
+```{r,echo=F,fig.align="center",fig.width=6,fig.height=3,cache=T,fig.cap="\\label{fig:fig2}Latent Variable for an Ordered Response"}
+set.seed(123)
+tibble(x=seq(-3,3,.1),pr=dnorm(seq(-3,3,.1))) %>% 
+  mutate(pr1 = ifelse(x <= -1,pr,0),
+         x1 = ifelse(x <= - 1,x,-1),
+         pr2 = ifelse(x >= -1 & x <= 1 ,pr,0.2419707),
+         x2 = ifelse(x >= -1 & x <= 1,x,1),
+         pr3 = ifelse(x >= 1 ,pr,0),
+         x3 = ifelse(x> 1,x,1),
+         ) %>% 
+ggplot(aes(x,pr)) +
+  geom_area(alpha=.5,fill="grey60") +
+  geom_area(aes(y=pr1,x1),alpha=.5,fill="forestgreen") +
+  geom_area(aes(y=pr2,x2),alpha=.5,fill="steelblue") +
+  geom_area(aes(y=pr3,x3),alpha=.5,fill="orange") +
+  geom_vline(xintercept = -1,color="darkred",size=1) +
+  geom_vline(xintercept = 1,color="darkred",size=1) +
+  geom_label(x=-1,y=.4,label=latex2exp::TeX("$\\tau_1"),size=4) +
+  geom_label(x=1,y=.4,label=latex2exp::TeX("$\\tau_2"),size=4) +
+  geom_text(x=-2,y=.42,label="y = 1",size=3,color="forestgreen") +
+  geom_text(x=0,y=.42,label="y = 2",size=3,color="steelblue") +
+  geom_text(x=2,y=.42,label="y = 3",size=3,color="orange") +
+  ylim(0,.45) +
+  labs(x = latex2exp::TeX("$\\y^*$"),
+       y="Density",
+       title="") +
+  theme_bw() +
+  theme(plot.title = element_text(family='serif',face='bold',size = 11),
+        axis.title = element_text(family='serif',face='bold',size = 11),
+        axis.text = element_text(family='serif',face='bold',size = 11)) 
+```
+
+The probability of observing a specific response in the ordering depends on which cut points $y^*$ falls in-between. 
+
+- when $y^* \le \tau_1$, we observe $y=1$
+- when $\tau_1 < y^* \le \tau_2$, we observe $y=2$
+- when $\tau_2 < y^*$, we observe $y=3$
+
+Note that the the upper and lower bounds are set to $\tau_0 = -\infty$ and $\tau_3 = \infty$. When we have _three_ possible ordered outcomes (as is the case in Figure 2), we only need to estimate _two_ cutpoints ($\tau_1$ & $\tau_2$). 
+
+### Assumptions
+
+For an ordered probit/logit, we need to impose a constraint on the model so that we can identify it. We either need to set the **intercept ($\beta_0$) to 0**, or set the **$\tau_0$ (our $-\infty$ cut point) to 0**. Doing this imposes a constraint on one of the parameters, which is necessary to estimate the model. Note that the `polr()` function from the `MASS` package---which we'll use to estimate an ordered probit/logit model---opts to set the intercept to 0 by default, so no intercept will be reported. 
+
+Finally, when running the an ordered probit/logit model, we inherently make an assumption about "**parallel regressions**". This means that the effect of $\beta_1$ is the same across all cutpoint ranges, i.e. the effect of $x$ on $y$ does not change when we move from one threshold to the next. Put differently, we get one set of coefficients and we assume the same relationship for each pair of outcome categories. 
+
+### Predicted probabilities
+
+Assuming we used a _probit_ model, we can estimate the predicted probabilities of any observed outcome as follows. The key is to keep track of where the cutpoints fall. 
+
+- $pr(y_i = 1 | x_i) = \Phi(\tau_1 - \beta_1x_i) - 0$
+- $pr(y_i = 2 | x_i) = \Phi(\tau_2 - \beta_1 x_i) - \Phi(\tau_1 - \beta_1 x_i)$
+- $pr(y_i = 3 | x_i) = 1 - \Phi(\tau_2 - \beta_1 x_i)$
+
+Recall that this is a _probability distribution_ where the bounds fall between 0 and 1. Thus, why the lower bound in the $pr(y_i = 1 | x_i)$ calculation is 0 and the upper bound in the $pr(y_i = 3 | x_i)$ calculation is 1. 
+
+Say, for example, $\tau_1 = -1$, $\tau_2 = 1$, $\beta_1 =.05$. We can calculate the predicted probabilities as follows for $x = 15$
+
+- $pr(y_i = 1 | x = 15) = \Phi((-1) - (.05)(15)) = .04$
+- $pr(y_i = 2 | x = 15) = \Phi((1) - (.05)(15)) - \Phi((-1) - (.05)(15)) = .56$
+- $pr(y_i = 3 | x = 15) = 1 - \Phi((1) - (.05)(15)) = .40$
+
+In this example, for an observation where $x = 15$, the probability that observed response will be 1 is 4%, 2 is 56%, and 3 is 40%, so for this observation, we'd predict a 2 since the 2nd category is most likely. 
+
+## Example: Student Support for the Iraq War
+
+Consider the following survey data draw from a sample of 500 college students in 2002 leading up to the Iraq war. The survey asked whether students agreed with the United States entering into the Iraq War. The data contains three variables:
+
+```{r}
+dat <- read_csv('student_vote.csv')
+dat$warsup = factor(dat$warsup,levels=c('strongly oppose',
+                                        "somewhat oppose",
+                                        "somewhat support",
+                                        "strongly support"))
+summary(dat)
+```
+
+
+- `warsup`: whether the respondent somewhat or strongly oppose/supported the War in Iraq
+- `dem`: 1 if the repondent was a democrat, 0 otherwise.
+- `female`: 1 if the repondent is female, 0 otherwise.
+
+The dependent variable is `warsup`, and the key independent variable that we're going to look at is `dem`. Our hypothesis is that democratic respondents are less likely to support the Iraq War than non-democratic respondents. 
+
+We can estimated the model using the `polr` function from the `MASS` package.
+
+```{r}
+war_ordered <- MASS::polr(warsup ~ dem + female, # Model
+                          method = "probit", # Probit model
+                          Hess = T, # returns the hessian matrix
+                          data = dat)
+summary(war_ordered,digits = 2)
+```
+
+Note that the model estimates three cutpoints: $\tau_1$ as `strongly oppose|somewhat oppose`, $\tau_2$ as `somewhat oppose|somewhat support`, and $\tau_3$ as `somewhat support|strongly support`.
+
+We interpret the model as we did with the binary response. That is, they are changes in the log odds. We cannot say much about the marginal effect of `dem` variable, but we can talk about the general direction of the coefficients and whether they are statistically significant. Here we see that the coefficient on `dem` is negative and statistically significant. The coefficient on `female` is also negative but is not statistically signficant at a .05 level (note, however, that it is significant at a .1 level). 
+
+### Calculating Predicted Probabilities
+
+To calculate the predicted probability of supporting the war given one's political affiliation, we'll need to manipulate the `dem` variable and calculate the predicted probabilities across each cutpoint. 
+
+First, let's extract the coefficients and the cut points.
+
+```{r}
+B = war_ordered$coefficients
+B
+```
+
+```{r}
+cuts = war_ordered$zeta
+cuts
+```
+
+
+Second, let's extract the model matrix (i.e. the data we used to run the model with). We drop the intercept because the intercept is constrained to equal 0 to identify the model. 
+```{r}
+X = model.matrix(war_ordered)[,-1] # drop intercept
+head(X)
+```
+
+Third, manipulate the value of `dem` to be 0 (i.e. the respondent is a republican or independent) and hold all other variables at their **observed values**.
+
+```{r}
+X[,1] = 0
+```
+
+Fourth, calculate the predicted probabilities for each observation as each cut point
+```{r}
+pr_strong_opp = pnorm(cuts[1] - X%*%B) 
+pr_some_opp = pnorm(cuts[2] - X%*%B) - pnorm(cuts[1] - X%*%B)
+pr_some_supp = pnorm(cuts[3] - X%*%B) - pnorm(cuts[2] - X%*%B)
+pr_strong_supp = 1 - pnorm(cuts[3] - X%*%B)
+```
+
+Fifth, calculate the expect (average) probability by taking the mean, and then present as a table.
+```{r}
+predicted_probs_ndem <-
+  tibble(response = c('strongly oppose',
+                      "somewhat oppose",
+                      "somewhat support",
+                      "strongly support"),
+         Democrat = 0,
+         prob = c(mean(pr_strong_opp),
+                  mean(pr_some_opp),
+                  mean(pr_some_supp),
+                  mean(pr_strong_supp)))
+predicted_probs_ndem
+```
+
+Let's now run through the same steps to calculate the predicted probabilities of being a democrat (`dem = 1`). 
+
+```{r}
+# Manipulate
+X[,1] = 1
+
+# Prediction given cut points
+pr_strong_opp = pnorm(cuts[1] - X%*%B) 
+pr_some_opp = pnorm(cuts[2] - X%*%B) - pnorm(cuts[1] - X%*%B)
+pr_some_supp = pnorm(cuts[3] - X%*%B) - pnorm(cuts[2] - X%*%B)
+pr_strong_supp = 1 - pnorm(cuts[3] - X%*%B)
+
+# Arrange in table
+predicted_probs_dem <-
+  tibble(response = c('strongly oppose',
+                      "somewhat oppose",
+                      "somewhat support",
+                      "strongly support"),
+         Democrat = 1,
+         prob = c(mean(pr_strong_opp),
+                  mean(pr_some_opp),
+                  mean(pr_some_supp),
+                  mean(pr_strong_supp)))
+predicted_probs_dem
+```
+
+
+Print Table.
+```{r}
+pprobs <- bind_rows(predicted_probs_dem,predicted_probs_ndem)
+pprobs  
+```
+
+**_Conclusion_**: Democratic respondents had a 55% probability of being strongly against the Iraq War whereas their non-democratic counterparts had only a 8% probability of strongly opposing the war. By contrast, Non-democratic respondents had a 41% probability of supporting the War in Iraq. Clearly support for the war fell along partisan lines.
+
+
+### Simulating Confidence Intervals
+
+One issue with the above predictions is that we have no sense of how certain we are about these predictions. As we did with binary response models, we can estimated our uncertainty around our predictions via monte carlo simulation.
+
+Below I'll use the `obsval` package to calculate the 95% confidence interval around the predicted effects. The process of doing this manually is a little involved as we saw last time with binary responses, but it follows the same basic steps (try doing it for yourself!)
+
+```{r}
+require(obsval) # Load the package
+
+# Re-estimate the model using obsval
+war_ordered2 <- 
+  obsval(warsup ~ dem + female,
+         data = dat,
+         ci = .95,
+         n.draws = 1000,
+         reg.model = "oprobit",
+         effect.var = "dem",
+         effect.vals = c(0,1))
+
+# Check the model summary to make sure everything looks right
+summary(war_ordered2$model)
+```
+
+Let's summarized the predicted effects. Check out the dimensions of the output: it's stored as an array! 1000 simulations by 4 possible ordered outcome categories by 2 effect conditions (democrat or not). We'll need to clean this up...
+
+```{r}
+dim(war_ordered2$preds)
+```
+
+Extract out the upper and lower bound that we want.
+```{r}
+# Function extracts the 2.5%, mean, and 97.5% interval
+extract = function(x) c(quantile(x,.025),ave_pred=mean(x),quantile(x,.975))
+
+# Apply to systematically draw it
+non_dem = apply(war_ordered2$preds[,,1],2,extract)
+dem = apply(war_ordered2$preds[,,2],2,extract)
+```
+
+Reformat as a table.
+```{r}
+non_dem = data.frame(t(non_dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 0)
+dem = data.frame(t(dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 1)
+predicted_effects = bind_rows(dem,non_dem)
+predicted_effects
+```
+
+Finally, let's visualize!^[Note that I'm playing with the factor levels in the below plot to ensure the right ordering when visualizing.]
+
+```{r,fig.align="center",fig.width=7,fig.height=5}
+predicted_effects %>%
+  mutate(category = factor(category,levels = levels(dat$warsup))) %>% 
+  ggplot(aes(category,ave_pred,color=factor(democrat))) + 
+  geom_point(size=3) +
+  geom_errorbar(aes(x=category,ymin=`X2.5.`,ymax=`X97.5.`),
+                    width=.05,size=1) +
+  labs(y="Predicted Probability",
+       x="\nDo you think the U.S. should Invade Iraq?",
+       color="") +
+  scale_color_manual(values=c("darkred","steelblue"),
+                     labels=c("Not Democrat","Democrat")) +
+  theme_bw() +
+  theme(legend.position = "top") 
+```
+
+
+As we can see, the predicted effects are all statistically significant. None of the confidence intervals switch signs, which means we can reject the Null Hypothesis that party affiliation (i.e. self-identifying as a democrat or not) has no effect. Moreover, we can see that the intervals are distinct (i.e. they don't overlap). This means that they are meanignfully different from one another. We could confirm this by taking the discrete difference of dem/not dem across each sub-category. 

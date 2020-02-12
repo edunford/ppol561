@@ -1,0 +1,1 @@
+https://stats.stackexchange.com/questions/321770/simulating-data-for-an-ordered-logit-model

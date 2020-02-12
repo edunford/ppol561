@@ -1,0 +1,335 @@
+---
+title: |
+  | PPOL561 | Summary
+  | Multinomial Dependent Variables
+output: pdf_document
+fontsize: 12pt 
+header-includes:
+   - \usepackage{floatrow}
+   - \floatsetup[figure]{capposition=top}
+---
+
+
+```{r,include=F}
+knitr::opts_chunk$set(echo = T,message=F,error=F,warning = F,cache=T,fig.pos = 'h')
+require(tidyverse)
+require(MASS)
+```
+
+_Document prepared by Eric Dunford for circulation in PPOL561. Please do not cite or distribute without permission._
+
+# Overview 
+
+The following offers a summary of main points when dealing with multinomial dependent variables. These notes summarize some of the main points from the Long reading and the lectures. For a more detailed discussion, please review Chapter 6 from the Long reading (See Canvas).
+
+
+
+## Multinomial Responses
+
+A nominal outcome variable is a variable with discrete categories but no intrinsic ordering. We mainly see this when a variable is just "names" or stated preferences. In inferential statistics, this model is used to analyze questions of "what", "which", "who", and "where", rather than questions regarding "how much" or "how many".
+
+Examples: 
+
+- Who did you vote for? (assuming multiple candidates)
+- Which product did you purchase? (assuming multiple products)
+- What kind of job do you have?
+- What is the ethnicity of a new hire?
+
+## Why not OLS
+
+OLS makes no sense here given there is not continuous interval that can be assumed. Doing so would require that we impose some arbitrary ordering on the categories (bananas are better than apples, which are better than pears). Results could differ drastically if one were to assume a different ordering. 
+
+Alternatively, one could consider running individual logits for each category (see below). If so, then the same problems discussed with respect to using OLS for binary response variables will be at play. 
+
+## Multinomial Dependent Variable Model
+
+The multinomial logit model (MNLM) can be thought of as simultaneously estimating binary logits for all possible comparisons among the outcome categories. In this sense, multinomial logit is a simple extension of the binary logit. 
+
+However, running a bunch of logit models and comparing the results for all possible alternative outcomes would becomes quickly intractable (and redundant). Rather we can estimate the choice of any one category all in one go. 
+
+For example, consider three candidates in an election: Bruce (B), Jack (J), and Sally (S). We want to build a model that calculates the probability that a voter will choose one of them. What is the probability of voting for Sally given one can also vote for Bruce or Jack?
+
+Consider treating this as a binary response, rather a categorical one. That is, rather than calculating the probability of voting for Bruce, Jack, or Sally, we just calculated the probability of voting for Sally (1) or not (0). If this were the case, we could use a logit or probit model.
+
+
+$$pr(vote_{sally} = 1) = \frac{exp(x_i\beta^{sally})}{1 + exp(x_i\beta^{sally})}$$
+
+Likewise, we could do the same for Bruce.
+
+$$pr(vote_{bruce} = 1) = \frac{exp(x_i\beta^{bruce})}{1 + exp(x_i\beta^{bruce})}$$
+
+And so on. 
+
+The binary response model allows us to model the probability as a linear combination of covariates. As we saw, the logit function converts those covariates into a probability space that we can estimate coefficients for using Maximum Likelihood. One thing to note here is that we will get a different set of coefficients for each logit model, i.e. $\beta^{sally}$, $\beta^{bruce}$, $\beta^{jack}$, ect. 
+
+For multinomial models, we are largely doing the same thing. However, in the multinomial context, we can estimate the probability of making one choice given all the alternative options. To do this, we'll use a more complex form of the logit model where we'll model all three choices simultaneously. 
+
+
+$$pr(vote = sally) = \frac{exp(x_i\beta^{sally})}{exp(x_i\beta^{bruce}) + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+Right now this model isn't identified (meaning there could be many solutions to it, see Long Ch. 6). To identify the model, we need to constrain the coefficients for one of the choices (i.e. candidates) to equal 0. This choice will be the **reference category**. 
+
+From our candidates, let's choose Bruce to be the reference category: $\beta^{bruce}=0$. Thus, the multinomial logit model is as follows:
+
+$$pr(vote = sally) = \frac{exp(x_i\beta^{sally})}{1 + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+If we wanted to examine the probability of voting for any of the other candidates, we'd just re-arrange.
+
+$$pr(vote = jack) = \frac{exp(x_i\beta^{jack})}{1 + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+$$pr(vote = bruce) = \frac{1}{1 + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+### Assumption
+
+A key assumption for a multinomial choice model is the **independence of irrelevant alternatives assumption (IIA)**. The idea is that the relative probability of existing alternatives (choices) is not affected by changes to the choice set (i.e. adding or removing choices). Essentially, we're assuming that the errors across choices are not correlated, so adding and dropping a choice doesn't impact the underlying probability of the choices left on the table. If this assumption is violated, estimates will be biased.
+
+For example, say we had commuters deciding between three modes of travel: bus, train, and car. The probability are car (.5), train (.33), and bus (.17). Thus, the odds of choosing the bus over the train are $\frac{.17}{.33} = .52$. The odds of choosing the bus over the car $\frac{.17}{.5} = .34$. 
+
+Assuming the color of the bus (red or blue) doesn't change the probability that you'll select a train or car, then we can add the choice of a red bus and blue bus to the menu, which would effectively split the probability of the bus in half between the two: $pr(bus_{blue}) = .085$ and $pr(bus_{red}) = .085$.
+
+IIA can be a hard assumption to make because we could think of scenarios where this assumption appears to be violated. Again, let's turn to our candidates from above. Say $pr(vote=sally)=.6$ and the $pr(vote=Bruce)=.4$; however, then late in the game Jack enters the race. Since he is closer to Sally on the political spectrum, he draws from her support. The probability of choosing Jack is still low $pr(vote=Jack)=.05$; however, it alters the underlying probability of voting for Sally ($pr(vote=sally)=.55$) and thus violates the IIA. 
+
+There are tests to check for this, but none 100% perfect (See the Long reading). The IIA assumption is something we need to think and theorize about. Like the parallel regression assumption from ordered probit, we need to use theory to guide us.^[For example, let's consider the problem a little differently. Let's say there is always a lurking fourth choice: not to vote at all. The probabilities are then: $pr(vote=sally)=.5$, $pr(vote=Bruce)=.3$, and $pr(vote=abstention)=.2$. In this configuration, the entry of a new candidate could split the abstention bin. That is, the entry of a new candidate doesn't change the probability that someone will vote for either of the two other candidates, but that it'll reduce the probability of abstention. The set up would be $pr(vote=sally)=.5$, $pr(vote=Bruce)=.3$,  $pr(vote=jack)=.05$, and $pr(vote=abstention)=.15$. If what we care about is estimates on the probability that one votes for a specific candidate, then this split doesn't change anything with regard to the estimates of interest. This example isn't perfect, but it's a way of using theory to think through things and justify decisions.]
+
+
+### Computation
+
+Multinomial models can be computationally-demanding to compute. Why? Recall that we are estimating coefficients for each and every choice. So in the candidate example we have two sets of estimates for $\beta^{jack}$ and $\beta^{sally}$. This can demand a lot of resources to optimize as the number of choices increase and/or the number of covariates we input increases. Keep this in mind if you ever try to run a complex model and it takes a while to run!
+
+Also, note the emphasis on the logit model here and not the probit. A multinomial probit model is far more complex (these models allow the errors to be correlated), which requires more computation. Though there are packages that estimate this model, we'll focus on the multinomial logit as it runs quicker and is easier to conceptualize.
+
+
+### Connection to Ordered Outcomes
+
+For the ordered probit/logit, we needed to make the parallel regressions assumption. That assumption stated that coefficients remained the same across the cutpoint categories (i.e. the effect of $x$ on $y$ is constant as we move from one cut point to the next). Here we are throwing that assumption out the window and estimating a different set of coefficients for each choice. Thus, one may use a multinomial choice model for ordered data if he/she believes the parallel regressions assumption is suspect, or the underlying ordering is ambiguous. As we'll see below, get very similar results from both models in terms of predictions. 
+
+### Calculating Predicted Probabilities
+
+Calculating predicted effects is a little more involved in the multinomial setting. In our candidate example from above, say $x_i$ is a dummy variable that takes on the value of 0 and 1. To calculate the probability of voting for Sally given $x_i=1$ we do as follow:
+
+$$pr(vote = sally|x) = \frac{exp(\beta_0^{sally} + \beta_1^{sally} x_i)}{1 + exp(\beta_0^{jack} + \beta_1^{jack} x_i) + exp(\beta_0^{sally} + \beta_1^{sally} x_i)}$$
+
+$$pr(vote = sally | x = 1) = \frac{exp(\beta_0^{sally} + \beta_1^{sally} (1))}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (1)) + exp(\beta_0^{sally} + \beta_1^{sally} (1))}$$
+
+$$pr(vote = sally | x = 0) = \frac{exp(\beta_0^{sally} + \beta_1^{sally} (0))}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (0)) + exp(\beta_0^{sally} + \beta_1^{sally} (0))}$$
+
+As before, we'll hold all other covariates at their observed values.
+
+
+If we want to know how the probability of voting for Bruce changes as $x$ shifts from 0 to 1, we just re-arrange the equation as we saw above. 
+
+
+$$pr(vote = Bruce | x = 1) = \frac{1}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (1)) + exp(\beta_0^{sally} + \beta_1^{sally} (1))}$$
+$$pr(vote = Bruce | x = 0) = \frac{1}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (0)) + exp(\beta_0^{sally} + \beta_1^{sally} (0))}$$
+
+And so on. The point being is that the process is more involved because we have to calculate the probability for every choice given every manipulation, but the logic that we have for doing this with binary and ordered models still holds. 
+
+Likewise, if we wanted to calculate the discrete difference for voting for Sally given $x$, we can simply calculate the difference in probabilities as we did with other models. 
+
+$$pr(vote = sally | x = 1) - pr(vote = sally | x = 0)$$
+
+
+## Example: Student Support for the Iraq War
+
+Consider the following survey data draw from a sample of 500 college students in 2002 leading up to the Iraq war. The survey asked whether students agreed with the United States entering into the Iraq War. The data contains three variables:
+
+```{r}
+dat <- read_csv('student_vote.csv')
+dat$warsup = factor(dat$warsup,levels=c('strongly oppose',
+                                        "somewhat oppose",
+                                        "somewhat support",
+                                        "strongly support"))
+summary(dat)
+```
+
+
+- `warsup`: whether the respondent somewhat or strongly oppose/supported the War in Iraq
+- `dem`: 1 if the respondent was a democrat, 0 otherwise.
+- `female`: 1 if the respondent is female, 0 otherwise.
+
+The dependent variable is `warsup`, and the key independent variable that we're going to look at is `dem`. Our hypothesis is that democratic respondents are less likely to support the Iraq War than non-democratic respondents.
+
+We already encountered these data in the ordered models summary. This time, let's treat the model as a multinomial choice model rather than an ordered probit (why would we do this?).
+
+Note that since `strongly oppose` is the first factor it'll be our reference category. 
+
+```{r}
+levels(dat$warsup)
+```
+
+
+We can estimate multinomial logits using the `multinom()` from the `nnet` package.^[Note that the `nnet` package is actually estimating the model using a Neural Network, which is done to help estimate complicated multi-class problems. There is another package `mlogit` that estimates the models similar to our conversation above; however, mlogit requires that the data be reformatted a particular way. So to minimize confusion, we'll use the `nnet` package instead.] 
+
+```{r}
+multi_mod <- nnet::multinom(warsup ~ dem + female,
+                            data=dat)
+multi_mod
+```
+
+Like with the binary and ordered models, the coefficients report the log odds, but cannot be directly interpreted. Moreover, recall that these coefficient estimates are relative to the baseline category, which complicates interpretation even further. We can note the general direction of the coefficients. The coefficients for `dem` become increasingly more negative as we move across choices.
+
+One interesting thing to note here is the change in the magnitude of the coefficients as one moves from strongly oppose to strongly support. One question this begs is whether the parallel regression assumption, which we made in the context of the ordered model, was appropriate in this case.
+
+```{r}
+# Let's use broom to get the standard errrors
+broom::tidy(multi_mod, 
+            exponentiate = F # Don't auto exp!
+            ) %>%  
+  mutate_if(is.numeric, function(x) round(x,3))
+```
+
+It appears that the coefficient on `dem` for the "somewhat oppose" choice is not statistically significant at the .05 level. The coefficients for `dem` on the other choices, however, are statistically significant at conventional levels. 
+
+### Predicted Probabilities
+
+As we saw above, calculating the predicted probabilities for any one choice in a multinomial logit is a little more involved, but follows the same basic logic from before. 
+
+Extract the coefficients
+```{r}
+B_all <- coefficients(multi_mod)
+B_so = B_all[1,] # Coefs: somewhat oppose
+B_ss = B_all[2,] # Coefs: somewhat support
+B_SS = B_all[3,] # Coefs: strongly support
+```
+
+Extract the model matrix
+```{r}
+X = model.matrix(multi_mod)
+head(X)
+```
+
+Manipulate the value of the key independent variable, which here is being a democrat or not.
+
+```{r b}
+X[,2] = 0 # Not a democrat
+```
+
+
+Calculate the predicted probabilities for each choice.
+
+```{r}
+pr_strg_opp = 1/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS))  
+pr_some_opp = exp(X%*%B_so)/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS))  
+pr_some_supp = exp(X%*%B_ss)/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS))  
+pr_strg_supp = exp(X%*%B_SS)/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS)) 
+```
+
+Now for the alternative: respondent self-identifies as a democrat. 
+```{r}
+X[,2] = 1 # Democrat
+pr_strg_opp_dem = 1/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS))  
+pr_some_opp_dem = exp(X%*%B_so)/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS)) 
+pr_some_supp_dem = exp(X%*%B_ss)/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS))
+pr_strg_supp_dem = exp(X%*%B_SS)/(1+exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS))
+```
+
+Bring together as a table.
+```{r}
+categories = c("Strongly Oppose","Somewhat Oppose",
+               "Somewhat Support","Strongly Support")
+tab1 <-
+  tibble(categories,
+         democrat = 0,
+         props = c(mean(pr_strg_opp),
+                   mean(pr_some_opp),
+                   mean(pr_some_supp),
+                   mean(pr_strg_supp))) 
+         
+tab2 <-
+  tibble(categories,
+         democrat = 1,
+         props = c(mean(pr_strg_opp_dem),
+                   mean(pr_some_opp_dem),
+                   mean(pr_some_supp_dem),
+                   mean(pr_strg_supp_dem)))  
+
+# Bring together
+pred_effects = bind_rows(tab1,tab2)
+
+# Print off
+pred_effects %>%  
+  arrange(categories) %>%
+  mutate(props = paste0(round(props,2)*100,"%"))
+```
+
+We see the same general pattern that we did in the ordered probit example. Moreover, the general magnitude of the predicted effects are the same. This is confirmatory that despite how we conceptualized this model---whether we thought the categories are ordered or not---we still get similar results. 
+
+### Simulating Confidence Intervals
+
+One issue with the above predictions is that we have no sense of how certain we are about these predictions. As we did with binary and ordered response models, we can estimated our uncertainty around our predictions via Monte Carlo simulation.
+
+Below I'll use the `obsval` package to calculate the 95% confidence interval around the predicted effects. The process of doing this manually is a little involved as we saw last time with binary responses, but it follows the same basic steps (try doing it for yourself!)
+
+```{r}
+require(obsval) # Load the package
+
+# Re-estimate the model using obsval
+multi_mod2 <- 
+  obsval(warsup ~ dem + female,
+         data = dat,
+         ci = .95,
+         n.draws = 1000,
+         baseline.category = "strongly oppose", # need to spec baseline
+         reg.model = "mlogit",
+         effect.var = "dem",
+         effect.vals = c(0,1))
+
+# Check the model summary to make sure everything looks right
+summary(multi_mod2$model)
+```
+
+
+Let's visualize the predicted probabilities using the simulated intervals. Note that like the ordered models, the predicted probabilities are stored as arrays: 1000 simulations by 4 coefficient values by two manipulation states (democrat or not).
+
+```{r}
+dim(multi_mod2$preds)
+```
+
+We can unpack these simulated distributions, summarize them (mean and 95% confidence interval) and plot them.
+
+```{r}
+# Function extracts the 2.5%, mean, and 97.5% interval
+extract = function(x) c(quantile(x,.025),ave_pred=mean(x),quantile(x,.975))
+
+# Apply to systematically draw it
+non_dem = apply(multi_mod2$preds[,,1],2,extract)
+dem = apply(multi_mod2$preds[,,2],2,extract)
+```
+
+Reformat as a table.
+```{r}
+non_dem = data.frame(t(non_dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 0)
+dem = data.frame(t(dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 1)
+predicted_effects = bind_rows(dem,non_dem)
+predicted_effects
+```
+
+
+Finally, let's visualize!^[Note that I'm playing with the factor levels in the below plot to ensure the right ordering when visualizing.]
+
+```{r,fig.align="center",fig.width=7,fig.height=5}
+predicted_effects %>%
+  mutate(category = factor(category,levels = tolower(categories))) %>% 
+  ggplot(aes(category,ave_pred,color=factor(democrat))) + 
+  geom_point(size=3) +
+  geom_errorbar(aes(x=category,ymin=`X2.5.`,ymax=`X97.5.`),
+                    width=.05,size=1) +
+  labs(y="Predicted Probability",
+       x="Do you think the U.S. should Invade Iraq?",
+       color="") +
+  scale_color_manual(values=c("darkred","steelblue"),
+                     labels=c("Not Democrat","Democrat")) +
+  theme_bw() +
+  theme(legend.position = "top") 
+```
+
+
+We see the same general trend in the predicted effects across the four choices as we did in the ordered probit example; however, with a one notable difference, the confidence intervals around the non-dem support estimates are larger. Given that we're essentially estimating a series of logit models with coefficients for each choice, the larger confidence intervals may reflect the increase in the number of parameters that we have. More importantly, there is more uncertainty in the model as we have uncertainty estimates around each coefficient, which is being incorporated into the end estimate. if anything, this reinforces the need to estimate intervals around our predicted effects. 
+
+Another difference between the ordered and multinomial results is the distance in the predicted effect between democrats and non-democrats in the somewhat oppose choice. In the ordered probit, these intervals were far closer, whereas in the multinomial model they're further apart. 
+
+Finally, keep in the mind that we used an ordered _probit_ model and we are comparing it to a multinomial _logistic_ model. As we can see, the differences in link functions don't really change the story, but it's always important to keep in mind when comparing results. 

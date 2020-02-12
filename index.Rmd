@@ -274,4 +274,13 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
   + [Simulating confidence intervals around substantive effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#76)
   
   
+<br>  
+  
+### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ppol561.html)
+
+- **Table of Contents**
+  + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ppol561.html#3)
+  + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ppol561.html#31)
+  
+  
   
