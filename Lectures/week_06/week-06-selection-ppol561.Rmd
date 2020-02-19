@@ -1,0 +1,1031 @@
+---
+title: 
+    <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font>
+  <font size=6, face="bold"> Week 6 </font> 
+  <br>
+  <br>
+  <font size=100, face="bold"> Selection </font>
+author: 
+  <font class = "title-footer"> 
+  &emsp;Prof. Eric Dunford &emsp;&#9670;&emsp; Georgetown University &emsp;&#9670;&emsp; McCourt School of Public Policy &emsp;&#9670;&emsp; eric.dunford@georgetown.edu</font>
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: "gu-theme.css"
+    nature:
+      highlightStyle: github
+      beforeInit: "macros.js"      
+      countIncrementalSlides: False
+      highlightLines: true
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,message=F,error=F,warning = F,cache = T)
+require(tidyverse)
+require(sampleSelection)
+```
+
+layout: true
+
+<div class="slide-footer"><span> 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+Week 6 <!-- Week of the Footer Here -->
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+Selection <!-- Title of the lecture here -->
+
+</span></div> 
+
+---
+class: outline
+
+# Outline for Today 
+
+<br><br>
+
+- Issues surrounding **_Selection_**
+
+<br>
+
+- Focus on **_Incidental Selection_** as a source of bias.
+
+<br>
+
+- Cover the **_Heckman Selection Model_**
+
+---
+
+class: newsection
+
+### Selection Problems
+
+---
+
+### The Problem
+
+- Suppose you want to know if high schools are better in South Dakota or North Dakota.
+
+- We observe SAT scores for 25% of high school seniors in South Dakota, whereas in North Dakota all students are mandated to take the SAT. 
+
+--
+
+- Our model: 
+
+$$score_i = \beta_0 + \beta_1 \text{South Dakota}_i + \epsilon_i$$
+
+--
+
+<br>
+
+- What does $\beta_1$ tell us?
+
+- Is $\beta_1$ potentially biased? Why?
+
+---
+
+### The Problem
+
+- Those who selected into taking the test are likely different from the larger student body population.
+
+--
+
+- These are students with higher levels of:
+
+  - Intelligence
+  
+  - Ambition
+  
+  - Resources
+  
+--
+  
+- These factors are likely biasing $\beta_1$ upward.
+
+- We think that going to school in South Dakota will lead to better student outcomes when really it has to do with _who_ is taking the test. 
+
+--
+
+- Selection is a source of endogeneity. 
+
+---
+
+### Selection Problems 
+
+![:space 5]
+
+- Often when dealing with observational data, we don't always have the luxury of randomly sampling from the population:
+
+    - Sometimes we're **_systematically missing data on specific groups_** (e.g. minority populations, authoritarian regimes, etc.)
+    
+    - Sometimes there is a larger (socio-economic) processes that **_exclude certain populations from being in the data_** (e.g. women in the workforce, immigrant populations in the US).
+
+- **_Selection denotes the process by which observations enter in a statistical sample_** (i.e. whether we observe them or not). 
+
+---
+
+### Selection Problems 
+
+<br><br>
+
+- If a certain trait makes one more likely to be observed, this can induce correlation with that trait and the error term.
+
+![:space 5]
+
+- There are many ways in which selection problems can occur:
+    
+    - Sampling
+    
+    - Selection on the Dependent variable 
+    
+    - Incidental selection 
+
+---
+
+class: newsection
+
+## The selection process
+
+---
+
+### Selection as a process
+
+<br>
+
+Recall our standard OLS model:
+
+$$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
+
+--
+
+<br>
+
+Let's define a **selection indicator** that determines whether an observation enters into the sample or not.
+
+$$s_iy_i = s_i(\beta_0 + \beta_1 x_i + \epsilon_i)$$
+
+- When $s_i = 1$, indicates that we will use the observation in our analysis.
+
+- When $s_i = 0$, means the observation will not be used. 
+
+---
+
+### Selection as a process
+
+![:space 3]
+
+Recall that our estimates are unbiased and consistent if
+
+![:space 1]
+
+$$ E(\epsilon | x )=0$$
+
+![:space 1]
+
+The selection indicator doesn't change this
+
+![:space 1]
+
+$$ E(s\epsilon | sx )=0$$
+
+![:space 1]
+
+$$ E(s)E(\epsilon | x )=0$$
+
+![:space 1]
+
+$$ E(\epsilon | x )=0$$
+
+---
+
+### Random Samples
+
+<br>
+
+When we randomly sample from a population, we are able to retrieve a **representative sample**.
+
+<br>
+
+We can think of this as a continuous selection process, where the selection criteria is dictated by an unobservable random variable ( $\nu$ )
+
+$$s_i = \begin{cases} 1 \text{ when }\nu_i  > 0 \\ 0 \text{ when }\nu_i  \le 0 \end{cases}$$
+
+As long as the error in our model and the process by which we sampled are uncorrelated, we'll have an unbiased estimate. 
+
+$$corr(\nu,\epsilon) = 0 $$
+
+---
+
+### Random Samples 
+
+```{r}
+set.seed(123) # Seed (for replication)
+N = 10000  # Number of observations in the population
+v <- rnorm(N) # Random selection term
+e <- rnorm(N) # Random error term
+x <- rnorm(N) # Random variable
+
+s <- as.numeric(v > 0) # Selection process
+
+y <- 1 + 2*x + e # Population Model (TRUE MODEL)
+
+D = tibble(x =x[s==1],y = y[s==1]) # only observe the selected data
+
+lm(y~x,data=D) # estimate the model
+```
+
+---
+
+### Uncorrelated Errors
+
+```{r,highlight=T,fig.align="center",fig.width=7,fig.height=3.75,dpi=300}
+tibble(e,v) %>% 
+  ggplot(aes(e,v)) +
+  geom_point(alpha=.25) +
+  theme_bw()
+```
+
+---
+
+### Non-Random Samples 
+
+- When we _systematically_ sample observations from a subset of the population, we introduce bias into the model. 
+
+- This issue occurs whenever we **fail to sample _randomly_**. 
+
+--
+
+<br>
+
+- In terms of the selection process, there is some criteria that we're choosing observations on that are systematically associated with the error term. 
+
+- The correlation between how observations are selected ( $\nu$ ) and the error ( $\epsilon$ ) are sources of bias.
+
+<br>
+
+$$ |corr(\nu,\epsilon)| > 0 $$
+
+---
+
+### Non-Random Samples 
+
+```{r,highlight=T,fig.align="center",fig.width=7,fig.height=5}
+set.seed(123) # Seed (for replication)
+N = 10000  # Number of observations in the population
+
+# Covariance matrix of the errors (correlated) 
+error_cov = matrix(c(100,50,50,100),ncol=2,nrow=2) #<<
+error_cov
+
+error_means = c(0,0) # Means (E(e) = 0, E(v) = 0)
+error = MASS::mvrnorm(N,mu = error_means,Sigma = error_cov) #<<
+
+e = error[,1]
+v = error[,2]
+```
+
+---
+
+### Correlated Errors
+
+```{r,highlight=T,fig.align="center",fig.width=7,fig.height=3.75,dpi=300}
+tibble(e,v) %>% 
+  ggplot(aes(e,v)) +
+  geom_point(alpha=.25,show.legend = F) +
+  theme_bw() 
+```
+
+---
+
+### Non-Random Samples 
+
+```{r}
+set.seed(123) # Seed (for replication)
+
+x <- rnorm(N) # Random variable
+
+s <- as.numeric(v > 0) # Selection process
+
+y <- 1 + 2*x + e # Population Model (TRUE MODEL)
+
+D = tibble(x =x[s==1],y = y[s==1]) # only observe the selected data
+
+lm(y~x,data=D) # estimate the model
+```
+
+---
+
+### Non-Random Samples 
+
+![:space 5]
+
+- We can sometimes adjust non-random samples by weighting observations if we know something about the distribution in the actual population. 
+
+--
+
+- The best advice is to always randomly sample to avoid this type of selection bias. 
+
+- Note that a random sample doesn't remove _other sources of endogeneity_ that might lurk in the error term.
+
+![:space 5]
+
+$$corr(\nu,\epsilon) = 0$$
+
+
+---
+
+class: newsection
+
+### Exogenous selection 
+
+
+---
+
+### Exogenous selection 
+
+Occurs when the selection process depends directly on some observable variable's characteristics.
+
+--
+
+For example, consider the relationship between age and ones propensity to save. We only observe an individuals savings _after_ they turn age 40.
+
+
+```{r,echo=F,highlight=T,fig.align="center",fig.width=10,fig.height=4.75,dpi=300}
+set.seed(123)
+N=1000
+x <- round(runif(N,18,87))
+y <- 1e4 + 500*x + rnorm(N,0,7e3)
+D = tibble(x,y)
+
+D %>%
+  ggplot(aes(x,y)) +
+  ylim(0,80000) +
+  geom_point(color="darkred",size=2) +
+  labs(y="Savings",x="Age") +
+  gghighlight::gghighlight(x>=40,unhighlighted_colour = "grey70")  +
+  theme_classic() +
+  theme(axis.title = element_text(size=20))
+```
+
+---
+
+### Exogenous selection 
+
+Exogenous selection **does not cause bias**. 
+
+We **cannot generalize** to the unobserved portion of the sample: i.e. we can't make any claims about younger individuals saving habits. 
+
+```{r,echo=F,highlight=T,fig.align="center",fig.width=10,fig.height=4.75,dpi=300}
+set.seed(123)
+N=1000
+x <- round(runif(N,18,87))
+y <- 1e4 + 500*x + rnorm(N,0,7e3)
+D = tibble(x,y)
+
+D %>%
+  ggplot(aes(x,y)) +
+  ylim(0,80000) +
+  geom_point(color="darkred",size=2) +
+  geom_smooth(method="lm",color="darkred",se=F,size=2) +
+  labs(y="Savings",x="Age") +
+  gghighlight::gghighlight(x>=40,unhighlighted_colour = "grey70")  +
+  theme_classic() +
+  theme(axis.title = element_text(size=20))
+```
+
+---
+
+### Exogenous selection 
+
+Exogenous selection **does not cause bias**. 
+
+We **cannot generalize** to the unobserved portion of the sample: i.e. we can't make any claims about younger individuals saving habits. 
+
+
+```{r,echo=F,highlight=T,fig.align="center",fig.width=10,fig.height=4.75,dpi=300}
+set.seed(123)
+N=1000
+x <- round(runif(N,18,87))
+y <- 1e4 + 500*x + rnorm(N,0,7e3)
+D = tibble(x,y)
+
+D %>%
+  ggplot(aes(x,y)) +
+  ylim(0,80000) +
+  geom_smooth(method="lm",color="darkred",se=F,size=2) +
+  labs(y="Savings",x="Age") +
+  gghighlight::gghighlight(x>=40,unhighlighted_colour = "grey70")  +
+  theme_classic() +
+  theme(axis.title = element_text(size=20))
+```
+
+---
+
+class: newsection
+
+### Selection on the Dependent Variable 
+
+---
+
+### Selection on the Dependent Variable 
+
+- Occurs when we select observations into our sample based on values of the dependent variables. 
+
+- Again assume we wanted to know the effect age on of one's propensity to save; however, this time we only sampled from individuals that had at least $30k in savings.
+
+```{r,echo=F,highlight=T,fig.align="center",fig.width=10,fig.height=4.75,dpi=300}
+set.seed(123)
+N=1000
+x <- round(runif(N,18,87))
+y <- 1e4 + 500*x + rnorm(N,0,7e3)
+D = tibble(x,y)
+D %>% 
+  ggplot(aes(x,y)) +
+  ylim(0,80000) +
+  geom_point(color="darkred",size=2) +
+  # geom_smooth(method="lm",se=F) +
+  labs(y="Savings",x="Age") +
+  gghighlight::gghighlight(y>3e4,unhighlighted_colour = "grey70") +
+  theme_classic() +
+  theme(axis.title = element_text(size=20))
+```
+
+
+---
+
+### Selection on the Dependent Variable 
+
+- Our estimates are biased in a way that is correlated with the error. Error is going to be higher when age is lower. 
+
+- The way around this source of selection bias is to _never_ select observations into our sample based on values of the dependent variable. 
+
+```{r,echo=F,highlight=T,fig.align="center",fig.width=10,fig.height=4.75,dpi=300}
+set.seed(123)
+N=1000
+x <- round(runif(N,18,87))
+y <- 1e4 + 500*x + rnorm(N,0,7e3)
+D = tibble(x,y)
+D %>% 
+  ggplot(aes(x,y)) +
+  ylim(0,80000) +
+  geom_point(color="darkred",size=2) +
+  geom_smooth(method="lm",color="darkred",se=F,size=2) +
+  labs(y="Savings",x="Age") +
+  gghighlight::gghighlight(y>3e4,unhighlighted_colour = "grey70") +
+  theme_classic() +
+  theme(axis.title = element_text(size=20))
+```
+
+---
+
+### Selection on the Dependent Variable 
+
+- Our estimates are biased in a way that is correlated with the error. Error is going to be higher when age is lower. 
+
+- The way around this source of selection bias is to _never_ select observations into our sample based on values of the dependent variable. 
+
+```{r,echo=F,highlight=T,fig.align="center",fig.width=10,fig.height=4.75,dpi=300}
+set.seed(123)
+N=1000
+x <- round(runif(N,18,87))
+y <- 1e4 + 500*x + rnorm(N,0,7e3)
+D = tibble(x,y)
+D %>% 
+  ggplot(aes(x,y)) +
+  ylim(0,80000) +
+  # geom_point(color="darkred",size=2) +
+  geom_smooth(method="lm",color="darkred",se=F,size=2) +
+  labs(y="Savings",x="Age") +
+  gghighlight::gghighlight(y>3e4,unhighlighted_colour = "grey70") +
+  theme_classic() +
+  theme(axis.title = element_text(size=20))
+```
+
+---
+
+class: newsection
+
+### Incidental Selection
+
+---
+
+### Incidental Selection
+
+
+![:space 3]
+
+Now assume we wanted to know how "trust in the government" (GovTrust) impacts one's propensity to save. We take a random sample from the population, but some respondents who are not U.S. citizens declined to be surveyed. 
+
+![:space 3]
+
+We estimate the following model:
+
+$$\hat{savings} = \hat{\beta_0} + \hat{\beta_1}  GovTrust$$
+
+--
+
+![:space 3]
+
+Any issues with doing this?
+
+
+---
+
+### Incidental Selection
+
+
+**_Incidental Selection_** occurs when the error in the selection process is correlated with the error in the outcome. 
+
+![:space 1]
+
+- There is some process that determines whether a respondent will select into the survey and share relevant data.
+
+- For example, respondents who are potentially in the country illegally (undocumented) may be less likely to enter into the sample _and_ save money.
+
+![:space 1]
+
+In other words, there is some **_selection process_** that determines whether or not we observe a responent's data. This process is likely **_correlated with the error term_** in our model, resulting in **_endogeneity_**. 
+
+---
+
+### Selection Model
+
+We can think of whether or not we'll observe an outcome for a given respondent as a **selection equation** that we can _model_. 
+
+![:space 1]
+
+$$s^*_i = Z\gamma + \nu_i$$
+
+![:space 1]
+
+where 
+
+- $Z$ is matrix of covariates related to someone selecting into sample or not (e.g. legal resident, trust in the government, number of children, income, etc.)
+
+- $\gamma$ is the linear coefficients
+
+- $\nu$ is the stochastic error term. 
+
+---
+
+### Selection Model
+
+We can think of whether or not we'll observe an outcome for a given respondent as a **selection equation** that we can _model_. 
+
+![:space 1]
+
+$$s^*_i = Z\gamma + \nu_i$$
+
+![:space 1]
+
+When 
+
+- $s^*_i > 0$ means we observe an respondent's data (i.e. the respondent participated in the survey)
+
+- $s^*_i \le 0$ means we do not observe the dependent variable for this person. 
+
+Here we're saying that one's level of trust in the government determines whether or not they will enter into the survey. 
+
+---
+
+![:space 10]
+
+As noted, **_incidental selection_** occurs when the errors in the selection process are correlated with errors in the outcome equation.
+
+![:space 3]
+
+If one's trust in government determines both their likelihood of entering the sample _and_ saving, then 
+
+![:space 3]
+
+$$corr(\nu,\epsilon) \ne 0$$
+
+![:space 3]
+
+This **_induces a correlation in our selection process and error term_**. When this is true, our estimates will be **_biased_**. 
+
+---
+
+```{r}
+set.seed(123) # Random Seed for replication
+
+N=1000 # Number of respondents in the sample
+
+e <- rnorm(N,0,10); v <- rnorm(N,0,10) # Random error terms
+
+# Indep. Var.: trust in the government (0% == No Trust; 100% high trust)
+trust <- runif(N,0,100)
+
+# Selection Equation (function of trust)
+s_star = .01*trust + v
+entered_survey <- as.numeric(s_star > 0)
+
+# Outcome Equation
+real_savings <- observed_savings <- 10 + trust + e
+
+# Only observe savings for those who responded
+observed_savings[entered_survey==0] <- 0
+
+D = tibble(real_savings,observed_savings,trust); head(D)
+```
+
+
+---
+
+### Incidental Selection
+
+```{r}
+D %>% 
+  lm(observed_savings~trust, data = .) %>% 
+  broom::tidy(.) %>% 
+  mutate_if(is.numeric,function(x) round(x,2))
+```
+
+```{r}
+lm(real_savings~trust, data = D) %>% 
+  broom::tidy(.) %>% 
+  mutate_if(is.numeric,function(x) round(x,2))
+```
+
+
+---
+
+class: newsection
+
+# Heckman Selection Model
+
+---
+
+### Heckman Selection Model
+
+<br><br>
+
+- Offers a way of dealing with incidental selection.
+
+<br>
+
+- If we assume the error terms in selection and outcome equations are both normally distributed, then we can calculate the expected value of the error term in the outcome
+equation given that $s^*_i > 0$.
+
+<br>
+
+- If a variable in our outcome model affects selection, then this variable will be correlated with the error term in the observed sample.
+
+---
+
+### Heckman Selection Model
+
+<br>
+
+$$E[y_i|s_i=1] =  \beta_0 + \beta_1 x_i + E[\epsilon_i|s^*_i > 0]$$
+$$E[y_i|s_i=1] =  \beta_0 + \beta_1 x_i + \rho\sigma_{\epsilon}\lambda_i$$
+
+--
+
+<br>
+
+- $E[\epsilon_i|s^*_i > 0]$ is the expected error given that observation is selected into the model. 
+
+- $E[\epsilon_i|s^*_i > 0]$ is equal to 
+
+    + $\rho$ the correlation of error terms across selection and outcome equations
+    + $\sigma_{\epsilon}$ the standard error of the outcome equation, and
+    + $\lambda_i$ a term capturing how big the error term in the selection equation needs to be in order for the observation to be observed.
+
+---
+
+### Heckman Selection Model
+
+<br><br>
+
+- The idea is to treat the selection process as a form of **omitted variable bias** 
+
+<br>
+
+- If we can simply account for the part of the error term that causes the correlation of the independent variables and the error term, then that is no longer in the error term.
+
+<br>
+
+- Thus, the solution to a selection bias problem is to include a variable that captures the correlation of the error and the independent variables in the observed sample.
+
+---
+
+### Inverse Mills Ratio (IMR)
+
+Key to making this work is the $\lambda_i$ term, the so-called **inverse Mills ratio**
+
+![:space 1]
+
+$$ \lambda_i = \frac{\phi(\gamma_0 + \gamma_1 x_1 + \gamma_2 z_i)}{\Phi(\gamma_0 + \gamma_1 x_1 + \gamma_2 z_i)}$$
+
+![:space 1]
+
+Where 
+
+- $\phi(\cdot)$ is the PDF of the normal distribution,
+
+- $\Phi(\cdot)$ is the CDF of the normal distribution, and
+
+- $z_i$ is some exogenous variable that predicts selection, but _doesn't_ predict the outcome $y_i$ (more on this in a second)
+
+---
+
+### Inverse Mills Ratio (IMR)
+
+- Recall from probit that the probability of observing a "1" is $\Phi(\gamma_0 + \beta_1 x_1)$
+
+- Here were doing the same thing but modeling the **_probability of observing someone being in the sample_**.
+
+--
+
+.pull-right[
+- The IMR is effectively a number that gets smaller and smaller as the probability of being observed is very high.
+
+- In other words, whenever we have an observation from someone who is _unlikely_ to be in the sample then the IMR will be a _big_ number.
+
+] 
+
+.pull-left[
+```{r,echo=F,dpi=300,fig.height=6,fig.width=7}
+tibble(x = seq(-3,3,.1)) %>% 
+  mutate(PDF = dnorm(x),
+         CDF = pnorm(x),
+         `Inverse Mills` = dnorm(x)/pnorm(x)) %>% 
+  gather(key,val,-x) %>% 
+  ggplot(aes(x,val,color=key)) +
+  geom_line(size=2,alpha=.7) +
+  labs(color="",y="") +
+  ggthemes::scale_color_colorblind() +
+  theme_classic() +
+  theme(legend.position = "top",
+        legend.text = element_text(size=20),
+        axis.text = element_text(size=20)) 
+```
+
+]
+
+---
+
+### Estimation
+
+Two ways to estimate this model:
+
+1. Run a two-step estimator
+2. full information maximum likelihood (FIML)
+
+
+---
+
+### Estimation
+
+Two ways to estimate this model:
+
+1. Run a two-step estimator
+2. <font color="lightgrey">full information maximum likelihood (FIML)</font>
+
+--
+
+- First use a probit model to estimate the selection model, providing estimates of $\gamma$.
+
+- Second, calculate $\lambda_i$ for each observation.
+
+- Third, include $\lambda_i$ as a covariate in the outcome model. 
+
+--
+
+The coefficient on $\lambda_i$ is our estimate for $\rho\sigma_\epsilon$
+
+- The sign of this coefficient will be the sign of $\rho$ (since $\sigma_\epsilon$ is always positive) 
+- Statistical significance on this parameter means we reject the null that $\rho = 0$ (no selection bias)
+
+
+---
+
+## Challenge No. 1: No Data
+
+<br>
+- When we lack information on the Dependent Variable, we often also lack information on the corresponding Independent Variables
+
+  + Non-response to a survey 
+  
+  + Participants who leave an experiment
+  
+  + Terrorist groups that don't quite "make it" and never commit an attack
+  
+- Hence in many instances, we lack the data to estimate the parameters for the  Heckman Selection Model.
+
+
+---
+
+## Challenge No. 2: Poor Fit
+
+<br>
+
+- Suppose that the model fit in the selection equation is terrible.
+
+- $\lambda_i$ will be measured with considerable error. 
+
+- Recall measurement error biases a coefficient toward 0. 
+
+- Means our estimate of $\hat{\rho}$ (the correlation of the errors across the two equations) will veer toward zero. 
+
+- The closer $\hat{\rho}$ is to zero, the more our model looks like a normal OLS model _even if incidental selection is still causing bias!_
+
+
+---
+
+## Challenge No. 3: Multicollinearity
+
+![:space 5]
+
+- If we have the same variables in the selection equation and outcome equation it is very common for the inverse Mills ratio to approximate a linear function of the variables in the outcome equation.
+
+![:space 3]
+
+- This can cause multicollinearity in the outcome equation (which make our estimates unstable).
+
+![:space 3]
+
+- The IMR is not a linear function, thus won't result in a perfect collinearity.  
+
+---
+
+## Challenge No. 3: Multicollinearity
+
+1. The variables in the outcome equation should be a **_strict subset_** of the variables in the selection equation. 
+
+  + That is, any variable that is in the outcome equation should also be in the selection equation. $X = Z$
+  
+  + Exclusion can lead to inconsistency.
+
+--
+
+2.  Need a variable that **_affects selection but does not affect the outcome_**.
+
+  + This is known as an "exclusion restriction"
+  
+  + Not absolutely necessary but the results are usually less convincing.
+  
+  + The exclusion restriction reduces multicollinearity across the two equations
+  
+---
+
+class: newsection
+
+### Women's Labor Force Participation
+  
+---
+
+### The Aim
+
+![:space 5]
+
+Say it's 1975 that you are interested in the effect of education (educ) on how a women's potential income (wage).
+
+![:space 5]
+
+We take a random sample of females and estimate the following model:
+
+![:space 5]
+
+$$wage_i = \beta_0 + \beta_1 educ_i + \epsilon_i$$
+
+![:space 5]
+
+
+Any issues with doing this?
+
+
+---
+
+### The Problem
+
+![:space 5]
+
+There is likely some process that determines whether a female will enter into the labor market or just stay at home.
+
+![:space 5]
+
+For example, females with less education or experience may be more likely to stay at home and take care of the family.
+
+
+![:space 5]
+
+In other words, there is some **_selection process_** that determines whether we observe a females income or not, which is _correlated with the error term_ in the wage model.
+
+
+---
+
+### Data on U.S. Women's Labor Force Participation
+
+<br><br>
+
+The following data contains data about 753 married women. These data are collected within the "Panel Study of Income Dynamics" (PSID). 
+
+<br>
+
+Of the 753 observations, the first 428 are for women with positive hours worked in 1975, while the remaining 325 observations are for women who did not work for pay in 1975. 
+
+<br>
+
+The study aims to understand the relationship between a women's level of education and experience and their income.
+
+
+---
+
+### U.S. Women's Labor Force Participation
+
+```{r,echo=F}
+data(Mroz87)
+dat <- Mroz87
+glimpse(dat)
+```
+
+---
+
+### U.S. Women's Labor Force Participation
+
+$$wage_i = \beta_0 + \beta_1 educ_i + \beta_2 exper_i + \beta_3 exper_i^2 + \beta_4 city_i + \epsilon_i$$
+--
+
+<br><br>
+
+```{r}
+mod = lm(wage ~ exper + I( exper^2 ) + educ + city,data=dat)
+broom::tidy(mod) %>% 
+  mutate_if(is.numeric,function(x) round(x,2))
+```
+
+---
+
+### Selection into the Labor Force 
+
+$$ participate_i = \gamma_0 + \gamma_1 faminc_i + \gamma_2 kids_i + \gamma_3 educ_i + \nu_i$$
+
+- `lfp` - labor force participation: 1 if the respondent works, 0 otherwise.
+- `faminc` - family income
+- `kids5` - number of kids under the age of 5
+- `educ` - level of education
+
+--
+
+```{r,highlight=T}
+require(sampleSelection) #<<
+select_mod <-
+  heckit( 
+    # Selection Equation
+    lfp ~ age + I( age^2 ) + faminc + kids5 + educ, 
+    # Outcome Equation
+    wage ~ exper + I( exper^2 ) + educ + city, 
+    
+    data = dat )
+```
+
+---
+
+```{r,echo=F}
+summary(select_mod)
+```
+
+---
+
+### Now let's do it manually
+
+<br>
+
+```{r,highlight=T}
+# Estimate stage one
+stage_1 <- 
+  glm(lfp ~ age + I( age^2 ) + faminc + kids5 + educ,
+      family=binomial(link = "probit"),
+      data=dat)
+
+# Calculate Inverse Mills Ratio
+Z = model.matrix(stage_1)
+gamma = coefficients(stage_1)
+pr = Z%*%gamma
+dat$imr = dnorm(pr)/pnorm(pr)
+
+# Estimate stage 2 (OLS)
+stage_2 <- 
+  lm(wage ~ exper + I( exper^2 ) + educ + city + imr,
+     data=dat %>% 
+       filter(lfp==1) #<<
+     )
+```
+
+---
+
+### Now let's do it manually
+
+<br><br>
+
+```{r}
+broom::tidy(stage_2) %>% 
+  mutate_if(is.numeric,function(x) round(x,2))
+```
+

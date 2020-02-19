@@ -283,4 +283,17 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
   + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#31)
   
   
+<br>  
+  
+### _Week 6_: [Selection](Lectures/week_06/week-06-selection-ppol561.html)
+
+- **Table of Contents**
+  + [Selection Problems](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#3)
+  + [The Selection Process](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#13)
+  + [The Selection Process](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#13)
+  + [Exogenous Selection](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#27)
+  + [Selection on the Dependent Variable](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#32)
+  + [Incidental Selection](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#36)
+  + [Heckman Selection Model](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#45)
+  + [Example: Women's Labor Force Participation](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#62)
   
