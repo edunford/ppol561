@@ -296,3 +296,14 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
   + [Heckman Selection Model](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#45)
   + [Example: Women's Labor Force Participation](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#62)
   
+<br>  
+  
+### _Week 7_: [Introduction to Causal Inference](Lectures/week_07/week-07-causal-inference-ppol561.html)
+
+- **Table of Contents**
+    + [Causal Inference](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#3)
+    + [Structural Causal Models (DAGs)](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#7)
+    + [Interventions and Adjustments](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#35)
+    + [Causal Discovery](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#60)
+    + [Potential Outcomes](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#82)
+  
