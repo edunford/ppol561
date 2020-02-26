@@ -1952,7 +1952,7 @@ $$ATT = E[y_i(1)|T=1] - E[y_i(0)|T=1]$$
 
 ![:space 1]
 
-$$ATT = E[y_i(1)|T=0] - E[y_i(0)|T=0]$$
+$$ATU = E[y_i(1)|T=0] - E[y_i(0)|T=0]$$
 
 ---
 
@@ -2074,7 +2074,7 @@ An issue emerges when the **_assignment mechanism_** (i.e. how units get into th
 
 ![:space 3]
 
-Such non-randomness generates: **_selection bias_** and **_heterogeneous treatment effect bias_**. 
+Such non-randomness generates: **_selection** and **_heterogeneous treatment effect bias_**. 
 
 ```{r,echo=F,fig.align="center",fig.width=9,fig.height=3.5,dpi=200}
 coords <- 
