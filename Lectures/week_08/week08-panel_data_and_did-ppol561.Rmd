@@ -648,7 +648,7 @@ $$homicide_{it} = \beta_0 + \beta_1 SYG_{it} + \beta_2 after_{it} +\\\beta_3 (SY
 
 - If violated, estimates of the causal effect will be biased. Unfortunately, no test for this.  
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=4.5}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=4.25,dpi=300}
 set.seed(1234)
 N = 1000
 bind_rows(
