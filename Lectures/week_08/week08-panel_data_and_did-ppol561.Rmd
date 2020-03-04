@@ -90,9 +90,6 @@ $$crime_{it} = \beta_0 + \beta_1 police_{it} + ( hs_i + cl_i + ql_i + \dots + \n
 
 ---
 
-
----
-
 ## The problem
 
 We might never be able to measure everything that makes a place or time what it is, but we _can_ control for them. 

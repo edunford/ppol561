@@ -312,4 +312,4 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 ### _Week 8_: [Panel Data & DID](Lectures/week_08/week08-panel_data_and_did-ppol561.html)
 - **Table of Contents**
     + [Panel Data](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#3)
-    + [Difference-in-Difference](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#46)
+    + [Difference-in-Difference](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#45)
