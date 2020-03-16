@@ -74,7 +74,7 @@ Outlined below is the approach we'll take to continuing instruction online. Spec
 
 <u>Please note that this plan is subject to change given feedback/experience</u>. Any and all changes to the plan will be posted on the course website and Slack via the `#general` channel, so please check both regularly for any updates.
 
-Finally, at your earlest convenience, please complete the [**"Transitioning to Online Instruction" survey**](https://forms.gle/xij1wGLCkhqVb2ji9). This survey will help me get a better sense of where everyone is at with respect to resources and personal situation.
+Finally, at your earliest convenience, please complete the [**"Transitioning to Online Instruction" survey**](https://forms.gle/xij1wGLCkhqVb2ji9). This survey will help me get a better sense of where everyone is at with respect to resources and personal situations.
 
 
 <br>
@@ -121,7 +121,7 @@ Like the virtual lectures, recitation will take place on Zoom. The link to the z
 #### Communication 
 We will continue to use [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) as our primary communication tool. Please check Slack regularly for updates and announcements. 
 
-I've created a new `#lecture` channel that we'll use to handle all lecture related questions. Specifically, for questions that occur to you after lecture or if you're watching the lecture asynchronously, please use the `#lecture` channel for your questions. If you're watching the lecture live via Zoom, we'll use the chat feature in Zoom. If there are sufficent questions on, I may opt to make a supplementary video answering those
+I've created a new `#lecture` channel that we'll use to handle all lecture related questions. Specifically, for questions that occur to you after lecture or if you're watching the lecture asynchronously, please use the `#lecture` channel for your questions. If you're watching the lecture live via Zoom, we'll use the chat feature in Zoom. If there are sufficient questions on, I may opt to make a supplementary video answering those
 
 In addition, we have the `#general`, `#issues`, and `#labs` channels for posting questions/solutions for the group. Slack is a powerful tool designed exactly for the circumstances we find ourselves in, so I encourage everyone to utilize it. 
 
@@ -129,7 +129,7 @@ In addition, we have the `#general`, `#issues`, and `#labs` channels for posting
 
 #### Calendar
 
-All students enrolled in the course will receive an invitation to a class calendar hosted via [**Google Calendar**](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York). Each scheduled meeting contains the [**Zoom**](https://zoom.us/download) link to the classes virtual meeting space. If the class link breaks for some reason, please check the `#general` channel on [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) for an updated link.
+All students enrolled in the course will receive an invitation to a class calendar hosted via [**Google Calendar**](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York). Each scheduled meeting contains the [**Zoom**](https://zoom.us/download) link to the class' virtual meeting space. If the class link breaks for some reason, please check the `#general` channel on [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) for an updated link.
 
 <br>
 
