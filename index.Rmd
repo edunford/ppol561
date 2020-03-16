@@ -50,6 +50,120 @@ read_csv('Syllabus/spring-2020-timeline.csv') %>%
   column_spec(4,width = '2in') 
 ```
 
+
+<br>
+<br>
+
+---
+
+<br>
+<br>
+
+
+## Instructional Continuity
+
+<br>
+
+#### The Plan 
+
+Due to the COVID-19 outbreak, PPOL561 will meet virtually for the remainder of the semester. We will use a number of third-party tools to help coordinate questions, course materials, and virtual class meetings. The aim is to make the transition from in-person to virtual meetings as seamless as possible. I completely acknowledge that there will be bumps along the way. We'll do our best to work through them as a group. 
+
+I thank you in advance for your patience and understanding as we transition into an online space. Also, I would greatly appreciate feedback regarding what is and is not working so that we can work out the kinks together. I encourage you to reach out to me directly via [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) or email if you have any suggestions and/or are running into any issues. If you'd rather comment _anonymously_, I've created a space to do so via the following [**Google Form**](https://forms.gle/LLsBWxuvWCe68yfZ6).  
+
+Outlined below is the approach we'll take to continuing instruction online. Specifically, I outline the **tools** we'll be using and how we'll be using them for **_virtual lecture_**, **_office hours_**, and **_communication_**. Finally, I outline how student requirements for the course (**_homework_**, **_presentations_**, and **_exams_**) will operate. 
+
+<u>Please note that this plan is subject to change given feedback/experience</u>. Any and all changes to the plan will be posted on the course website and Slack via the `#general` channel, so please check both regularly for any updates.
+
+Finally, at your earlest convenience, please complete the [**"Transitioning to Online Instruction" survey**](https://forms.gle/xij1wGLCkhqVb2ji9). This survey will help me get a better sense of where everyone is at with respect to resources and personal situation.
+
+
+<br>
+
+#### Tools
+
+The following is a summary of the tools we'll be using. You'll note that some (most) we've already integrated into the course. Please make sure that you are able to utilize all these resources on your personal machine prior to the start of class on Wednesday, March 18. Note that many of these resources require a dedicated laptop/desktop with a web-camera and microphone, rather than a table or phone. In addition, it is important that you also have a reliable internet connection. Please let me know if you do not have access to a computer or reliable internet. 
+
+<br>
+
+- [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) - for coordinating communication between class, TA, and professor;
+- [**Zoom**](https://zoom.us/download) - web-conferencing platform for virtual lecture and office hours;
+- [**Google Calendar**](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York) - for coordinating zoom links and meeting times; 
+- [**Proctorio**](https://proctorio.com/) - for taking exams online; 
+- [**Canvas**](https://georgetown.instructure.com/courses/106244) - for course materials, lecture recordings, and exams.
+
+<br>
+
+#### Virtual Lecture
+We will use [**Zoom**](https://zoom.us/download) (a web-conferencing platform) to hold class each week. Class will meet at its regularly scheduled time each week (Wednesdays 12:30 - 3:00). If you do not have Zoom, you can download it [**here**](https://zoom.us/download) prior to the start of class. The **_link to the class zoom web-conference can be found on the [Google Calendar](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York)_**. If that link is broken, please refer to the `#general` channel on Slack for information regarding the new link.
+
+When entering lecture, please ensure:
+
+- Your microphone is muted, unless you're asking a question.
+- Your video is on (unless I direct you to turn it off due to streaming issues).
+- To ask questions via the chat feature or to use the "hands-up" icon.
+
+**_All lectures will be recorded and posted to Canvas for students that are unable to join during the scheduled meeting time._** If you're unable to join in the lecture in person due to discrepancies in time zone or persistent computer issues, please let me know. Attendance will be taken directly from the attendees of the scheduled zoom session.  
+
+<br>
+
+#### Office Hours
+I will use [**Zoom**](https://zoom.us/download) to hold office hours each week. Office hours will be conducted in a common space. Students can feel free to jump on or off the call at their own leisure. I will managed the entry of students into the space using the "Waiting Room" feature in Zoom. If you log on and you're kept in the waiting room, please be patient as I finish up with another student (this is the digital equivalent of sitting on the couch outside my office). The **_Zoom web-conference link can be found on the class [Google Calendar](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York)_**, else please refer to the `#general` channel on Slack for information regarding the new link.
+
+If students wish to coordinate a one-on-one meeting with the Professor or the TA, please reach out via Slack. We'll find a time that mutually works and schedule a call via a Google Calendar meeting. Please accept that meeting request to confirm the appointment.
+
+<br>
+
+#### Recitation
+Like the virtual lectures, recitation will take place on Zoom. The link to the zoom meeting will be posted on the course calendar. If the link breaks, the teaching assistant will post a new link through the `#labs` tab on Slack. 
+
+<br>
+
+#### Communication 
+We will continue to use [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) as our primary communication tool. Please check Slack regularly for updates and announcements. 
+
+I've created a new `#lecture` channel that we'll use to handle all lecture related questions. Specifically, for questions that occur to you after lecture or if you're watching the lecture asynchronously, please use the `#lecture` channel for your questions. If you're watching the lecture live via Zoom, we'll use the chat feature in Zoom. If there are sufficent questions on, I may opt to make a supplementary video answering those
+
+In addition, we have the `#general`, `#issues`, and `#labs` channels for posting questions/solutions for the group. Slack is a powerful tool designed exactly for the circumstances we find ourselves in, so I encourage everyone to utilize it. 
+
+<br>
+
+#### Calendar
+
+All students enrolled in the course will receive an invitation to a class calendar hosted via [**Google Calendar**](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York). Each scheduled meeting contains the [**Zoom**](https://zoom.us/download) link to the classes virtual meeting space. If the class link breaks for some reason, please check the `#general` channel on [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) for an updated link.
+
+<br>
+
+<iframe src="https://calendar.google.com/calendar/b/1/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FNew_York&amp;src=Z2VvcmdldG93bi5lZHVfbm05bDE2cGVtOXJlN2FkcHIwNjZjY2Zra29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23E67C73&amp;title=Virtual%20Meeting%20Calendar%20(PPOL561)&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=1&amp;mode=AGENDA" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+<br>
+
+#### Class Presentations
+
+Student teams are required to make in-class presentations in PPOL561 at the start of each class (see the "Presentations" tab). These 10-minute presentations will continue as planned. One student from the presenting team will share their screen containing the slides and the team will give their presentation digitally in Zoom (all others should mute their microphone). After they've given their presentation, we'll leave it open for Q&A. Student teams should coordinate via Zoom to prepare their materials. If a team runs into issues in preparing their presentations, please reach out to the Professor.
+
+<br>
+
+#### Homework
+
+Assignments will continue to be distributed and collected on Canvas. Please continue to render `.Rmd` output as a `.pdf` to make it easier for the Teaching Assistant to download and grade the assignments. Grades and comments will be posted on Canvas.
+
+<br>
+
+#### Exams
+
+We are scheduled to take two exams in this course (the midterm on March 25 and the final on May 8). The exams will continue as scheduled and will be conducted on Canvas. I will be using [**Proctorio**](https://proctorio.com/) to monitor students while taking these exams. Proctorio is a secure, online test taking solution that enables us to ensure academic integrity for the exams from within Canvas. The software requires that you use a laptop or computer (no iphones or tablets) with a working web-camera and microphone. 
+
+To use this software, students are required to: 
+
+- Use [**Google Chrome browser**](https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwx7zzBRCcARIsABPRscPQ53zz7x_swU2vSHaCEEAM69V7W1SzWruR0GM7TG7eJFM0bvbHqLsaAuSzEALw_wcB&gclsrc=aw.ds);
+- Install the [**Proctorio extension**](https://chrome.google.com/webstore/detail/proctorio/fpmapakogndmenjcfoajifaaonnkpkei) to the Google Chrome browser;
+- Have a reliable internet connection;
+- Use a quiet private location to take the exam;
+- Have a Georgetown photo ID ready to show.
+
+Materials to prepare for the exam will be distributed to the class before the scheduled exam date (March 18 for the Midterm; April 22 for the Final).
+
+
 <br>
 <br>
 
@@ -211,7 +325,9 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 
 #### Class
 
-- **Slack**: class communications will primarily take place through [Slack](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members). Please follow the [**_invite link_**](https://join.slack.com/t/ppol561accele-ilo1311/shared_invite/enQtODk3MTAzNjIxNDMxLWMzYmI3OGRjZGE2MTU1NWViNTA4YzQ1ZDYxNDU4NmI3MzNkYjBkNTYxNTkyZTE2YzM3ZTNmNWM3ZTA5NjIyODg) to be added to the class Slack channel.
+- **Slack**: class communications will primarily take place through [Slack](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members). 
+
+<!-- Please follow the [**_invite link_**](https://join.slack.com/t/ppol561accele-ilo1311/shared_invite/enQtODk3MTAzNjIxNDMxLWMzYmI3OGRjZGE2MTU1NWViNTA4YzQ1ZDYxNDU4NmI3MzNkYjBkNTYxNTkyZTE2YzM3ZTNmNWM3ZTA5NjIyODg) to be added to the class Slack channel. -->
 
 <br>
 <br>
