@@ -429,3 +429,15 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 - **Table of Contents**
     + [Panel Data](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#3)
     + [Difference-in-Difference](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#45)
+   
+<br>
+
+### _Week 9_: [Instrumental Variables](Lectures/week_09/week-09-instrumental-variables-ppol561.html)
+- **Table of Contents**
+    + [Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#3)
+    + [Two Stage Least Squares (2SLS)](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#16)
+    + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#48)
+    + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#54)
+    + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#62)
+
+    
