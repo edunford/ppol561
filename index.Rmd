@@ -88,7 +88,6 @@ The following is a summary of the tools we'll be using. You'll note that some (m
 - [**Slack**](https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members) - for coordinating communication between class, TA, and professor;
 - [**Zoom**](https://zoom.us/download) - web-conferencing platform for virtual lecture and office hours;
 - [**Google Calendar**](https://calendar.google.com/calendar/embed?src=georgetown.edu_nm9l16pem9re7adpr066ccfkko%40group.calendar.google.com&ctz=America%2FNew_York) - for coordinating zoom links and meeting times; 
-- [**Proctorio**](https://proctorio.com/) - for taking exams online; 
 - [**Canvas**](https://georgetown.instructure.com/courses/106244) - for course materials, lecture recordings, and exams.
 
 <br>
@@ -151,15 +150,7 @@ Assignments will continue to be distributed and collected on Canvas. Please cont
 
 #### Exams
 
-We are scheduled to take two exams in this course (the midterm on March 25 and the final on May 8). The exams will continue as scheduled and will be conducted on Canvas. I will be using [**Proctorio**](https://proctorio.com/) to monitor students while taking these exams. Proctorio is a secure, online test taking solution that enables us to ensure academic integrity for the exams from within Canvas. The software requires that you use a laptop or computer (no iphones or tablets) with a working web-camera and microphone. 
-
-To use this software, students are required to: 
-
-- Use [**Google Chrome browser**](https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwx7zzBRCcARIsABPRscPQ53zz7x_swU2vSHaCEEAM69V7W1SzWruR0GM7TG7eJFM0bvbHqLsaAuSzEALw_wcB&gclsrc=aw.ds);
-- Install the [**Proctorio extension**](https://chrome.google.com/webstore/detail/proctorio/fpmapakogndmenjcfoajifaaonnkpkei) to the Google Chrome browser;
-- Have a reliable internet connection;
-- Use a quiet private location to take the exam;
-- Have a Georgetown photo ID ready to show.
+We are scheduled to take two exams in this course (the midterm on March 25 and the final on May 8). The exams will continue as scheduled and will be conducted on Canvas. Given concerns over requisite hardware and internet reliability, we will no longer be using Protorio to conduct the exam. Rather, the exam will be posted on Canvas where students will be able access it at the time the exam is scheduled to start in the syllabus. Students must submit the exam within 2 hours of the start time. The exams are closed book and student must adhere to the [academic integrity standards](https://georgetown.app.box.com/s/bibfmpo93061uxmwir29) set by the university. 
 
 Materials to prepare for the exam will be distributed to the class before the scheduled exam date (March 18 for the Midterm; April 22 for the Final).
 
