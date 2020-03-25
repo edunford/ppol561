@@ -333,102 +333,101 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 <br>
 <br>
 
-### _Week 1_: [Course Introduction & Research Design](Lectures/week_01/week-01_ppol561.html)
+<!-- ### _Week 1_: [Course Introduction & Research Design](Lectures/week_01/week-01_ppol561.html) -->
 
-<br>
+<!-- <br> -->
 
-### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html)
+<!-- ### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html) -->
 
-- **Table of Contents**
-  + [Data Wrangling](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#3)
-  + [Reading & Writing Data](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#7)
-  + [Data Manipulation](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#11)
-  + [Piping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#38)
-  + [Joining](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#45)
-  + [Reshaping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#67)
-  + [Visualization](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#82)
+<!-- - **Table of Contents** -->
+<!--   + [Data Wrangling](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#3) -->
+<!--   + [Reading & Writing Data](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#7) -->
+<!--   + [Data Manipulation](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#11) -->
+<!--   + [Piping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#38) -->
+<!--   + [Joining](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#45) -->
+<!--   + [Reshaping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#67) -->
+<!--   + [Visualization](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#82) -->
 
-- **Walkthrough**:
-  + Generating regression tables using `stargazer` - [`.rmd`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.Rmd), [`.html`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.html)
+<!-- - **Walkthrough**: -->
+<!--   + Generating regression tables using `stargazer` - [`.rmd`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.Rmd), [`.html`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.html) -->
 
-- **Practice**:
-  + Practice  <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling.Rmd" download> wrangling data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
-  + Practice <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping.Rmd" download> joining and reshaping data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
-  + Practice <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization.Rmd" download> data visualization using `ggplot2` (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization_ANSWERS.Rmd" download> answer key (`.Rmd`)</a>
+<!-- - **Practice**: -->
+<!--   + Practice  <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling.Rmd" download> wrangling data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling_ANSWERS.Rmd" download> answer key (`.Rmd`)</a> -->
+<!--   + Practice <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping.Rmd" download> joining and reshaping data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping_ANSWERS.Rmd" download> answer key (`.Rmd`)</a> -->
+<!--   + Practice <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization.Rmd" download> data visualization using `ggplot2` (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization_ANSWERS.Rmd" download> answer key (`.Rmd`)</a> -->
 
 
-<br>
+<!-- <br> -->
 
-### _Week 3_: [OLS Review](Lectures/week_03/week-03_ppol561.html)
+<!-- ### _Week 3_: [OLS Review](Lectures/week_03/week-03_ppol561.html) -->
 
-- **Table of Contents**
-  + [Using Simulations](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#3)
-  + [Multivariate Models](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#19)
-  + [Omitted Variable Bias](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#26)
-  + [Precision of Estimates](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#38)
-  + [Model Specification](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#48)
-  + [Dummy Variables](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#50)
-  + [Standard Errors](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#71)
-  
-<br>  
-  
-### _Week 4_: [Binary Outcomes](Lectures/week_04/week-04_ppol561.html)
+<!-- - **Table of Contents** -->
+<!--   + [Using Simulations](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#3) -->
+<!--   + [Multivariate Models](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#19) -->
+<!--   + [Omitted Variable Bias](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#26) -->
+<!--   + [Precision of Estimates](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#38) -->
+<!--   + [Model Specification](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#48) -->
+<!--   + [Dummy Variables](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#50) -->
+<!--   + [Standard Errors](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#71) -->
 
-- **Table of Contents**
-  + [Binary Dependent Variables](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#4)
-  + [Maximum Likelihood Estimation](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#40)
-  + [Substantive Effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#50)
-  + [Simulating confidence intervals around substantive effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#76)
-  
-  
-<br>  
-  
-### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ordered-multinomial_ppol561.html)
+<!-- <br>   -->
 
-- **Table of Contents**
-  + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#3)
-  + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#31)
-  
-  
-<br>  
-  
-### _Week 6_: [Selection](Lectures/week_06/week-06-selection-ppol561.html)
+<!-- ### _Week 4_: [Binary Outcomes](Lectures/week_04/week-04_ppol561.html) -->
 
-- **Table of Contents**
-  + [Selection Problems](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#3)
-  + [The Selection Process](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#13)
-  + [Exogenous Selection](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#27)
-  + [Selection on the Dependent Variable](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#32)
-  + [Incidental Selection](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#36)
-  + [Heckman Selection Model](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#45)
-  + [Example: Women's Labor Force Participation](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#62)
-  
-<br>  
-  
-### _Week 7_: [Introduction to Causal Inference](Lectures/week_07/week-07-causal-inference-ppol561.html)
+<!-- - **Table of Contents** -->
+<!--   + [Binary Dependent Variables](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#4) -->
+<!--   + [Maximum Likelihood Estimation](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#40) -->
+<!--   + [Substantive Effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#50) -->
+<!--   + [Simulating confidence intervals around substantive effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#76) -->
 
-- **Table of Contents**
-    + [Causal Inference](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#3)
-    + [Structural Causal Models (DAGs)](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#7)
-    + [Interventions and Adjustments](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#35)
-    + [Causal Discovery](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#60)
-    + [Potential Outcomes](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#82)
-  
-<br>  
-  
-### _Week 8_: [Panel Data & DID](Lectures/week_08/week08-panel_data_and_did-ppol561.html)
-- **Table of Contents**
-    + [Panel Data](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#3)
-    + [Difference-in-Difference](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#45)
-   
-<br>
 
-### _Week 9_: [Instrumental Variables](Lectures/week_09/week-09-instrumental-variables-ppol561.html)
-- **Table of Contents**
-    + [Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#3)
-    + [Two Stage Least Squares (2SLS)](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#16)
-    + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#48)
-    + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#54)
-    + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#62)
+<!-- <br>   -->
 
-    
+<!-- ### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ordered-multinomial_ppol561.html) -->
+
+<!-- - **Table of Contents** -->
+<!--   + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#3) -->
+<!--   + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#31) -->
+
+
+<!-- <br>   -->
+
+<!-- ### _Week 6_: [Selection](Lectures/week_06/week-06-selection-ppol561.html) -->
+
+<!-- - **Table of Contents** -->
+<!--   + [Selection Problems](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#3) -->
+<!--   + [The Selection Process](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#13) -->
+<!--   + [Exogenous Selection](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#27) -->
+<!--   + [Selection on the Dependent Variable](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#32) -->
+<!--   + [Incidental Selection](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#36) -->
+<!--   + [Heckman Selection Model](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#45) -->
+<!--   + [Example: Women's Labor Force Participation](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#62) -->
+
+<!-- <br>   -->
+
+<!-- ### _Week 7_: [Introduction to Causal Inference](Lectures/week_07/week-07-causal-inference-ppol561.html) -->
+
+<!-- - **Table of Contents** -->
+<!--     + [Causal Inference](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#3) -->
+<!--     + [Structural Causal Models (DAGs)](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#7) -->
+<!--     + [Interventions and Adjustments](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#35) -->
+<!--     + [Causal Discovery](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#60) -->
+<!--     + [Potential Outcomes](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#82) -->
+
+<!-- <br>   -->
+
+<!-- ### _Week 8_: [Panel Data & DID](Lectures/week_08/week08-panel_data_and_did-ppol561.html) -->
+<!-- - **Table of Contents** -->
+<!--     + [Panel Data](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#3) -->
+<!--     + [Difference-in-Difference](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#45) -->
+
+<!-- <br> -->
+
+<!-- ### _Week 9_: [Instrumental Variables](Lectures/week_09/week-09-instrumental-variables-ppol561.html) -->
+<!-- - **Table of Contents** -->
+<!--     + [Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#3) -->
+<!--     + [Two Stage Least Squares (2SLS)](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#16) -->
+<!--     + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#48) -->
+<!--     + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#54) -->
+<!--     + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#62) -->
+
