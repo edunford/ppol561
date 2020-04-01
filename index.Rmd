@@ -432,3 +432,18 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
     + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#62)
 
     
+    
+<br> 
+
+
+### _Week 11_: [Experiments](Lectures/week_11/week-11-experiments-ppol561.html)
+
+- **Table of Contents**
+    + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#3)
+    + [Compliance & Intent-to-Treat](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#16)
+    + [Assignment as Instrument](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#35)
+    + [Attrition](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#42)
+    + [Natural Experiments](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#54)
+    
+    
+  
