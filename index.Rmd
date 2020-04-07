@@ -445,5 +445,14 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
     + [Attrition](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#42)
     + [Natural Experiments](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#54)
     
+<br> 
+    
+### _Week 12_: [Regression Discontinuity](Lectures/week_12/week12-regression-discontinuity-ppol561.html)
+
+- **Table of Contents**
+    + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#3)
+    + [More flexible RD models](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#30)
+    + [Limitations & Diagnostics](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#49)    
+    
     
   
