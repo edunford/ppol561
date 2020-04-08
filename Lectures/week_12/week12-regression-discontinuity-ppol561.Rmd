@@ -168,7 +168,7 @@ $$Grades_i = \beta_0 + \beta_1Legal_i + \beta_2 (Age_{1i} - 21) + \epsilon_i$$
 
 ![:space 5]
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=7}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=7,dpi=300}
 set.seed(123)
 N = 1000
 x <- rnorm(N)
@@ -214,7 +214,7 @@ As long as there is no discontinuity in relationship between error (omitted vari
 
 $$Y_i = \beta_0 + \beta_1T_i + \beta_2 (X_{1i} - C) + \epsilon_i$$
   
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=7}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=7,dpi=300}
 D %>% 
   ggplot(aes(x,y,color=factor(t))) +
   
@@ -364,7 +364,7 @@ stargazer::stargazer(m2,type = 'html')
 
 ### Simulation
 
-```{r,fig.align="center",fig.width=8,fig.height=4.75}
+```{r,fig.align="center",fig.width=8,fig.height=3.75,dpi=300}
 D %>% 
   ggplot(aes(x,y,color=factor(t))) +
   geom_point(show.legend = F,alpha=.5) +
@@ -413,7 +413,7 @@ $$Y_i = \beta_0 + \beta_1T_i + \beta_2 (X_{1i} - C) + \epsilon_i$$
 
 .pull-left[
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=7}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=7,dpi=300}
 set.seed(123)
 N = 1000
 x <- rnorm(N)
@@ -443,7 +443,7 @@ In basic version of RD, the relationship between $X$ and $Y$ is
 
 $$Y_i = \beta_0 + \beta_1T_i + \beta_2 (X_{1i} - C) + \beta_3 (X_{1i} - C) T_i+ \epsilon_i$$
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=7}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=7,dpi=300}
 set.seed(123)
 N = 1000
 x <- rnorm(N)
@@ -478,7 +478,7 @@ $$T_i = 0~\text{if}~X_{i1} < C$$
 ---
 
 <br>
-```{r,echo=F,fig.align="center",fig.width=12,fig.height=8}
+```{r,echo=F,fig.align="center",fig.width=12,fig.height=8,dpi=300}
 set.seed(123)
 N = 1000
 x <- rnorm(N)
@@ -528,7 +528,7 @@ $$T_i = 0~\text{if}~X_{i1} < C$$
 
 ---
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=8}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,dpi=300}
 set.seed(123)
 N = 1000
 x <- rnorm(N)
@@ -568,7 +568,7 @@ class: newsection
 
 ---
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=8}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,dpi=300}
 set.seed(123)
 N = 1000
 x <- rnorm(N)
@@ -598,7 +598,7 @@ D %>%
 
 Often it can be difficult to observe a discontinuity. 
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=6}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=6,dpi=300}
 set.seed(12345)
 N = 1000
 x <- rnorm(N)
@@ -623,7 +623,7 @@ D %>%
 We can bin observations to see the average effect.
 
 
-```{r,echo=F,fig.align="center",fig.width=10,fig.height=6}
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=6,dpi=300}
 D %>% 
   group_by(bin) %>%
   summarize(y = mean(y),x = mean(x)) %>%
