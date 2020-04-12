@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -1469,6 +1468,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1497,6 +1497,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -1778,6 +1784,11 @@ div.tocify {
 <ul>
 <li>Chapter 11: “Synthetic Control” (Canvas)</li>
 </ul></li>
+</ul></li>
+<li><p><strong><em>Suggested Reading</em></strong>:</p>
+<ul>
+<li>Abadie et al. 2010, “Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program” (Canvas)</li>
+<li>Abadie et al. 2015, “Comparative Politics and the Synthetic Control Method” (Canvas)</li>
 </ul></li>
 </ul>
 </div>

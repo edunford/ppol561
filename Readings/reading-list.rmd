@@ -181,4 +181,10 @@ output:
   - Cunningham. 2018. "Causal Inference: The Mixtape".
       
       + Chapter 11: "Synthetic Control" (Canvas)
+      
+- **_Suggested Reading_**:
+  
+  - Abadie et al. 2010, "Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program" (Canvas)
+  - Abadie et al. 2015, "Comparative Politics and the Synthetic Control Method" (Canvas)
+      
  
