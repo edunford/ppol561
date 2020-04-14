@@ -452,7 +452,20 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
 - **Table of Contents**
     + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#3)
     + [More flexible RD models](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#30)
-    + [Limitations & Diagnostics](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#49)    
+    + [Limitations & Diagnostics](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#49)   
+    
+    
+<br> 
+    
+### _Week 13_: [Matching](Lectures/week_13/week13-matching-ppol561.html)
+
+- **Table of Contents**
+    + [_Refresh_ on Causal Effects](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#3)
+    + [Model Dependency](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#14)
+    + [Matching](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#35)
+    + [Matching Methods](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#70)
+    + [Simulation](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#109)
+
     
     
   
