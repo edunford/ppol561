@@ -466,6 +466,14 @@ read_csv("Syllabus/lab-schedule-spring2020.csv") %>%
     + [Matching Methods](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#70)
     + [Simulation Example](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#109)
 
+<br>
+
+### _Week 14_: [Synthetic Control](Lectures/week_14/week14-synthetic-control-ppol561.html)
     
+- **Table of Contents**
+    + [Case Comparisons](http://ericdunford.com/ppol561/Lectures/week_14/week14-synthetic-control-ppol561.html#3)
+    + [Synthetic Control](http://ericdunford.com/ppol561/Lectures/week_14/week14-synthetic-control-ppol561.html#9)
+    + [Example: _Proposition 99_](http://ericdunford.com/ppol561/Lectures/week_14/week14-synthetic-control-ppol561.html#26)
+    + [Inference](http://ericdunford.com/ppol561/Lectures/week_14/week14-synthetic-control-ppol561.html#42)
     
   

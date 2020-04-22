@@ -1,0 +1,722 @@
+---
+title: 
+    <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font>
+  <font size=6, face="bold"> Week 14 </font> 
+  <br>
+  <br>
+  <font size=100, face="bold"> Synthetic Control </font>
+author: 
+  <font class = "title-footer"> 
+  &emsp;Prof. Eric Dunford &emsp;&#9670;&emsp; Georgetown University &emsp;&#9670;&emsp; McCourt School of Public Policy &emsp;&#9670;&emsp; eric.dunford@georgetown.edu</font>
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: "gu-theme.css"
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      countIncrementalSlides: F
+      highlightLines: true
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,message=F,error=F,warning = F,cache = T)
+require(tidyverse)
+require(tidysynth)
+```
+
+layout: true
+
+<div class="slide-footer"><span> 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+Week 14 <!-- Week of the Footer Here -->
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+Synthetic Control <!-- Title of the lecture here -->
+
+</span></div> 
+
+---
+class: outline
+
+# Outline for Today 
+
+![:space 3]
+
+- Quick discussion of **Comparing Cases**
+
+![:space 3]
+
+- Delve into the **Synthetic Control** method
+
+![:space 3]
+
+- Work through an **Example** regarding Proposition 99 in California
+
+![:space 3]
+
+- Talk about drawing **Inferences** from the Synthetic Control method
+
+---
+
+class: newsection
+
+# Case Comparisons
+
+---
+
+## Single Case Studies 
+
+- Goal is to reason inductively about the causal effect of events or characteristics of a single unit on some outcome using logic and historical analysis.
+
+- "Process tracing": meticulously piece together the sequence of events to understand the process that brought about a specific outcome. 
+
+- Often compare the same case at different points in time. 
+
+- Cases often lack a counterfactual.
+  
+  + What would the U.S. GDP have been if Donald Trump was _not_ elected president?
+
+- Usually left with description and speculation about the causal pathways connecting various events to outcomes.
+
+---
+
+## Comparative Case Studies
+
+![:space 3]
+
+- Analyze and compare the **_similarities and differences_** between a **_small number of cases_**.
+
+  - Mill's **_"Method of difference"_**: "Two or more instances of an event (effect) are compared to see what they all do not have in common. If they have all but one thing in common, that one thing is identified as the cause." ([Baronett](https://global.oup.com/us/companion.websites/9780199383405/student/ch14/guide/))
+
+- Cases are situated as counterfactuals of one another: if event $X$ hadn't happened in country $A$ then it would look more like country $B$. 
+
+- Able to gather evidence at a level of granularity that is difficult for large-N quantitative analyses. 
+
+---
+
+## Comparative Case Studies
+
+- **_Choice of counterfactual_** cases (control group) is often **_ambiguous_**.
+
+  + Think back to the [Card 1990 study from Week 8](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#61) regarding the **_Mariel Boatlift_**. 
+  
+  + Card chose Atlanta, Los Angeles, Houston and Tampa-St. Petersburg as comparison cities to Miama in 1980. 
+  
+  + What about these cities in-particular makes them counterfactual (i.e. a version of Miami without the Boatlift)? Hard to say.
+  
+- **_Sensitive to framing_**, i.e. how information is presented.
+
+- Difficult for **_non-experts_** to engage critically with the cases analysis. 
+
+---
+
+## Large-N Quantitative Analysis
+
+- **_Large samples_** but **_courser measurement_**
+  
+  + Think of a country-level study where political inclusion is measured on an ordinal scale
+
+- Provide **_precise numerical results_** that allow for statistical inference. 
+
+- Empirical models bring their own **_baggage_**: measurement issues, model assumptions, ignorability, etc.
+
+- **_Model extrapolation_** can generate false comparison units: i.e. there might not exist real counterfactual for a specific unit. 
+
+- Multiple units need to be **_exposed_** to a treatment to estimate the difference between groups.
+
+---
+
+## Mixed Methods
+
+![:space 3]
+
+- **_Combination_** of quantitative and qualitative approaches. 
+
+- Often looks like a large-N analysis coupled with (a single or multiple) case studies. 
+
+  + Quantitative portion shows existence of an aggregate level effect/trend.
+  
+  + Qualitative portion demonstrates that the theoretical mechanism is at play (at least in the selected case.)
+  
+- Advocates for research design that carefully select **_comparison units_** to reduce biases in observational studies. 
+  
+---
+
+class: newsection
+
+# Synthetic Control
+
+---
+
+## Motivation 
+
+![:space 5]
+
+- Treatment or intervention interest only happens to a **_single unit_**. 
+
+  + For example, the reunification of East and West Germany at the end of the Cold War. 
+  
+- **_Comparable units exist_**. 
+
+  + e.g. countries _like_ West Germany that didn't experience the intervention. 
+  
+- Comparison units are intended to reproduce the counterfactual of the case of interest in the **_absence_** of the event or intervention. 
+  
+
+---
+
+## Motivation 
+
+![:space 2]
+
+- **_Inappropriate comparisons may lead to erroneous conclusions_**. 
+  
+  +  Differences in outcomes between dissimilar units may merely reflect disparities in their characteristics, not the a causal quantity
+  
+  
+- The synthetic control method provides a **_systematic way to choose comparison units_** in comparative case studies.
+
+- "Main barrier to quantitative inference in comparative studies comes not from the small-sample nature of the data, but from the **_absence of an explicit mechanism_** that determines how comparison units are selected." (Abadie et. al 2015)
+
+---
+
+## Motivation 
+
+![:space 5]
+
+- **_Synthetic control_** method uses a **_weighted average of units_** in the "donor pool" to **_model the counterfactual_**. 
+
+- When the units of analysis are a few aggregate units, a **_combination of comparison units_** often does a better job of reproducing characteristics of a treated unit than using a single comparison unit alone. 
+
+- The **_comparison unit_** is selected to be the _weighted average of all comparison units that best resemble the characteristics of the treated unit in the pre-treatment period_.
+
+---
+
+### Synthetic Control Estimator
+
+The **_synthetic control estimator_** models the effect of the intervention at time $T_0$ on the
+treatment group using a linear combination of **_optimally chosen_** units as a synthetic control. 
+
+![:space 3]
+
+--
+
+Assume we have panel data on some continuous outcome
+
+<br>
+
+$$Y_{jt}$$
+
+where 
+
+- $j$ denotes the units (e.g. states)
+- $t$ denotes time (e.g. years)
+- $j =1$ is the treated unit. 
+- $j > 1$ is the "donor pool"
+
+---
+
+### Synthetic Control Estimator
+
+The **_synthetic control estimator_** models the effect of the intervention at time $T_0$ on the
+treatment group using a linear combination of **_optimally chosen_** units as a synthetic control. 
+
+![:space 5]
+
+The **_causal effect_** ( $\alpha_t$ ) is captured by differencing the treated unit to the synthetic unit.
+
+$$\alpha_t = Y_{1t} - \sum^{J=1}_{j=2}w^*_jY_{jt}$$
+where 
+
+- $w^*_j$ are optimally chosen weights that capture the contribution of each $j$ (where $j \ne 1$) in the donor pool.
+
+---
+
+### Finding those weights ( $w^*_j$ )
+
+Assume that along with an outcome, there exists a matrix $X_j$ of **_aggregate-level covariates_**. 
+
+![:space 2]
+
+- $X$ contains potential predictors of post-intervention outcomes.
+
+- Must be _unaffected_ by the intervention (to avoid post-treatment bias) 
+
+- $X$ is constructed from covariates in the pre-intervention period $T_0$. 
+
+- The rows of $X$ represent a variable, and a column represent the units. 
+
+- $X_1$ is a vector of aggregate covariates for the treated unit, and $X_{j\ne1}$ (or just $X_0$ for simplicity) is a matrix of aggregate covariates for the donor pool
+
+---
+
+### Finding those weights ( $w^*_j$ )
+
+Assume that along with an outcome, there exists a matrix $X_j$ of **_aggregate-level covariates_**. 
+
+Weights are chosen so as to minimize the following:
+
+$$W^*(V) =  min \sum^M_{m=1} v_m (X_{1m} - \sum^{J+1}_{j=2}w_j X_{jm})^2$$
+
+where 
+
+- M denotes the total number of aggregate-level covariates in $X$
+
+- $v_m \in V$ denotes a vector of weights reflecting the relative importance of the $m$-th variable.
+  
+  + $V$ can be learned from the data in via nested optimization; OR it can be provided (reflect the researcher's priors)
+  
+  
+---
+
+### Finding those weights ( $w^*_j$ )
+
+The synthetic control $W^*(V)$ is meant to reproduce the behavior of the outcome variable $Y_1$ for the treated unit in the absence of the treatment.
+
+--
+
+At the end of the day, the synthetic control method aims to minimize the following equation:
+
+$$\sum^{T_0}_{t=1}(Y_{1t} - \sum^{J=1}_{j=2}w^*_j(V)Y_{jt})^2$$
+
+where 
+
+- again, $T_0$ denotes the time of the intervention, so we're summing across the outcome in the pre-intervention period. 
+
+--
+
+In words: _tune the weights so that the synthetic $\hat{Y}_1$ resembles the actual $Y_1$ as closely as possible. Then use those weights to examine $\hat{Y}_1$'s behavior in the post-intervention period._
+
+---
+
+### What about unobserved factors?
+
+![:space 5]
+
+- "If the number of pre-intervention periods is 'large', then matching on pre-intervention outcomes can allow us to **_control for the heterogenous responses to multiple unobserved factors_**" (Cunningham 291)
+
+- The general **assumption** is:
+
+  + Units that are alike on observables are also alike on unobservables.
+  
+  + Only units that are alike would follow a similar trajectory pre-treatment. 
+  
+
+---
+
+### Advantages of the Synthetic Control Method
+
+**_(1) Method precludes extrapolation_**
+  
+  + Causal effect is based on a comparison between an outcome and a counterfactual in the same year (or time unit).
+  
+  + _Counterfactual is based on where data actually is_, as opposed to extrapolating beyond the support of the data which can occur in extreme situations with regression (King and Zeng, 2006). 
+  
+--
+
+**_(2) Constructing counterfactual only requires information on the pre-treatment period_**
+
+  + Constructing counterfactual doesn't require "peeking" at the post-treatment outcome values.
+  
+  + Reduces concerns over researcher discretion in driving specific results.
+  
+---
+
+### Advantages of the Synthetic Control Method
+
+**_(3) Unit weights are explicit_**
+
+  + The "contributions" of each unit in the donor pool (i.e. the weight reflecting how much a single unit contributes in generating the counterfactual) are explicit.
+  
+    - e.g. the synthetic control is composed 8% of Florida, 32% of New York, 13.5% of Michigan, etc.
+  
+  + Regression is doing something similar, but weights aren't explicit. 
+  
+--
+
+**_(4) Bridges the quantitative and qualitative divide_**
+
+  + Puts a quantitative tool into qualitative hands.
+  
+  + Expertise to make sense of a complex world, and numerical precision to speak specifically to the impact of a given intervention.
+
+---
+
+class: newsection
+
+# Example <br><br> ![:text_size 10](California & Proposition 99)
+
+---
+
+# Proposition 99
+
+![:space 5]
+
+- In 1988, California passed Proposition 99, which
+  
+  + Increased cigarette taxes by 25 cents,
+  
+  + Drove clean air ordinances,
+  
+  + Funded anti-smoking media campaigns, and
+  
+  + Earmarked tax revenues to health and anti-smoking budgets.
+  
+![:space 5]  
+- What effect did the law have on cigarette sales?
+
+---
+
+![:space 10]
+
+```{r}
+# Cigarette Sales Data
+smoking <- read_csv("data/smoking.csv")
+smoking
+```
+
+---
+
+![:space 15]
+
+```{r}
+summary(smoking)
+```
+
+
+---
+
+Comparison of California to the other states that didn't implement a law like Proposition 99. 
+
+```{r}
+trend_compare_plot <- 
+  
+  smoking %>% 
+  
+  # break california up from the other states in the data and take 
+  # their average cigarette sales by year
+  mutate(type = ifelse(state=="California",
+                       "California","Rest of the US")) %>% 
+  group_by(type,year) %>% 
+  summarize(cigsale = mean(cigsale)) %>% 
+  
+  # Plot both of the trends
+  ggplot(aes(year,cigsale,linetype=type)) +
+  geom_vline(xintercept = 1988,alpha=.75,color="darkred") +
+  geom_line(size=1) +
+  theme_minimal() +
+  labs(y="per-capita cigarette sales (in packs)",linetype="") +
+  ylim(0,150) +
+  theme(text = element_text(size=16),
+        legend.position = "bottom")
+```
+
+---
+
+```{r,fig.align="center",fig.height = 7,fig.width = 10,dpi=300}
+trend_compare_plot
+```
+
+
+---
+
+### Synthetic control method  in `R`
+
+![:space 3]
+
+Abadie et al. developed an implementation of the synthetic control method for `R` called `Synth`. However, the package leaves much to be desired ([see for yourself](https://www.jstatsoft.org/article/view/v042i13)).
+
+![:space 3]
+
+To get around `Synth`'s shortcomings, let's do away with it entirely (but keep the optimization logic). Instead, I've put together a package &mdash; [`tidysynth`](https://github.com/edunford/tidysynth) &mdash; that leverages best-practices in the tidy framework to streamline the method's implementation. 
+
+```{r,eval=F}
+# Installation of the development version 
+devtools::install_github("edunford/tidysynth")
+require(tidysynth)
+```
+
+---
+
+### Set up the scenario
+
+- Specify the target outcome, spatial unit and temporal unit
+
+- Specify the intervention unit (i.e. the unit where the policy was enacted) and time (when it was enacted).
+
+```{r}
+smoking_out <-
+  
+  smoking %>%
+  
+  synthetic_control(outcome = cigsale,
+                    unit = state,
+                    time = year,
+                    i_unit = "California", # intervention unit
+                    i_time = 1988) # intervention time
+```
+
+- Every unit that is _not_ the intervention unit is in the donor pool. 
+- Every time point prior to the intervention time is in the pre-intervention period.
+
+---
+
+### Build $X$: matrix of aggregated covariates. 
+
+```{r}
+smoking_out <- 
+  
+  smoking_out %>% 
+  
+  # average of log income, retail price, and youth from 1980 - 1988
+  generate_predictor(time_window = 1980:1988,
+                     lnincome = mean(lnincome, na.rm = T),
+                     retprice = mean(retprice, na.rm = T),
+                     age15to24 = mean(age15to24, na.rm = T)) %>%
+  
+  # average beer sales 1984 - 1988
+  generate_predictor(time_window = 1984:1988,
+                     beer = mean(beer, na.rm = T)) %>%
+  
+  # 5 year Lags for cigarette sales
+  generate_predictor(time_window = 1975, cigsale_1975 = cigsale) %>%
+  
+  generate_predictor(time_window = 1980, cigsale_1980 = cigsale) %>%
+  
+  generate_predictor(time_window = 1988,cigsale_1988 = cigsale) 
+```
+
+---
+
+### Build $X$: matrix of aggregated covariates.
+
+```{r}
+smoking_out %>% grab_predictors(type = "treated")
+```
+
+---
+
+### Build $X$: matrix of aggregated covariates.
+
+```{r}
+smoking_out %>% grab_predictors(type = "controls")
+```
+
+---
+
+### Optimize weights & generate control
+
+- Generate weights that optimize for $W$ (i.e. weights for the donor units) and $V$ (i.e. weights for the covariates)
+
+- Once we have the weights, we can easily generate our synthetic control for California. 
+
+```{r}
+smoking_out <- 
+
+  smoking_out %>% 
+  
+  # Generate the fitted weights for the synthetic control
+  generate_weights(optimization_window = 1970:1988, 
+                   Margin.ipop=.01, Sigf.ipop=7, Bound.ipop=6) %>%
+  
+  # Generate the synthetic control
+  generate_control()
+```
+
+
+---
+
+### California cigarette sales vs synthetic California
+
+```{r,fig.align="center",fig.height = 6,fig.width = 10,dpi=300}
+smoking_out %>% plot_trends(time_window = 1970:2000) + ylim(0,140)
+```
+
+
+---
+
+### Balance table
+
+![:space 5]
+
+```{r}
+smoking_out %>% grab_balance_table()
+```
+
+---
+
+### Understanding donor unit contributions
+
+```{r,fig.align="center",fig.height = 6,fig.width = 10,dpi=300}
+smoking_out %>% plot_weights()
+```
+
+---
+
+### Causal effect ( $\alpha_t$ ) 
+
+```{r,fig.align="center",fig.height = 6,fig.width = 10,dpi=300}
+smoking_out %>% plot_differences(time_window = 1970:2000) + ylim(-30,30)
+```
+
+
+---
+
+class: newsection
+
+# Inference
+
+---
+
+## Inference on two cases?
+
+![:space 2]
+
+- Synthetic control is a "picture-intensive estimator" (like RDD) &mdash; you should be able to "see" the match and the post-treatment divergence. 
+
+- Looking at the picture tells use nothing, however, about statistical significant.
+
+- We only have two observations per time unit (the treated and synthetic unit). Standard ways of estimating a standard error won't work. 
+
+--
+
+- One way around this limitation is to generate "placebos" (i.e. treating untreated units as if they were treated) and seeing how rare the actual treated unit is on that distribution. 
+
+- Another way is falsification through an "in-time" placebo: change the intervention date, do we still see an effect at that point? 
+
+---
+
+### Placebo tests: how rare is California?
+
+The idea is simple: 
+
+  1. Treat every unit in the donor pool as if it were the treated unit
+  
+  2. Calculate it's causal effect (i.e. difference the actual and synthetic trends)
+  
+  3. Calculate the Root Mean Squared Prediction Error (RMSPE) for the pre-treatment and post-treatment period.
+  
+  4. Compute the ratio of the post-to-pre-treatment RMSPE
+  
+  5. Sort this ratio in descending order (highest at the top).
+  
+  6. Calculate the treatment unit's ration in the distribution as $p = \frac{Rank}{Total}$
+  
+---
+
+### Root Mean Squared Prediction Error (RMSPE)
+
+![:space 5]
+
+**Pre-Intervention Period**
+
+$$RMSPE_{pre} = (\frac{1}{T^{pre}}) \sum^{T^{pre}}_{t=1} (Y_{it} - \sum^{J+1}_{j=2} w_j^*Y_{jt})^2)^{\frac{1}{2}}$$
+
+![:space 5]
+
+
+**Post-Intervention Period**
+
+$$RMSPE_{post} = (\frac{1}{T^{post}}) \sum^{T^{post}}_{t=1} (Y_{it} - \sum^{J+1}_{j=2} w_j^*Y_{jt})^2)^{\frac{1}{2}}$$
+
+---
+
+### Root Mean Squared Prediction Error (RMSPE)
+
+**Ratio**
+
+![:space 2]
+
+$$\frac{RMSPE_{post}}{RMSPE_{pre}}$$
+
+
+![:space 5]
+
+- High values on this ratio means that the pre-intervention period trends fit well but the post-period don't. 
+
+- Poor post-period fit means there is **_divergence_** between observed and synthetic trends (i.e. a treatment effect). 
+
+- If the placebos also have a equally high degree of post-period divergence, then what we observe in the treated unit isn't that special.
+
+
+---
+
+### Placebo tests: how rare is California?
+
+```{r,fig.align="center",fig.height = 6,fig.width = 10,dpi=300}
+smoking_out %>% plot_placebos(time_window = 1970:2000,prune = T)
+```
+
+
+---
+
+### Placebo tests: how rare is California?
+
+```{r,fig.align="center",fig.height = 6,fig.width = 10,dpi=300}
+smoking_out %>% plot_rmspe_ratio(time_window = 1970:2000)
+```
+
+
+---
+
+### Placebo tests: how rare is California?
+
+```{r}
+smoking_out %>% 
+  grab_signficance(time_window = 1970:2000) %>% 
+  select(unit_name,rank,fishers_exact_pvalue,z_score)
+```
+
+
+
+---
+
+### Falsification: "In-Time" Placebo
+
+```{r,highlight=T}
+smoking_out_placebo <-
+  synthetic_control(data = smoking, outcome = cigsale,
+                    unit = state,time = year,
+                    i_unit = "California",i_time = 1983) %>% #<<
+  
+  # Generate the aggregate predictors used to generate the weights
+  generate_predictor(time_window=1975:1983,
+                     lnincome = mean(lnincome, na.rm = T),
+                     retprice = mean(retprice, na.rm = T), 
+                     age15to24 = mean(age15to24, na.rm = T)) %>%
+  generate_predictor(time_window=1970,cigsale_1970 = cigsale) %>%
+  generate_predictor(time_window=1975,cigsale_1975 = cigsale) %>%
+  generate_predictor(time_window=1980,cigsale_1980 = cigsale) %>%
+  generate_predictor(time_window=1983,cigsale_1983 = cigsale) %>%
+  
+  # Generate weights and controls
+  generate_weights(optimization_window =1970:1983) %>%
+  generate_control()
+```
+
+---
+
+### Falsification: "In-Time" Placebo
+
+```{r,fig.align="center",fig.height = 6,fig.width = 10,dpi=300}
+smoking_out_placebo %>% plot_trends(time_window = 1970:2000) + ylim(0,140)
+```
+
+
+---
+
+### [BONUS] Application to Covid-19
+
+![:space 3]
+
+[Did California's Shelter-in-Place Order Work? Early Coronavirus-Related Public Health Effects](https://www.nber.org/papers/w26992.pdf)  (@ The National Bureau of Economic Research)
+
+> ![:text_size 4.5](On March 19, 2020, California Governor Gavin Newsom issued Executive Order N-33-20 2020, which required all residents of the state of California to shelter in place for all but essential activities such as grocery shopping, retrieving prescriptions from a pharmacy, or caring for relatives. This shelter-in-place order, SIPO, the first such statewide order issued in the United States, was designed to reduce COVID-19 cases and mortality. While the White House Task Force on the Coronavirus has credited the State of California for taking early action to prevent a statewide COVID-19 outbreak, no study has examined the impact of California’s SIPO. Using daily state-level coronavirus data and a synthetic control research design, we find that California’s statewide SIPO reduced COVID-19 cases by 144,793 to 232,828 and COVID-19 deaths by 1,836 to 4,969 during the first three weeks following its enactment. Conservative back of the envelope calculations suggest that there were approximately 2 to 4 job losses per coronavirus case averted and 113 to 300 job losses per life saved during this short-run post-treatment period.)
+
+
