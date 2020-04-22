@@ -377,7 +377,7 @@ class: newsection
 
 ```{r}
 # Cigarette Sales Data
-smoking <- read_csv("data/smoking.csv")
+smoking <- read_csv("https://raw.githubusercontent.com/edunford/ppol561/master/Lectures/week_14/data/smoking.csv")
 smoking
 ```
 
