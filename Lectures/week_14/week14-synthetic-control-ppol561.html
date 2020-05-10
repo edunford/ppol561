@@ -697,9 +697,9 @@ The idea is simple:
   
   2. Calculate it's causal effect (i.e. difference the actual and synthetic trends)
   
-  3. Calculate the Root Mean Squared Prediction Error (RMSPE) for the pre-treatment and post-treatment period.
+  3. Calculate the Mean Squared Prediction Error (MSPE) for the pre-treatment and post-treatment period.
   
-  4. Compute the ratio of the post-to-pre-treatment RMSPE
+  4. Compute the ratio of the post-to-pre-treatment MSPE
   
   5. Sort this ratio in descending order (highest at the top).
   
@@ -707,30 +707,30 @@ The idea is simple:
   
 ---
 
-### Root Mean Squared Prediction Error (RMSPE)
+### Mean Squared Prediction Error (MSPE)
 
 ![:space 5]
 
 **Pre-Intervention Period**
 
-`$$RMSPE_{pre} = (\frac{1}{T^{pre}}) \sum^{T^{pre}}_{t=1} (Y_{it} - \sum^{J+1}_{j=2} w_j^*Y_{jt})^2)^{\frac{1}{2}}$$`
+`$$MSPE_{pre} = \frac{1}{T^{pre}} \sum^{T^{pre}}_{t=1} (Y_{1t} - \sum^{J+1}_{j=2} w_j^*Y_{jt})^2$$`
 
 ![:space 5]
 
 
 **Post-Intervention Period**
 
-`$$RMSPE_{post} = (\frac{1}{T^{post}}) \sum^{T^{post}}_{t=1} (Y_{it} - \sum^{J+1}_{j=2} w_j^*Y_{jt})^2)^{\frac{1}{2}}$$`
+`$$MSPE_{post} = \frac{1}{T^{post}} \sum^{T^{post}}_{t=1} (Y_{1t} - \sum^{J+1}_{j=2} w_j^*Y_{jt})^2$$`
 
 ---
 
-### Root Mean Squared Prediction Error (RMSPE)
+### Mean Squared Prediction Error (MSPE)
 
 **Ratio**
 
 ![:space 2]
 
-`$$\frac{RMSPE_{post}}{RMSPE_{pre}}$$`
+`$$\frac{MSPE_{post}}{MSPE_{pre}}$$`
 
 
 ![:space 5]
