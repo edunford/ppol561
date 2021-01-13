@@ -20,7 +20,7 @@ output:
 \huge \textit{PPOL  561}\\
 \huge\textbf{Accelerated Statistics for Public Policy II}\\
 
-\Large Spring 2020
+\Large Spring 2021
 \end{center}
 
 
@@ -35,14 +35,14 @@ require(kableExtra)
 **Professor**: Eric Dunford
 
 - **Office**: 404 Old North
-- **Office Hours**: Tuesdays 1pm to 3pm
+- **Office Hours**: Wednesdays 9am to 11am
 - **Email**: [eric.dunford@georgetown.edu](mailto:eric.dunford@georgetown.edu)
 - **Pronouns**: he/him
 
-**Teaching Assistant**: Madeline Pickens
+**Teaching Assistant**: Emma Farber
 
 - **Office Hours**: by appointment
-- **Email**: [mp1595@georgetown.edu](mailto:mp1595@georgetown.edu)
+- **Email**: [ejf78@georgetown.edu ](mailto:ejf78@georgetown.edu )
 - **Pronouns**: she/her
 
 
@@ -51,13 +51,13 @@ require(kableExtra)
 
 # Course Description
 
-This is the second course in the two-course sequence on quantitative methods for social science. The course builds on students’ understanding of multivariate regression and introduces advanced, but commonly used, methods of statistical analysis. The course is broadly divided into two part: advanced modeling and causal inference. Instruction will concentrate on how to determine the appropriate econometric approach in addressing various types of policy questions, while highlighting the challenges in isolating causal effects. The emphasis is on applied learning; formal proofs and mathematical rigor are presented but not the principal focus of the course. This course will be taught using `R`. As part of our effort to teach effective communication skills, students will make presentations about applications using the techniques being studied in class.
+This is the second course in the two-course sequence on quantitative methods for social science. The course builds on students’ understanding of multivariate regression and introduces advanced, but commonly used, methods of statistical analysis. The course is broadly divided into two part: causal inference and advanced modeling. Instruction will concentrate on how to determine the appropriate econometric approach in addressing various types of policy questions, while highlighting the challenges in isolating causal effects. The emphasis is on applied learning; formal proofs and mathematical rigor are presented but not the principal focus of the course. This course will be taught using `R`. As part of our effort to teach effective communication skills, students will make presentations about applications using the techniques being studied in class.
 
 # Course Objectives
 
 By the end of the semester students should be able to
 
-1. understand the challenges and approaches to isolating causal effects;
+1. understand the challenges and modeling approaches to isolating causal effects;
 
 2. understand and implement advanced statistical techniques, such as limited dependent variable models (binary, ordered, and multinomial outcomes), selection models, and panel models;
 
@@ -67,19 +67,25 @@ By the end of the semester students should be able to
 
 # Time and location
 
-Classes will be held on **Wednesdays** from **_12:30pm to 3:00pm_** in **Healy 104**: 
+Classes will be held _virtually_ on **Tuesdays** from **_9:30am to 12:00am_**: 
 
-- January 15, 22, 29
-- February 5, 12, 19, 26
-- March 4, 18, 25
-- April 1, 8, 15, 22
+- January 25
+- February 2, 9, 16, 23
+- March 2, 9, 16, 23, 30
+- April 6, 13, 20, 27
+- May 4
 
 Holidays/Breaks (No class):
 
-- January 8 (Monday classes on Wednesday)
-- March 11 (Spring Break)
+- March 30 (Spring Break)
 
-**Recitation** will be held most weeks on Wednesdays from _4:00pm to 5:00pm_ in _Old North G-02_. Attendance is required. A complete schedule of recitation dates can be found on the class website (see "Lab Schedule" tab @ http://ericdunford.com/ppol561/#course_outline).
+Note that this class is scheduled to meet weekly for 2.5 hours. However, the instructor will aim to keep the class in session for 2 hours (leaving the last 30 minutes of class open for questions/office hours/discussion). Five minute breaks will be taken approximately every 40-45 minutes. 
+
+**Recitation** will be held most weeks on XXXX from _X:XXpm to X:XXpm_ via Zoom. Attendance is required. A complete schedule of recitation dates can be found on the class website (see "Lab Schedule" tab @ http://ericdunford.com/ppol561/#course_outline). Please use the link to the virtual classroom when meeting for the recitation. 
+
+**Virtual Classroom**. We will use [**Zoom**](https://zoom.us/download) (a web-conferencing platform) to hold class each week. Class will meet at its regularly scheduled time each week for synchronous lectures. If you do not have Zoom, you can download it [**here**](https://zoom.us/download) prior to the start of class. 
+
+Students will use this link to access the live Zoom call for lecture. **_If the link breaks or does not function properly, please check the `#general` channel on Slack for information regarding the new link. If there is no message regarding a new link, please contact the professor and/or TA via Slack._** All lecture material will be recorded and posted to Canvas each week.
 
 # Required Materials
 
@@ -91,7 +97,7 @@ Holidays/Breaks (No class):
    
 **Class Website**: A class website (www.ericdunford.com/ppol561) will be used throughout the course and should be checked on a regular basis for lecture materials and required readings. 
 
-**Class Slack Channel**: The class also has a dedicated [slack channel](ppol561accele-ilo1311.slack.com) (PPOL561_Accelerated-Stats-for-PP2_Spring2020). The channel serves as an open forum to discuss, collaborate, pose problems/questions, and offer solutions. Students are encouraged to pose any questions they have there as this will provide the professor and TA the means of answering the question so that all can see the response. If you're unfamiliar with Slack, please consult the following start-up tutorial (https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members). Please follow the [**_invite link_**](https://join.slack.com/t/ppol561accele-ilo1311/shared_invite/enQtODk3MTAzNjIxNDMxLWMzYmI3OGRjZGE2MTU1NWViNTA4YzQ1ZDYxNDU4NmI3MzNkYjBkNTYxNTkyZTE2YzM3ZTNmNWM3ZTA5NjIyODg) to be added to the Slack channel.
+**Class Slack Channel**: The class also has a dedicated slack channel (ppol564-foundations.slack.com). **Please note that this is the same channel used in PPOL564**. The channel serves as an open forum to discuss, collaborate, pose problems/questions, and offer solutions. Students are encouraged to pose any questions they have there as this will provide the professor and TA the means of answering the question so that all can see the response. If you're unfamiliar with, please consult the following start-up tutorial (https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members). Please follow the [**_invite link_**](https://join.slack.com/t/georgetown-jt44872/shared_invite/zt-gntolqrn-BiCH6ChQTKKODMyb5PdRAw) to be added to the Slack channel.
 
 **Canvas**: A Canvas site (http://canvas.georgetown.edu) will be used throughout the course for readings and assignments. All readings and assignments will not be distributed in class or by e-mail. Support for Canvas is available at (202) 687-4949
 
@@ -103,33 +109,37 @@ Holidays/Breaks (No class):
 
 | **Assignment** | **Percentage** | 
 |----------------|----------------|
-| Participation	 |		  10%       |
-| Problem sets	 |		  20%       |
+| Participation	 |		  5%       |
+| Problem sets	 |		  25%       |
 | Presentation	 |		  15%       |
 | Midterm exam 	 |		  25%       |
 | Final exam   	 |		  30%       |
 
 > _Note that the grades on Canvas are not weighted, and thus, may not accurately reflect a student's final grade._ 
 
-**Problem Sets** (20%): There will be 6 assignments throughout the course of the semester. Homework assignments are available in the assignments folder in Canvas. They are due at the beginning of class on the days indicated rendered as a `.pdf` from an RMarkdown file.  You are strongly encouraged to work on these problem sets in study groups; however, **_each student must prepare and submit his or her own write-up for each problem set_** (including _concise_ `R` programs and output when appropriate). I will provide solutions for the problem sets after they are turned in. 
+**Problem Sets** (25%): There will be 7 assignments throughout the course of the semester. Homework assignments are available in the assignments folder in Canvas. They are due at the beginning of class on the days indicated rendered as a `.pdf` from an RMarkdown file.  
 
+**For the first 6 assignments, students may pick 4 to count toward their grade.** In other words, students are only required to complete 4 assignments. All students are required to complete Assignment 7.  
+
+You are strongly encouraged to work on these problem sets in study groups; however, **_each student must prepare and submit his or her own write-up for each problem set_** (including _concise_ `R` programs and output when appropriate). I will provide solutions for the problem sets after they are turned in. 
 
 |Assignment | Date Assigned |   Date Due   |
 |-----------|---------------|--------------|
-    No. 1   |  January 22   | January 29
-    No. 2   |  February 12  | February 19   
-    No. 3   |  March 4      | March 18
-    No. 4   |  March 18     | April 25
-    No. 5   |  April 1      | April 8
-    No. 6   |  April 8      | April 15
+    No. 1   |  February 2   | February 9
+    No. 2   |  February 23  | March 2   
+    No. 3   |  March 2      | March 9
+    No. 4   |  March 9      | March 16
+    No. 5   |  March 16     | March 23
+    No. 6   |  April 13     | April 20
+    No. 7   |  April 27     | May 4
 
-**Presentation** (15%): The presentation is a 10 minute in-class presentation with slides on a paper related to the material we are discussing.  These presentations will be done in teams of two, which have been randomly assigned (See below). Each team will be responsible for locating a research paper published in a peer-reviewed journal. Students will be graded individually although there will likely be high correlation between grades within the teams. Note that given the odd number of students in the class, one student will have to present alone.
+**Presentation** (15%): The presentation is a 10 minute in-class presentation with slides on a paper related to the material we are discussing.  These presentations will be done in teams of two, which have been randomly assigned (See below). Each team will be responsible for locating a research paper published in a peer-reviewed journal. Students will be graded individually although there will likely be a high correlation between grades within the teams. Note that given the odd number of students in the class, one student will have to present alone.
 
-This presentation should summarize the substantive and statistical issues addressed in the paper and provide context and a critique.  This is a lot to do and in most cases the presentation will have to isolate and discuss only one element of the paper.  **_Please email me a copy of the presentation the day before your scheduled time._**
+This presentation should summarize the substantive and statistical issues addressed in the paper and provide context and a critique.  This is a lot to do and in most cases the presentation will have to isolate and discuss only one element of the paper.  **_A team representative must email me a copy of the presentation the day before your scheduled time._**
 
-The presentation schedule for the Spring 2020 semester is as follows: 
+The presentation schedule for the Spring 2021 semester is as follows: 
 
-```{r,echo=FALSE,message=FALSE,warning=FALSE}
+```{r,eval=F,echo=FALSE,message=FALSE,warning=FALSE}
 read_csv(here::here('Students/presentation_schedule.csv')) %>% 
   {.[is.na(.)]="";.} %>% 
   select(-contains('email')) %>% 
@@ -145,7 +155,7 @@ read_csv(here::here('Students/presentation_schedule.csv')) %>%
 > _Note: Grades for the presentations will not be circulated until all students have presented. Doing so will ensure that grades appropriately reflect the performance distribution of the entire class._
 
 
-**Exams**: There will be a midterm (25%) and final exam (30%). The midterm will be held in class on March 25th and will primarily cover material covered the first 7 weeks of the course. The final will be held on May 8 from 12:30PM to 2:30PM. The final will be cumulative but will emphasize material covered the during the last 7 weeks of the course. The dates of the exams are fixed. I cannot accommodate flight schedules for the final exam; please be sure to plan accordingly. **_No practice exam will be offered_** (See "No Practice Exams" in Course Policies). 
+**Exams**: There will be a midterm (25%) and final exam (30%). The midterm will be held in class on March 23rd and will primarily cover material covered the first 8 weeks of the course. The final will be held on May 17 from (9:00AM to 11:00AM). The final will be cumulative but will emphasize material covered the during the last portion of the course. The dates of the exams are fixed. I cannot accommodate flight schedules for the final exam; please be sure to plan accordingly. **_No practice exam will be offered_** (See "No Practice Exams" in Course Policies). 
 
 # Grading:
 
@@ -162,7 +172,7 @@ C  | 70% – 79%
 F  | < 70%
 
 
-# Managing the Workload: How to Succeed in this Course
+# How to Succeed 
 
 - __Come Prepared.__ Do the readings. Think about the readings on their own terms, but also in terms of how the concepts apply to things you’re interested in.  
 
@@ -180,17 +190,17 @@ F  | < 70%
 
 Participation is required in this course. Participation can be decomposed into attendance (class and recitation), engagement, and completing the class assignments. Specifically, I define "engagement" as:
 
-- Asking questions and participating in class (no zombies)
+- Asking questions and participating in class 
 - Paying attention to the professor during lecture 
     - not looking at your computer screen for extended periods of time 
     - never looking at your phone during class
-- No side conversations during lecture
+- No side conversations during lecture/messaging/internet browsing, etc. 
 
 I reserve the right to deduct attendance points from students who are not participating as expected. 
 
-Attendance will be taken daily. A sheet of paper will be made available at the front of the room at the start of every class. Students must write their name on the paper. The **paper will be removed 5 minutes after the start of class**. Students who walk in late after that point will not have an opportunity to write their name and will be considered absent. This log will be used, in part, to calculate the attendance grade.
+<!-- Attendance will be taken daily. A sheet of paper will be made available at the front of the room at the start of every class. Students must write their name on the paper. The **paper will be removed 5 minutes after the start of class**. Students who walk in late after that point will not have an opportunity to write their name and will be considered absent. This log will be used, in part, to calculate the attendance grade. -->
 
-If absent, each student is responsible to make up the materials missed during a lecture on their own. All lecture notes will be posted on the class website. Thus, students who missed a lecture should reach out to their peers in the class for lecture notes. It is not the responsibility of the Professor/TA to fill absentee students in on any missed content.
+If absent, each student is responsible to make up the materials missed during a lecture on their own. All lecture recordings will be posted on Canvas and lecture notes + slides will be posted on the course website. Students who missed a lecture should reach out to their peers in the class for lecture notes. It is not the responsibility of the Professor/TA to fill absentee students in on any missed content.
 
 
 ### Communication
@@ -220,13 +230,13 @@ When reaching out to the professor or teaching assistant regarding a technical q
 Most data analytic jobs now require that you perform a task or take a test. There is no practice test for these exams. You know what you know, and you're either able to implement it or not. Moreover, life rarely offers us a chance to practice before being tested. As such, there are no practice exams in my class. Students will be given a study guide for exams that broadly outlines topics that might be on the exams. Students are encouraged to talk with the professor and TA during office hours about the exam, but no example questions will be offered. 
 
 
-### Class Seating
+<!-- ### Class Seating -->
 
-Students should (and must) sit beside a different student each time the class meets. The aim is to facilitate diverse interactions. If all or some students fail to follow this procedure, then the professor reserves the right to generate a random seating assignment each class. Failure to comply with the class seating policy will result in a deduction in participation points. 
+<!-- Students should (and must) sit beside a different student each time the class meets. The aim is to facilitate diverse interactions. If all or some students fail to follow this procedure, then the professor reserves the right to generate a random seating assignment each class. Failure to comply with the class seating policy will result in a deduction in participation points.  -->
 
-### Instructional Continuity
+<!-- ### Instructional Continuity -->
 
-In the event the university is closed for a scheduled class, lecture materials will be provided via a video link on Canvas. Students will be expected to watch the recording and answer a brief quiz on the materials cover therein before the next scheduled class period. Students will be notified via Slack when the video lecture has been posted to Canvas. Assignment due dates will not change due to the closure, but the lab will be cancelled. 
+<!-- In the event the university is closed for a scheduled class, lecture materials will be provided via a video link on Canvas. Students will be expected to watch the recording and answer a brief quiz on the materials cover therein before the next scheduled class period. Students will be notified via Slack when the video lecture has been posted to Canvas. Assignment due dates will not change due to the closure, but the lab will be cancelled.  -->
 
 
 ### Use of Class Materials
@@ -275,8 +285,8 @@ More information about campus resources and reporting sexual misconduct can be f
 # Course Calendar 
 
 ```{r,echo=F,message=F,results='asis'}
-read_csv('spring-2020-timeline.csv') %>% 
-  {.[is.na(.)]="";.} %>% 
+read_csv('spring-2021-timeline.csv') %>% 
+  mutate_all(function(x) ifelse(is.na(x),"",x)) %>% 
   # kable(., "latex", booktabs = T,align = c('c','c','l','l','c')) %>%
   kable(., "html", booktabs = T,align = c('c','c','l','l','c')) %>%
   kable_styling(latex_options = c("striped", "scale_down","repeat_header"),
@@ -286,7 +296,7 @@ read_csv('spring-2020-timeline.csv') %>%
   column_spec(1,width = '.5in') %>% 
   column_spec(2,width = '.75in') %>% 
   column_spec(3,width = '3in') %>% 
-  column_spec(4,width = '1.5in') %>% 
+  column_spec(4,width = '2in') %>% 
   column_spec(5,width = '.75in') 
 ```
 

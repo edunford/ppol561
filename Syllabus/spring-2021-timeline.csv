@@ -1,0 +1,17 @@
+Week,Date,Topic,Assignment ,Presentation Group
+1,January 26,Course Introduction & Research Design,,
+2,February 2,Data Wrangling & Presentation in R,Assignment 1 Assigned,
+3,February 9,Introduction to Causal Inference,Assignment 1 Due,1
+4,February 16,"OLS, Confounders, & Simulation",,2
+5,February 23,Panel Data & Difference-in-Difference,Assignment 2 Assigned,3
+6,March 2,Instrumental Variables,Assignment 2 Due; Assignment 3 Assigned,4
+7,March 9,Experiments,Assignment 3 Due; Assignment 4 Assigned,5
+8,March 16,Regression Discontinuity,Assignment 4 Due; Assignment 5 Assigned,6
+9,March 23,Midterm,Assignment 5 Due,7
+-,March 30,No Class; Spring Break,,
+10,April 6,Matching,,8
+11,April 13,Synthetic Control,Assignment 6 Assigned ,9
+12,April 20,Binary Outcomes,Assignment 6 Due,10
+13,April 27,Ordered & Multinomial Outcomes,Assignment 7 Assigned,11
+14,May 4,Selection,Assignment 7 Due,
+,May 17,Final Exam (9am - 11am),,
