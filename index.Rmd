@@ -113,10 +113,6 @@ The **presentation schedule** for the Spring 2021 semester:
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 read_csv(here::here('Students/presentation_schedule.csv')) %>% 
-  mutate(Week=c(3:9,11:14)) %>% 
-  select(Group,Week,everything()) %>% 
-  {.[is.na(.)]="";.} %>% 
-  select(-contains('email')) %>% 
   kable(., "html", booktabs = T,align = c('c','c','c')) %>%
   kable_styling(latex_options = c("striped", "scale_down","repeat_header"),
                 full_width = T,

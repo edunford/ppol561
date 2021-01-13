@@ -59,7 +59,7 @@ The following rubrics outlines how presenters will be evaluated when presenting 
 ## Slides (Points ___/10)
 
   - **_Criteria_**
-    + **Unsatisfactory** (0-3 points): _The team members presented well together (rarely if ever stumbling when transitioning between speakers); Presentation was well crafted to the audience;  concepts were easy to follow; presenters enunciated well and spoke in manner that others could understand and follow. Presenters did not cram too much material into the presentation (clearly focused on specific aspect of the paper and made this known). Presenters never read off of their slides._
+    + **Unsatisfactory** (0-3 points): _Minimal slides; slides appear rushed; little thought was put into visual presentation._
     + **Acceptable** (4-7 points): _Good slides; a bit wordy at times; used graphics but they were not visually appealing; relied on tables at parts._
     + **Excellent** (8-10 points): _Clean and clear slides; limited number of words on each slide; compelling graphics; little or no tables; slides transitioned well._
   - **_Notes_**:

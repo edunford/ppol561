@@ -1,6 +1,6 @@
 ---
 title: 'PPOL561 | Reading List'
-date: 'Spring 2020'
+date: 'Spring 2021'
 output: 
   html_document:
     css: style.css
@@ -53,10 +53,9 @@ output:
       + [Ch. 11: Import Data](https://r4ds.had.co.nz/data-import.html)
       + [Ch. 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html)
       + [Ch. 8: Workflow: Projects](https://r4ds.had.co.nz/workflow-projects.html)
-      
 
       
-### Week 3: OLS Review 
+### Week 3: OLS, Confounders, and Simulation
 
 - **_Required Readings_**:
   
@@ -64,12 +63,80 @@ output:
     
       + Refresh on Chapters. 5 - 7
       
-- **_Suggested Reading_**:
-
   - Schrodt. 2014. "Seven deadly sins of contemporary quantitative political analysis".
   
+### Week 4: Introduction to Causal Inference
+
+- **_Required Readings_**:
   
-### Week 4: Binary Outcomes
+  - Cunningham. 2018. "Causal Inference: The Mixtape".
+      
+      + Chapter 4: "Directed Acyclical Graphs" (Canvas)
+          
+      + Chapter 5: "Potential Outcomes Causal Model" (Canvas)
+      
+    
+### Week 5: Panel Data & Difference-in-Difference
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Chapter 8
+      
+      
+### Week 6: Instrumental Variables
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Chapter 9
+      
+      
+### Week 7: Experiments
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Chapter 10
+      
+### Week 8: Regression Discontinuity
+
+- **_Required Readings_**:
+
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Chapter 11
+      
+### Week 10: Matching
+
+- **_Required Readings_**:
+  
+  - Ho et. al 2007 (Canvas)
+  
+- **_Suggested Reading_**:
+  
+  - King and Neilson 2018 (Canvas)
+  - Austin 2010 (Canvas)  
+  - matchit.pdf (Canvas)
+
+### Week 11: Synthetic Control
+
+- **_Required Readings_**:
+
+  - Cunningham. 2018. "Causal Inference: The Mixtape".
+      
+      + Chapter 11: "Synthetic Control" (Canvas)
+      
+- **_Suggested Reading_**:
+  
+  - Abadie et al. 2010, "Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program" (Canvas)
+  - Abadie et al. 2015, "Comparative Politics and the Synthetic Control Method" (Canvas)
+      
+
+### Week 12: Binary Outcomes
 
 - **_Required Readings_**:
   
@@ -86,7 +153,7 @@ output:
       + Chapter 3 (Canvas)
       
       
-### Week 5: Ordered & Multinomial Outcomes
+### Week 13: Ordered & Multinomial Outcomes
 
 - **_Required Readings_**:
   
@@ -102,7 +169,7 @@ output:
     
       + Chapter 5 & 6 (Canvas)
       
-### Week 6: Selection
+### Week 14: Selection
 
 - **_Required Readings_**:
 
@@ -117,74 +184,3 @@ output:
   - Lemke, Douglas and William Reed. 2001. “War and Rivalry among Great Powers” American Journal of Political Science 45: 457-469.
   
   
-### Week 7: Introduction to Causal Inference
-
-- **_Required Readings_**:
-  
-  - Cunningham. 2018. "Causal Inference: The Mixtape".
-      
-      + Chapter 4: "Directed Acyclical Graphs" (Canvas)
-          
-      + Chapter 5: "Potential Outcomes Causal Model" (Canvas)
-      
-    
-### Week 8: Panel Data & Difference-in-Difference
-
-- **_Required Readings_**:
-
-  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
-    
-      + Chapter 8
-      
-      
-### Week 9: Instrumental Variables
-
-- **_Required Readings_**:
-
-  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
-    
-      + Chapter 9
-      
-      
-### Week 11: Experiments
-
-- **_Required Readings_**:
-
-  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
-    
-      + Chapter 10
-      
-### Week 12: Regression Discontinuity
-
-- **_Required Readings_**:
-
-  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
-    
-      + Chapter 11
-      
-### Week 13: Matching
-
-- **_Required Readings_**:
-  
-  - Ho et. al 2007 (Canvas)
-  
-- **_Suggested Reading_**:
-  
-  - King and Neilson 2018 (Canvas)
-  - Austin 2010 (Canvas)  
-  - matchit.pdf (Canvas)
-
-### Week 14: Synthetic Control
-
-- **_Required Readings_**:
-
-  - Cunningham. 2018. "Causal Inference: The Mixtape".
-      
-      + Chapter 11: "Synthetic Control" (Canvas)
-      
-- **_Suggested Reading_**:
-  
-  - Abadie et al. 2010, "Synthetic Control Methods for Comparative Case Studies: Estimating the Effect of California’s Tobacco Control Program" (Canvas)
-  - Abadie et al. 2015, "Comparative Politics and the Synthetic Control Method" (Canvas)
-      
- 
