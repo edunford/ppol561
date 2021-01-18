@@ -90,6 +90,63 @@ List of [**all required and suggested readings**](Readings/reading-list.html)
 <br>
 <br>
 
+## Virtual Classroom
+
+
+<br> 
+
+
+#### [Link to Virtual Zoom Classroom](https://georgetown.zoom.us/j/92576720151?pwd=Umc1R1lWdTlmeU1kVUlnZkxQVWVldz09) (Tuesdays 9:30am - 12:00pm)
+- **Meeting Id**: 925 7672 0151
+- **Pass code**: 43765920
+  
+<br>
+  
+#### [Virtual Office Hours](https://georgetown.zoom.us/j/96444963432) (Wednesdays 9:00am - 11:00am)
+
+  
+<br>
+
+Recurrent Zoom link can also be found on Canvas. Please contact the professor/TA through Slack if any of the Zoom links break. 
+
+<br>
+<br>
+
+---
+
+<br>
+<br>
+
+## Recitation
+
+<br>
+<br>
+
+Recitation meets virtually most weeks on XXX from X:00 to X:00. Below is the schedule for when there is a lab. 
+
+Like the virtual lectures, recitation will take place on Zoom. The zoom link will be the same as the class meeting link. If the link breaks, the teaching assistant will post a new link through the `#labs` tab on Slack. 
+
+```{r,echo=F}
+read_csv("Syllabus/lab-schedule-spring2021.csv") %>% 
+  kable(., "html", booktabs = T,align = c('c','l','l')) %>%
+  # kable(., "latex", booktabs = T,align = c('c','l','l')) %>%
+  kable_styling(latex_options = c("striped", 
+                                  "scale_down","repeat_header"),
+                full_width = T,font_size = 20) %>% 
+  column_spec(1,width = '1in') %>% 
+  column_spec(2,width = '1in') %>% 
+  column_spec(3,width = '4in') 
+```
+
+
+<br>
+<br>
+
+---
+
+<br>
+<br>
+
 ## Presentation
 
 <br>
@@ -158,36 +215,6 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <br>
 <br>
 
-## Recitation
-
-<br>
-<br>
-
-Recitation meets virtually most weeks on XXX from X:00 to X:00. Below is the schedule for when there is a lab. 
-
-Like the virtual lectures, recitation will take place on Zoom. The zoom link will be the same as the class meeting link. If the link breaks, the teaching assistant will post a new link through the `#labs` tab on Slack. 
-
-```{r,echo=F}
-read_csv("Syllabus/lab-schedule-spring2021.csv") %>% 
-  kable(., "html", booktabs = T,align = c('c','l','l')) %>%
-  # kable(., "latex", booktabs = T,align = c('c','l','l')) %>%
-  kable_styling(latex_options = c("striped", 
-                                  "scale_down","repeat_header"),
-                full_width = T,font_size = 20) %>% 
-  column_spec(1,width = '1in') %>% 
-  column_spec(2,width = '1in') %>% 
-  column_spec(3,width = '4in') 
-```
-
-
-<br>
-<br>
-
----
-
-<br>
-<br>
-
 
 ## Contact
 
@@ -202,7 +229,7 @@ read_csv("Syllabus/lab-schedule-spring2021.csv") %>%
 
 #### Emma Farber (Teaching Assistant)
 
-- **Office Hours**: by appointment 
+- **Office Hours**: TBA
 - **Email**: [ejf78@georgetown.edu ](mailto:ejf78@georgetown.edu )
 
 <br>

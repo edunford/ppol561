@@ -41,7 +41,7 @@ require(kableExtra)
 
 **Teaching Assistant**: Emma Farber
 
-- **Office Hours**: by appointment
+- **Office Hours**: TBA
 - **Email**: [ejf78@georgetown.edu ](mailto:ejf78@georgetown.edu )
 - **Pronouns**: she/her
 
@@ -109,10 +109,10 @@ Students will use this link to access the live Zoom call for lecture. **_If the 
 
 | **Assignment** | **Percentage** | 
 |----------------|----------------|
-| Participation	 |		  5%       |
+| Attendance     |      5%        |
+| Presentation	 |		  10%       |
 | Problem sets	 |		  25%       |
-| Presentation	 |		  15%       |
-| Midterm exam 	 |		  25%       |
+| Midterm exam 	 |		  30%       |
 | Final exam   	 |		  30%       |
 
 > _Note that the grades on Canvas are not weighted, and thus, may not accurately reflect a student's final grade._ 
@@ -133,13 +133,13 @@ You are strongly encouraged to work on these problem sets in study groups; howev
     No. 6   |  April 13     | April 20
     No. 7   |  April 27     | May 4
 
-**Presentation** (15%): The presentation is a 10 minute in-class presentation with slides on a paper related to the material we are discussing.  These presentations will be done in teams of two, which have been randomly assigned (See below). Each team will be responsible for locating a research paper published in a peer-reviewed journal. Students will be graded individually although there will likely be a high correlation between grades within the teams. Note that given the odd number of students in the class, one student will have to present alone.
+**Presentation** (10%): The presentation is a 10 minute in-class presentation with slides on a paper related to the material we are discussing.  These presentations will be done in teams of two, which have been randomly assigned (See below). Each team will be responsible for locating a research paper published in a peer-reviewed journal. Students will be graded individually although there will likely be a high correlation between grades within the teams. Note that given the odd number of students in the class, one student will have to present alone.
 
 This presentation should summarize the substantive and statistical issues addressed in the paper and provide context and a critique.  This is a lot to do and in most cases the presentation will have to isolate and discuss only one element of the paper.  **_A team representative must email me a copy of the presentation the day before your scheduled time._**
 
 The presentation schedule for the Spring 2021 semester is as follows: 
 
-```{r,eval=F,echo=FALSE,message=FALSE,warning=FALSE}
+```{r,eval=T,echo=FALSE,message=FALSE,warning=FALSE}
 read_csv(here::here('Students/presentation_schedule.csv')) %>% 
   {.[is.na(.)]="";.} %>% 
   select(-contains('email')) %>% 
@@ -155,7 +155,7 @@ read_csv(here::here('Students/presentation_schedule.csv')) %>%
 > _Note: Grades for the presentations will not be circulated until all students have presented. Doing so will ensure that grades appropriately reflect the performance distribution of the entire class._
 
 
-**Exams**: There will be a midterm (25%) and final exam (30%). The midterm will be held in class on March 23rd and will primarily cover material covered the first 8 weeks of the course. The final will be held on May 17 from (9:00AM to 11:00AM). The final will be cumulative but will emphasize material covered the during the last portion of the course. The dates of the exams are fixed. I cannot accommodate flight schedules for the final exam; please be sure to plan accordingly. **_No practice exam will be offered_** (See "No Practice Exams" in Course Policies). 
+**Exams**: There will be a midterm (30%) and final exam (30%). The midterm will be held in class on March 23rd and will primarily cover material covered the first 8 weeks of the course. The final will be held on May 17 from (9:00AM to 11:00AM). The final will be cumulative but will emphasize material covered the during the last portion of the course. The dates of the exams are fixed. I cannot accommodate flight schedules for the final exam; please be sure to plan accordingly. **_No practice exam will be offered_** (See "No Practice Exams" in Course Policies). 
 
 # Grading:
 
