@@ -66,7 +66,7 @@ output:
       + Chapter 5: "Potential Outcomes Causal Model" (Canvas)
       
       
-### Week 4: OLS, Confounders, and Simulation
+### Week 4: OLS, Confounders, & Simulation
 
 - **_Required Readings_**:
   
