@@ -54,18 +54,8 @@ output:
       + [Ch. 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html)
       + [Ch. 8: Workflow: Projects](https://r4ds.had.co.nz/workflow-projects.html)
 
-      
-### Week 3: OLS, Confounders, and Simulation
 
-- **_Required Readings_**:
-  
-  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
-    
-      + Refresh on Chapters. 5 - 7
-      
-  - Schrodt. 2014. "Seven deadly sins of contemporary quantitative political analysis".
-  
-### Week 4: Introduction to Causal Inference
+### Week 3: Introduction to Causal Inference
 
 - **_Required Readings_**:
   
@@ -75,6 +65,17 @@ output:
           
       + Chapter 5: "Potential Outcomes Causal Model" (Canvas)
       
+      
+### Week 4: OLS, Confounders, and Simulation
+
+- **_Required Readings_**:
+  
+  - Bailey. 2016. "Real Stats: Using Econometrics for Political Science and Public Policy".
+    
+      + Refresh on Chapters. 5 - 7
+      
+  - Schrodt. 2014. "Seven deadly sins of contemporary quantitative political analysis".
+  
     
 ### Week 5: Panel Data & Difference-in-Difference
 
