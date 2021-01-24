@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 1       Course Introduction   &amp;   Research Design</title>
     <meta charset="utf-8" />
@@ -12,7 +12,7 @@
     <script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
     <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
     <script src="libs/chromatography-0.1/chromatography.js"></script>
-    <script src="libs/DiagrammeR-binding-1.0.1/DiagrammeR.js"></script>
+    <script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
     <link rel="stylesheet" href="gu-theme.css" type="text/css" />
   </head>
   <body>
@@ -66,30 +66,6 @@ class: newsection
 
 ---
 
-.center[&lt;img src="Figures/rally-photo.png" width="800"&gt;]
-
----
-
-## General
-
-- **_Meet_**: Wednesdays 12:30 to 3:00 PM in **Healy 104**
-
-- **_Recitation_**: Wednesdays from 4:00 to 5:00 in **Old North G-02**
-
-- **_Teaching Assistant_**: Maddie Pickens 
-
-- **_Office Hours_**: 
-  - _Professor_: 1pm to 3pm Tuesdays
-  - _TA_: by appointment (email/slack)
-
-- **_Class Website_** (https://ericdunford.com/ppol561) &amp;rarr; Lecture materials 
-  
-- **_Canvas_** &amp;rarr; Readings
-
-- **_Slack_** &amp;rarr; Communication
-
----
-
 ## Course Goals
 
 ![:space 3]
@@ -112,117 +88,65 @@ class: newsection
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; Week &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; Topic &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Assignment &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Presentation Group &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 15-Jan &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Course Introduction + Research Design &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Course Introduction &amp;amp; Research Design &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 22-Jan &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Data Wrangling and Presentation in R &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Data Wrangling &amp;amp; Presentation in R &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 29-Jan &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; OLS Review &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Assignment 1 Due &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Introduction to Causal Inference &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 5-Feb &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Binary Outcomes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; OLS, Confounders, &amp;amp; Simulation &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 12-Feb &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Ordered &amp;amp; Multinomial Outcome &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Panel Data &amp;amp; Difference-in-Difference &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 19-Feb &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Selection &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Assignment 2 Due &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Instrumental Variables &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 26-Feb &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Introduction to Causal Inference &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Experiments &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 4-Mar &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Panel Data + DID &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Regression Discontinuity &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 18-Mar &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Instrumental Variables &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Assignment 3 Due &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Midterm &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 25-Mar &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Midterm Exam &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Assignment 4 Due &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Matching &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1-Apr &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Experiments &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Synthetic Control &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 8-Apr &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Regression Discontinuity &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Assignment 5 Due &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Binary Outcomes &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 15-Apr &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Matching &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Assignment 6 Due &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ordered &amp;amp; Multinomial Outcomes &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 22-Apr &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Synthetic Control &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Final &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 8-May &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Final Exam (12:30 - 2:30) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Selection &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -251,9 +175,9 @@ class: newsection
 
 ## Work Load
 
-+ Six homework assignments
++ 7 homework assignments (select 4 from 6, all do 7)
 + One 10-minute "group" presentation
-+ Two 2-hour written exams (midterm and final)
++ Two 2-hour "written" exams (midterm and final)
 
 ![:space 5]
 
@@ -261,11 +185,11 @@ class: newsection
 
 | **![:text_size 7](Assignment)** | **![:text_size 7](Percentage)** | 
 |----------------|----------------|
-| ![:text_size 6](Participation)	 |	![:text_size 6](10%)       |
-| ![:text_size 6](Problem sets)	   |		![:text_size 6](20%)       |
-| ![:text_size 6](Presentation)	   |		![:text_size 6](15%)       |
-| ![:text_size 6](Midterm exam) 	 |	![:text_size 6](25%)       |
-| ![:text_size 6](Final exam)   	 |	![:text_size 6](30%)       |
+| ![:text_size 6](Attendance)	    |	![:text_size 6](5%)        |
+| ![:text_size 6](Problem sets)	  |	![:text_size 6](25%)       |
+| ![:text_size 6](Presentation)	  |	![:text_size 6](10%)       |
+| ![:text_size 6](Midterm exam) 	|	![:text_size 6](30%)       |
+| ![:text_size 6](Final exam)   	|	![:text_size 6](30%)       |
 
 ]
 
@@ -323,11 +247,11 @@ class:newsection
 
 - Presentations will be given at the **_start of class_** each week. 
   + Presenters should set up their slides prior to the start of class.
-  + First presentation is on January 29th (and every week thereafter, except for the week of the midterm)
+  + First presentation is on February 16th (and every week thereafter, except for the week of the midterm &amp; Spring Break)
 
 - **![:text_color darkred](Email me a copy of the presentation the _day before_ your scheduled presentation time)**
 
-- [**Presentation Rubric**](presentation_rubric_PPOL561.pdf)
+- [**Presentation Rubric**](http://ericdunford.com/ppol561/Assignments/Presentations/presentation_rubric_PPOL561.pdf)
 
 ---
 
@@ -340,76 +264,70 @@ class:newsection
   &lt;tr&gt;
    &lt;th style="text-align:center;"&gt; Group &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Week &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Partner 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Partner 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Partner_1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Partner_2 &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Allen Church &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Valarie Bryant &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Ella Zhang &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Sahithi Adari &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Anjali Taneja &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Nerissa Lemon &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Fangzi Wang &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Maryam Khalid Shah &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Huizhi Gong &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Xiyang Xu &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Tianhui Cao &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Madeline Kinnaird &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Emma Farber &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Andy Green &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Alexander Adams &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Harshini Tammareddy &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Xi Li &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Marissa Joy &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Merykokeb Belay &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Lexi Gu &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Digvijay Ghotane &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Charlie Zhang &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Gloria Li &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Shahid Amina &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Tianwei Liu &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Mary Kryslette Bunyi &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Matthew Ring &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Wei Xin &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Yuanfeng Hu &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Yousuf Abdelfatah &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Zixun Hao &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Adam Hearn &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Jingjing Tu &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Justine Huynh &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Vince Egalla &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Bingrui Li &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Erden-Yichen Sang &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Eric Larose &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Zhenyun Guo &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Ruyi Yang &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Chau Nguyen &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -577,8 +495,8 @@ class: newsection
 
 .pull-right[
 
-<div id="htmlwidget-ad9ead7a8cb105accc0d" style="width:504px;height:650px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ad9ead7a8cb105accc0d">{"x":{"diagram":"\ngraph TB\n  A(Questions)-->B{Data}\n  B-->C(Methodology)\n  C-->D[Beliefs]\n  D-->E[Claims]\n  E-->A\n  D-->A\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e1d1ae5290b257732e6c" style="width:504px;height:650px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e1d1ae5290b257732e6c">{"x":{"diagram":"\ngraph TB\n  A(Questions)-->B{Data}\n  B-->C(Methodology)\n  C-->D[Beliefs]\n  D-->E[Claims]\n  E-->A\n  D-->A\n"},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -881,7 +799,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

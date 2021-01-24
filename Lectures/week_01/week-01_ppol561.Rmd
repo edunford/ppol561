@@ -65,30 +65,6 @@ class: newsection
 
 ---
 
-.center[<img src="Figures/rally-photo.png" width="800">]
-
----
-
-## General
-
-- **_Meet_**: Wednesdays 12:30 to 3:00 PM in **Healy 104**
-
-- **_Recitation_**: Wednesdays from 4:00 to 5:00 in **Old North G-02**
-
-- **_Teaching Assistant_**: Maddie Pickens 
-
-- **_Office Hours_**: 
-  - _Professor_: 1pm to 3pm Tuesdays
-  - _TA_: by appointment (email/slack)
-
-- **_Class Website_** (https://ericdunford.com/ppol561) &rarr; Lecture materials 
-  
-- **_Canvas_** &rarr; Readings
-
-- **_Slack_** &rarr; Communication
-
----
-
 ## Course Goals
 
 ![:space 3]
@@ -108,8 +84,9 @@ class: newsection
 <center> 
 
 ```{r,echo=F,message=F,tidy=T}
-read_csv(here::here('Syllabus/spring-2020-timeline.csv')) %>% 
-  {.[is.na(.)]="";.} %>% 
+read_csv(here::here('Syllabus/spring-2021-timeline.csv')) %>% 
+  select(Week,Topic) %>% 
+  filter(Week != '-') %>% 
   kable(., "html") %>% 
   kable_styling(font_size = 17,position = 'center')
 ```
@@ -138,9 +115,9 @@ read_csv(here::here('Syllabus/spring-2020-timeline.csv')) %>%
 
 ## Work Load
 
-+ Six homework assignments
++ 7 homework assignments (select 4 from 6, all do 7)
 + One 10-minute "group" presentation
-+ Two 2-hour written exams (midterm and final)
++ Two 2-hour "written" exams (midterm and final)
 
 ![:space 5]
 
@@ -148,11 +125,11 @@ read_csv(here::here('Syllabus/spring-2020-timeline.csv')) %>%
 
 | **![:text_size 7](Assignment)** | **![:text_size 7](Percentage)** | 
 |----------------|----------------|
-| ![:text_size 6](Participation)	 |	![:text_size 6](10%)       |
-| ![:text_size 6](Problem sets)	   |		![:text_size 6](20%)       |
-| ![:text_size 6](Presentation)	   |		![:text_size 6](15%)       |
-| ![:text_size 6](Midterm exam) 	 |	![:text_size 6](25%)       |
-| ![:text_size 6](Final exam)   	 |	![:text_size 6](30%)       |
+| ![:text_size 6](Attendance)	    |	![:text_size 6](5%)        |
+| ![:text_size 6](Problem sets)	  |	![:text_size 6](25%)       |
+| ![:text_size 6](Presentation)	  |	![:text_size 6](10%)       |
+| ![:text_size 6](Midterm exam) 	|	![:text_size 6](30%)       |
+| ![:text_size 6](Final exam)   	|	![:text_size 6](30%)       |
 
 ]
 
@@ -210,11 +187,11 @@ class:newsection
 
 - Presentations will be given at the **_start of class_** each week. 
   + Presenters should set up their slides prior to the start of class.
-  + First presentation is on January 29th (and every week thereafter, except for the week of the midterm)
+  + First presentation is on February 16th (and every week thereafter, except for the week of the midterm & Spring Break)
 
 - **![:text_color darkred](Email me a copy of the presentation the _day before_ your scheduled presentation time)**
 
-- [**Presentation Rubric**](presentation_rubric_PPOL561.pdf)
+- [**Presentation Rubric**](http://ericdunford.com/ppol561/Assignments/Presentations/presentation_rubric_PPOL561.pdf)
 
 ---
 
@@ -224,7 +201,7 @@ class:newsection
 
 ```{r,echo=F,message=F,tidy=T}
 read_csv(here::here('Students/presentation_schedule.csv')) %>% 
-  mutate(Week=c(3:9,11:14)) %>% 
+  mutate(Week=c(4:8,10:14)) %>% 
   select(Group,Week,everything()) %>% 
   {.[is.na(.)]="";.} %>% 
   select(-contains('email')) %>% 
