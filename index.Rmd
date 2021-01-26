@@ -253,9 +253,9 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <br>
 <br>
 
-<!-- ### _Week 1_: [Course Introduction & Research Design](Lectures/week_01/week-01_ppol561.html) -->
+### _Week 1_: [Course Introduction & Research Design](Lectures/week_01/week-01_ppol561.html)
 
-<!-- <br> -->
+<br>
 
 <!-- ### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html) -->
 
