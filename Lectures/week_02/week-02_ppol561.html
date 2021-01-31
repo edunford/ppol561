@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 2       Data Wrangling &amp; Presentation</title>
     <meta charset="utf-8" />
@@ -901,8 +901,8 @@ right_join(data_A,data_B,by="country")
 ```
 ##         country Var1   Var2
 ## 1       Nigeria    4    Low
-## 2 United States   NA   High
-## 3      Botswana    6 Medium
+## 2      Botswana    6 Medium
+## 3 United States   NA   High
 ```
 
 ---
@@ -1014,10 +1014,10 @@ bind_cols(data_A,data_B)
 ```
 
 ```
-##    country Var1      country1   Var2
-## 1  Nigeria    4       Nigeria    Low
-## 2  England    3 United States   High
-## 3 Botswana    6      Botswana Medium
+##   country...1 Var1   country...3   Var2
+## 1     Nigeria    4       Nigeria    Low
+## 2     England    3 United States   High
+## 3    Botswana    6      Botswana Medium
 ```
 
 ---
@@ -1110,12 +1110,15 @@ Using set operations to subset and join data...
 
 class:newsection
 
-# Reshaping
+# Reshaping Data
 
 ---
 
+![:space 10]
+
 Often, we need to alter the structure of a `data.frame` from a **wide format**...
-&lt;br&gt;&lt;br&gt;
+
+![:space 10]
 
 .center[
 &lt;table&gt;
@@ -1237,9 +1240,15 @@ Often, we need to alter the structure of a `data.frame` from a **wide format**..
 
 ---
 
-## `tidyr`
 
-![:space 7]
+![:space 20]
+
+.pull-left[
+ ![:center_img 85](Figures/tidyr_logo.png)
+]
+
+.pull-right[
+
 
 `tidyr` is a tidyverse package built to help reshape data. The package contains an array of functions that are all useful cleaning a data construct. 
 
@@ -1249,31 +1258,25 @@ Often, we need to alter the structure of a `data.frame` from a **wide format**..
 - filling missing values
 - separating a column into two variables or uniting two columns into one
 
-We'll focus on two important functions designed to reshape data: **`gather()`** and **`spread()`**
-
----
-
-&lt;br&gt;
-.center[&lt;img src="Figures/tidyr-spread-gather.gif"&gt;]
+]
 
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-.center[&lt;img src ="Figures/gather.png"&gt;]
+![:space 15]
+
+![:center_img 100](Figures/gather.png)
 
 ---
 
 
 
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+![:space 10]
 
 
 ```r
@@ -1281,321 +1284,206 @@ dat
 ```
 
 ```
-##      country year     X Y
-## 1    Nigeria 1992  9.72 2
-## 2       Iran 1992  9.88 2
-## 3   Cambodia 1992 10.78 1
-## 4  Australia 1992 10.04 2
-## 5    Nigeria 1993 10.06 1
-## 6       Iran 1993 10.86 0
-## 7   Cambodia 1993 10.23 4
-## 8  Australia 1993  9.37 3
-## 9    Nigeria 1994  9.66 2
-## 10      Iran 1994  9.78 2
-## 11  Cambodia 1994 10.61 0
-## 12 Australia 1994 10.18 1
+##     country  1992  1993  1994
+## 1   Nigeria  9.72 10.06  9.66
+## 2      Iran  9.88 10.86  9.78
+## 3  Cambodia 10.78 10.23 10.61
+## 4 Australia 10.04  9.37 10.18
 ```
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+Specify the columns you want to expand
 
 
 ```r
-dat %&gt;% gather(key,value)
+dat %&gt;% pivot_longer(cols="1992":"1994")
 ```
 
 ```
-##        key     value
-## 1  country   Nigeria
-## 2  country      Iran
-## 3  country  Cambodia
-## 4  country Australia
-## 5  country   Nigeria
-## 6  country      Iran
-## 7  country  Cambodia
-## 8  country Australia
-## 9  country   Nigeria
-## 10 country      Iran
-## 11 country  Cambodia
-## 12 country Australia
-## 13    year      1992
-## 14    year      1992
-## 15    year      1992
-## 16    year      1992
-## 17    year      1993
-## 18    year      1993
-## 19    year      1993
-## 20    year      1993
-## 21    year      1994
-## 22    year      1994
-## 23    year      1994
-## 24    year      1994
-## 25       X      9.72
-## 26       X      9.88
-## 27       X     10.78
-## 28       X     10.04
-## 29       X     10.06
-## 30       X     10.86
-## 31       X     10.23
-## 32       X      9.37
-## 33       X      9.66
-## 34       X      9.78
-## 35       X     10.61
-## 36       X     10.18
-## 37       Y         2
-## 38       Y         2
-## 39       Y         1
-## 40       Y         2
-## 41       Y         1
-## 42       Y         0
-## 43       Y         4
-## 44       Y         3
-## 45       Y         2
-## 46       Y         2
-## 47       Y         0
-## 48       Y         1
+## # A tibble: 12 x 3
+##    country   name  value
+##    &lt;fct&gt;     &lt;chr&gt; &lt;dbl&gt;
+##  1 Nigeria   1992   9.72
+##  2 Nigeria   1993  10.1 
+##  3 Nigeria   1994   9.66
+##  4 Iran      1992   9.88
+##  5 Iran      1993  10.9 
+##  6 Iran      1994   9.78
+##  7 Cambodia  1992  10.8 
+##  8 Cambodia  1993  10.2 
+##  9 Cambodia  1994  10.6 
+## 10 Australia 1992  10.0 
+## 11 Australia 1993   9.37
+## 12 Australia 1994  10.2
 ```
 
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+Rename the expanded columns
 
 
 ```r
-dat %&gt;% gather(var_names,var_values) # Any naming convention works
+dat %&gt;% pivot_longer(cols="1992":"1994",
+                     names_to = "year",
+                     values_to = "ln_gdppc")
 ```
 
 ```
-##    var_names var_values
-## 1    country    Nigeria
-## 2    country       Iran
-## 3    country   Cambodia
-## 4    country  Australia
-## 5    country    Nigeria
-## 6    country       Iran
-## 7    country   Cambodia
-## 8    country  Australia
-## 9    country    Nigeria
-## 10   country       Iran
-## 11   country   Cambodia
-## 12   country  Australia
-## 13      year       1992
-## 14      year       1992
-## 15      year       1992
-## 16      year       1992
-## 17      year       1993
-## 18      year       1993
-## 19      year       1993
-## 20      year       1993
-## 21      year       1994
-## 22      year       1994
-## 23      year       1994
-## 24      year       1994
-## 25         X       9.72
-## 26         X       9.88
-## 27         X      10.78
-## 28         X      10.04
-## 29         X      10.06
-## 30         X      10.86
-## 31         X      10.23
-## 32         X       9.37
-## 33         X       9.66
-## 34         X       9.78
-## 35         X      10.61
-## 36         X      10.18
-## 37         Y          2
-## 38         Y          2
-## 39         Y          1
-## 40         Y          2
-## 41         Y          1
-## 42         Y          0
-## 43         Y          4
-## 44         Y          3
-## 45         Y          2
-## 46         Y          2
-## 47         Y          0
-## 48         Y          1
+## # A tibble: 12 x 3
+##    country   year  ln_gdppc
+##    &lt;fct&gt;     &lt;chr&gt;    &lt;dbl&gt;
+##  1 Nigeria   1992      9.72
+##  2 Nigeria   1993     10.1 
+##  3 Nigeria   1994      9.66
+##  4 Iran      1992      9.88
+##  5 Iran      1993     10.9 
+##  6 Iran      1994      9.78
+##  7 Cambodia  1992     10.8 
+##  8 Cambodia  1993     10.2 
+##  9 Cambodia  1994     10.6 
+## 10 Australia 1992     10.0 
+## 11 Australia 1993      9.37
+## 12 Australia 1994     10.2
 ```
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+![:space 10]
+Be selective about which columns are expanded and which are not. 
 
 
 ```r
 # variables can be excluded from the reshape
-dat %&gt;% gather(var_names,var_values,-country,-year) 
+dat %&gt;% pivot_longer(cols="1992",
+                     names_to = "year",
+                     values_to = "ln_gdppc") 
 ```
 
 ```
-##      country year var_names var_values
-## 1    Nigeria 1992         X       9.72
-## 2       Iran 1992         X       9.88
-## 3   Cambodia 1992         X      10.78
-## 4  Australia 1992         X      10.04
-## 5    Nigeria 1993         X      10.06
-## 6       Iran 1993         X      10.86
-## 7   Cambodia 1993         X      10.23
-## 8  Australia 1993         X       9.37
-## 9    Nigeria 1994         X       9.66
-## 10      Iran 1994         X       9.78
-## 11  Cambodia 1994         X      10.61
-## 12 Australia 1994         X      10.18
-## 13   Nigeria 1992         Y       2.00
-## 14      Iran 1992         Y       2.00
-## 15  Cambodia 1992         Y       1.00
-## 16 Australia 1992         Y       2.00
-## 17   Nigeria 1993         Y       1.00
-## 18      Iran 1993         Y       0.00
-## 19  Cambodia 1993         Y       4.00
-## 20 Australia 1993         Y       3.00
-## 21   Nigeria 1994         Y       2.00
-## 22      Iran 1994         Y       2.00
-## 23  Cambodia 1994         Y       0.00
-## 24 Australia 1994         Y       1.00
+## # A tibble: 4 x 5
+##   country   `1993` `1994` year  ln_gdppc
+##   &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+## 1 Nigeria    10.1    9.66 1992      9.72
+## 2 Iran       10.9    9.78 1992      9.88
+## 3 Cambodia   10.2   10.6  1992     10.8 
+## 4 Australia   9.37  10.2  1992     10.0
 ```
 
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
+
+![:space 10]
 
 .center[&lt;img src ="Figures/spread.png"&gt;]
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
 
-Two arguments:
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
 
+
+![:space 10]
 
 ```r
 dat 
 ```
 
 ```
-##      country year     X Y
-## 1    Nigeria 1992  9.72 2
-## 2       Iran 1992  9.88 2
-## 3   Cambodia 1992 10.78 1
-## 4  Australia 1992 10.04 2
-## 5    Nigeria 1993 10.06 1
-## 6       Iran 1993 10.86 0
-## 7   Cambodia 1993 10.23 4
-## 8  Australia 1993  9.37 3
-## 9    Nigeria 1994  9.66 2
-## 10      Iran 1994  9.78 2
-## 11  Cambodia 1994 10.61 0
-## 12 Australia 1994 10.18 1
+##      country year ln_gdppc
+## 1    Nigeria 1992     9.72
+## 3   Cambodia 1992    10.78
+## 4  Australia 1992    10.04
+## 5    Nigeria 1993    10.06
+## 6       Iran 1993    10.86
+## 8  Australia 1993     9.37
+## 9    Nigeria 1994     9.66
+## 10      Iran 1994     9.78
+## 11  Cambodia 1994    10.61
+## 12 Australia 1994    10.18
 ```
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
 
-Two arguments:
+Main arguments:
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
+- `names_from`: name of the variable that will be spread out into columns. 
+- `values_from`: values that will populate the cells of each column
+
+![:space 3]
 
 
 ```r
-dat %&gt;% spread(key = country, value = X)
+dat %&gt;% pivot_wider(names_from = year,
+                    values_from = ln_gdppc)
 ```
 
 ```
-##   year Y Nigeria  Iran Cambodia Australia
-## 1 1992 1      NA    NA    10.78        NA
-## 2 1992 2    9.72  9.88       NA     10.04
-## 3 1993 0      NA 10.86       NA        NA
-## 4 1993 1   10.06    NA       NA        NA
-## 5 1993 3      NA    NA       NA      9.37
-## 6 1993 4      NA    NA    10.23        NA
-## 7 1994 0      NA    NA    10.61        NA
-## 8 1994 1      NA    NA       NA     10.18
-## 9 1994 2    9.66  9.78       NA        NA
+## # A tibble: 4 x 4
+##   country   `1992` `1993` `1994`
+##   &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Nigeria     9.72  10.1    9.66
+## 2 Cambodia   10.8   NA     10.6 
+## 3 Australia  10.0    9.37  10.2 
+## 4 Iran       NA     10.9    9.78
 ```
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
 
-Two arguments:
+Main arguments:
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
+- `names_from`: name of the variable that will be spread out into columns. 
+- `values_from`: values that will populate the cells of each column.
+- `values_fill`: specify what value a missing value should take on.
 
 
 ```r
-dat %&gt;% spread(key = country, value = X, fill = 0) 
+dat %&gt;% pivot_wider(names_from = year,
+                    values_from = ln_gdppc,
+                    values_fill = list(ln_gdppc = -99))
 ```
 
 ```
-##   year Y Nigeria  Iran Cambodia Australia
-## 1 1992 1    0.00  0.00    10.78      0.00
-## 2 1992 2    9.72  9.88     0.00     10.04
-## 3 1993 0    0.00 10.86     0.00      0.00
-## 4 1993 1   10.06  0.00     0.00      0.00
-## 5 1993 3    0.00  0.00     0.00      9.37
-## 6 1993 4    0.00  0.00    10.23      0.00
-## 7 1994 0    0.00  0.00    10.61      0.00
-## 8 1994 1    0.00  0.00     0.00     10.18
-## 9 1994 2    9.66  9.78     0.00      0.00
+## # A tibble: 4 x 4
+##   country   `1992` `1993` `1994`
+##   &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Nigeria     9.72  10.1    9.66
+## 2 Cambodia   10.8  -99     10.6 
+## 3 Australia  10.0    9.37  10.2 
+## 4 Iran      -99     10.9    9.78
 ```
 
 ---
 
-## `spread()`: from long-to-wide
+## Legacy code
 
-Two arguments:
+![:space 5]
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
+Note that `pivot_wider()` and `pivot_longer()` are relatively new wrappers for the older `gather()` and `spread()` functions. 
 
+![:space 5]
 
-```r
-dat %&gt;% spread(key = year, value = Y, fill = 0) 
-```
+What does this mean for you?
 
-```
-##      country     X 1992 1993 1994
-## 1    Nigeria  9.66    0    0    2
-## 2    Nigeria  9.72    2    0    0
-## 3    Nigeria 10.06    0    1    0
-## 4       Iran  9.78    0    0    2
-## 5       Iran  9.88    2    0    0
-## 6       Iran 10.86    0    0    0
-## 7   Cambodia 10.23    0    4    0
-## 8   Cambodia 10.61    0    0    0
-## 9   Cambodia 10.78    1    0    0
-## 10 Australia  9.37    0    3    0
-## 11 Australia 10.04    2    0    0
-## 12 Australia 10.18    0    0    1
-```
+- Answers online and in the reading on how to reshape data may differ depending on the preference of the source. 
+
+- Use whatever versions of the function that work best for you.
+
+- Many find that  `pivot_wider()` and `pivot_longer()` are easier to use than the older `gather()` and `spread()` functions.
 
 ---
 
@@ -1648,18 +1536,18 @@ glimpse(diamonds)
 ```
 
 ```
-## Observations: 53,940
-## Variables: 10
-## $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.…
-## $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Goo…
-## $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J,…
-## $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1,…
-## $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59…
-## $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, …
-## $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 3…
-## $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.…
-## $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.…
-## $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.…
+## Rows: 53,940
+## Columns: 10
+## $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23, 0…
+## $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, Ve…
+## $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J, I…
+## $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS1,…
+## $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4, 6…
+## $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62, 5…
+## $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340, 3…
+## $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, 4…
+## $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, 4…
+## $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2…
 ```
 
 ---
@@ -1833,7 +1721,7 @@ ggplot(data=diamonds,
 | Expression   | Function   |     |
 |----|----|-----|
 | Continuous Points  | `geom_point()` | &lt;img src = "Figures/geom_point.png"&gt;  | 
-| Continous Lines  | `geom_line()` | &lt;img src = "Figures/geom_line.png"&gt;  | 
+| Continuous Lines  | `geom_line()` | &lt;img src = "Figures/geom_line.png"&gt;  | 
 | Discrete Counts  | `geom_count()` | &lt;img src = "Figures/geom_count.png"&gt;  | 
 | Continuous and Discrete Distributions  | `geom_boxplot()` | &lt;img src = "Figures/geom_boxplot.png"&gt;  | 
 | Densities  | `geom_hex()` | &lt;img src = "Figures/geom_hex.png"&gt;  | 
@@ -1943,7 +1831,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

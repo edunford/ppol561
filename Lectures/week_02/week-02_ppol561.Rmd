@@ -722,12 +722,15 @@ Using set operations to subset and join data...
 
 class:newsection
 
-# Reshaping
+# Reshaping Data
 
 ---
 
+![:space 10]
+
 Often, we need to alter the structure of a `data.frame` from a **wide format**...
-<br><br>
+
+![:space 10]
 
 .center[
 ```{r,echo=F,fig.align="center"}
@@ -760,9 +763,15 @@ D %>% arrange(country) %>%
 
 ---
 
-## `tidyr`
 
-![:space 7]
+![:space 20]
+
+.pull-left[
+ ![:center_img 85](Figures/tidyr_logo.png)
+]
+
+.pull-right[
+
 
 `tidyr` is a tidyverse package built to help reshape data. The package contains an array of functions that are all useful cleaning a data construct. 
 
@@ -772,36 +781,27 @@ D %>% arrange(country) %>%
 - filling missing values
 - separating a column into two variables or uniting two columns into one
 
-We'll focus on two important functions designed to reshape data: **`gather()`** and **`spread()`**
-
----
-
-<br>
-.center[<img src="Figures/tidyr-spread-gather.gif">]
+]
 
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-.center[<img src ="Figures/gather.png">]
+![:space 15]
+
+![:center_img 100](Figures/gather.png)
 
 ---
 
 ```{r,echo=F}
-dat <- 
-  D %>% 
-  rename(X=var) %>% 
-  mutate(Y = rpois(n = n(),1.5))
+dat <- D %>% spread(year,var) 
 ```
 
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+![:space 10]
 
 ```{r}
 dat
@@ -809,107 +809,116 @@ dat
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+Specify the columns you want to expand
 
 ```{r}
-dat %>% gather(key,value)
+dat %>% pivot_longer(cols="1992":"1994")
 ```
 
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+Rename the expanded columns
 
 ```{r}
-dat %>% gather(var_names,var_values) # Any naming convention works
+dat %>% pivot_longer(cols="1992":"1994",
+                     names_to = "year",
+                     values_to = "ln_gdppc")
 ```
 
 ---
 
-## `gather()`: from wide-to-long
+### `pivot_longer()`: from wide-to-long
 
-Two arguments:
-
-- `key`: name of the variable that all the _variable **names**_ will be stored as. 
-- `value`: name of the variable that all the _variable **values**_ will be stored as.
+![:space 10]
+Be selective about which columns are expanded and which are not. 
 
 ```{r}
 # variables can be excluded from the reshape
-dat %>% gather(var_names,var_values,-country,-year) 
+dat %>% pivot_longer(cols="1992",
+                     names_to = "year",
+                     values_to = "ln_gdppc") 
 ```
 
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
+
+![:space 10]
 
 .center[<img src ="Figures/spread.png">]
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
 
-Two arguments:
+```{r,echo=F}
+dat <- D %>% rename(ln_gdppc=var)
+dat=dat[-2,]
+dat=dat[-6,]
+```
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
 
+![:space 10]
 ```{r}
 dat 
 ```
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
 
-Two arguments:
+Main arguments:
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
+- `names_from`: name of the variable that will be spread out into columns. 
+- `values_from`: values that will populate the cells of each column
+
+![:space 3]
 
 ```{r}
-dat %>% spread(key = country, value = X)
+
+dat %>% pivot_wider(names_from = year,
+                    values_from = ln_gdppc)
 ```
 
 ---
 
-## `spread()`: from long-to-wide
+## `pivot_wider()`: from long-to-wide
 
-Two arguments:
+Main arguments:
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
+- `names_from`: name of the variable that will be spread out into columns. 
+- `values_from`: values that will populate the cells of each column.
+- `values_fill`: specify what value a missing value should take on.
 
 ```{r}
-dat %>% spread(key = country, value = X, fill = 0) 
+dat %>% pivot_wider(names_from = year,
+                    values_from = ln_gdppc,
+                    values_fill = list(ln_gdppc = -99))
 ```
 
 ---
 
-## `spread()`: from long-to-wide
+## Legacy code
 
-Two arguments:
+![:space 5]
 
-- `key`: name of the variable that will be spread out into columns. 
-- `value`: variable that will be spread out along the key variable.
-- `fill`: what values should fill missing cells? (`NA` by default)
+Note that `pivot_wider()` and `pivot_longer()` are relatively new wrappers for the older `gather()` and `spread()` functions. 
 
-```{r}
-dat %>% spread(key = year, value = Y, fill = 0) 
-```
+![:space 5]
+
+What does this mean for you?
+
+- Answers online and in the reading on how to reshape data may differ depending on the preference of the source. 
+
+- Use whatever versions of the function that work best for you.
+
+- Many find that  `pivot_wider()` and `pivot_longer()` are easier to use than the older `gather()` and `spread()` functions.
 
 ---
 
