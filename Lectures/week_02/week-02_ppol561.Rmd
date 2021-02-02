@@ -1176,8 +1176,6 @@ my_plot <- ggplot(cars,aes(speed,dist)) + geom_point()
 my_plot
 ```
 
---
-
 We can export (or build off of) these plot objects using `ggsave()`
 
 ```{r,eval=F}

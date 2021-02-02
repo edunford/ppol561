@@ -257,16 +257,16 @@ To install `RStudio`, download from the following (scroll to the bottom):
 
 <br>
 
-<!-- ### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html) -->
+### _Week 2_: [Data Wrangling and Presentation in `R`](Lectures/week_02/week-02_ppol561.html)
 
-<!-- - **Table of Contents** -->
-<!--   + [Data Wrangling](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#3) -->
-<!--   + [Reading & Writing Data](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#7) -->
-<!--   + [Data Manipulation](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#11) -->
-<!--   + [Piping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#38) -->
-<!--   + [Joining](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#45) -->
-<!--   + [Reshaping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#67) -->
-<!--   + [Visualization](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#82) -->
+- **Table of Contents**
+  + [Data Wrangling](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#3)
+  + [Reading & Writing Data](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#7)
+  + [Data Manipulation](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#11)
+  + [Piping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#38)
+  + [Joining](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#45)
+  + [Reshaping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#67)
+  + [Visualization](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#81)
 
 <!-- - **Walkthrough**: -->
 <!--   + Generating regression tables using `stargazer` - [`.rmd`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.Rmd), [`.html`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.html) -->
