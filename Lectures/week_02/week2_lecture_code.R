@@ -311,4 +311,5 @@ require(tidyverse)
             dep.var.labels = "Flipper Length (mm)",
             covariate.labels = c("Bill Length (mm)","Male","Chinstrap","Gentoo"),
             keep.stat = c('n','rsq'),
-            notes = "Baseline is a Female Adelie")
+            notes = "Baseline is a Female Adelie",
+            out="table1.tex")
