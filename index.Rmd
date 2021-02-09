@@ -272,16 +272,18 @@ To install `RStudio`, download from the following (scroll to the bottom):
   + [Reshaping](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#67)
   + [Visualization](http://ericdunford.com/ppol561/Lectures/week_02/week-02_ppol561.html#81)
 
-<!-- - **Walkthrough**: -->
-<!--   + Generating regression tables using `stargazer` - [`.rmd`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.Rmd), [`.html`](Lectures/week_02/practice/week02-Walkthrough-01_Tables.html) -->
 
-<!-- - **Practice**: -->
-<!--   + Practice  <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling.Rmd" download> wrangling data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-01_Data-Wrangling_ANSWERS.Rmd" download> answer key (`.Rmd`)</a> -->
-<!--   + Practice <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping.Rmd" download> joining and reshaping data (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-02_joining-reshaping_ANSWERS.Rmd" download> answer key (`.Rmd`)</a> -->
-<!--   + Practice <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization.Rmd" download> data visualization using `ggplot2` (`.Rmd`)</a> then compare your results to the <a href="Lectures/week_02/practice/week02-practice-03_Data-Vizualization_ANSWERS.Rmd" download> answer key (`.Rmd`)</a> -->
+<br>
 
+### _Week 3_: [Introduction to Causal Inference](Lectures/week_03/week-03-causal-inference-ppol561.html)
 
-<!-- <br> -->
+- **Table of Contents**
+  + [Causal Inference](http://ericdunford.com/ppol561/Lectures/week_03/week-03-causal-inference-ppol561.html#3)
+  + [Structural Causal Models (DAGs)](http://ericdunford.com/ppol561/Lectures/week_03/week-03-causal-inference-ppol561.html#7)
+  + [Causal Discovery](http://ericdunford.com/ppol561/Lectures/week_03/week-03-causal-inference-ppol561.html#51)
+  + [Potential Outcomes](http://ericdunford.com/ppol561/Lectures/week_03/week-03-causal-inference-ppol561.html#74)
+
+<br>
 
 <!-- ### _Week 3_: [OLS Review](Lectures/week_03/week-03_ppol561.html) -->
 
