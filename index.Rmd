@@ -285,12 +285,12 @@ To install `RStudio`, download from the following (scroll to the bottom):
 
 <br>
 
-### _Week 4_: [OLS, Confounders & Simulation](Lectures/week_04/week-04_ppol561.html)
+### _Week 4_: [OLS, Confounders & Simulation](Lectures/week_04/week-04_simulation_ppol561.html)
 
 - **Table of Contents**
-  + [Simulations](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#3)
-  + [Precision of Estimates](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#18)
-  + [Confounding](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#25)
+  + [Simulations](http://ericdunford.com/ppol561/Lectures/week_04/week-04_simulation_ppol561.html#3)
+  + [Precision of Estimates](http://ericdunford.com/ppol561/Lectures/week_04/week-04_simulation_ppol561.html#18)
+  + [Confounding](http://ericdunford.com/ppol561/Lectures/week_04/week-04_simulation_ppol561.html#25)
 
 <br>
 

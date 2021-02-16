@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> PPOL561 | Accelerated Statistics for Public Policy II  Week 4       OLS, Confounders, &amp; Simulation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  eric.dunford@georgetown.edu" />
+    <link rel="stylesheet" href="gu-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font> <font size=6, face="bold"> Week 4 </font> <br> <br> <font size=100, face="bold"> OLS, Confounders, &amp; Simulation</font>
+### <font class = "title-footer">  Prof. Eric Dunford  ◆  Georgetown University  ◆  McCourt School of Public Policy  ◆  <a href="mailto:eric.dunford@georgetown.edu" class="email">eric.dunford@georgetown.edu</a></font>
+
+---
+
+
+
+
+layout: true
+
+&lt;div class="slide-footer"&gt;&lt;span&gt; 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+Week 4 &lt;!-- Week of the Footer Here --&gt;
+
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+
+OLS, Confounders, &amp; Simulation &lt;!-- Title of the lecture here --&gt;
+
+&lt;/span&gt;&lt;/div&gt;
+
+---
+class: outline
+
+# Outline for Today 
+
+- Using **_simulation_** as a tool to better understand statistical concepts
+
+- **_Precision_** of estimates
+
+- Delve into different types of **_confounding_** and how to deal with it:
+
+  - **_omitted variable bias_**
+  
+  - **_collider bias_**
+  
+  - **_measurement error_**
+  
+  - **_missingness_**
+
+---
+
+class: newsection
+
+# Simulations
+
+---
+
+## Generating random distributions
+
+.center[| Distribution | Function | Arguments |   
+| ----- | ------ |  ---------- |
+| Normal (Gaussian) | `rnorm()` | `n=`,`mean=`,`sd=`|
+| Binomial | `rbinom()` | `n=`, `size=`, `prob=` |
+| Uniform | `runif()` | `n=`, `min=`, `max=` |
+| Poisson | `runif()` | `n=`, `lambda=` |
+| Negative Binomial | `rnbinom()` | `n=`, `size=`,`prob=`, `mu=`|
+| Beta | `rbeta()` | `n=`, `shape1=`, `shape2=` |
+| Chi-Squared | `rchisq()` | `n=`, `df=` |
+| Exponential | `rexp()` | `n=`, `rate=` |
+| Gamma | `rgamma()` | `n=`, `rate=`,`scale=`|
+]
+
+And many more...
+
+---
+
+## Getting a feeling for the shape...
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+.center[&lt;img src="Figures/probability-connections.png" width="500px"&gt;]
+
+.center[[Play around with it!](https://dunforde.shinyapps.io/distribution_intuition/)]
+
+---
+
+## Why simulate?
+
+![:space 3]
+
+- **We know the answer**: we can specify values for the slope and see if we can recover them. 
+
+- **Viable testing ground**: 
+  - we can break models on purpose; 
+  - try to build the symptoms that cause a model to break down; do the proscribed corrections actually correct?
+  - Simulation offers us a way to make sure we're actually solving the problem.
+
+- **Use as a tool to gain an intuitive understanding of statistical concepts**
+
+---
+
+## The Aim
+
+![:space 10]
+
+The goal is to **mimic the properties of the model** that we're aiming to examine. 
+
+![:space 5]
+
+For example, to get a best linear unbiased estimator, OLS requires that:
+
+- `\(E[\epsilon] = 0\)`
+
+- `\(var(\epsilon)\)` is constant. 
+
+- `\(cor(\textbf{X},\epsilon) = 0\)`
+
+---
+
+## Simulating error 
+
+We can easily simulate these assumptions using the following:
+
+
+```r
+error &lt;- rnorm(n = 1000, mean = 0, sd = 1)
+hist(error,col="grey30",border="white",binwidth = 10)
+```
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### "Ideal" error
+
+![:space 10]
+
+
+```r
+mean(error) # expected value approx. 0
+```
+
+```
+## [1] -0.04546332
+```
+
+
+```r
+var(error) # constant variance 
+```
+
+```
+## [1] 0.9677243
+```
+
+ 
+
+---
+
+## Simulating an independent variable
+
+This synthetic variable could be **normal**
+
+```r
+x &lt;- rnorm(n = 1000, mean = 0, sd = 1)
+hist(x,col="steelblue",border="white")
+```
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+Or **uniform**
+
+```r
+x2 &lt;- runif(n = 1000,min = 0,max = 100)
+hist(x2,col="forestgreen",border="white")
+```
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+Or **binomial**
+
+```r
+x3 &lt;- rbinom(n = 1000,size = 1,prob = .3)
+hist(x3,col="gold",border="white")
+```
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+OLS makes no distributional assumptions about the independent variables. Only the dependent variable and the resulting errors.
+
+---
+
+## Simulating the dependent variable
+
+![:space 5]
+
+Recall that `\(y_i\)`, our continuous outcome, is thought to be a function (linearly related) to our independent variables. 
+
+We want to simulate a `\(y\)` that is a **function** of `\(x\)`, plus some error.
+
+
+```r
+intercept = 1
+slope = 2
+
+# Simulate y as a function of x1 + error
+y = intercept + slope*x + error
+```
+
+---
+
+![:space 5]
+
+
+```r
+# Plot
+plot(x,y,pch = 16, col=scales::alpha('grey30',.5))
+```
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+```r
+# Estimate a linear model...
+model = lm(y ~ x)
+alpha = model$coefficients['(Intercept)']
+beta = model$coefficients['x']
+
+# Scatter Plot
+plot(x,y,pch = 16, col=scales::alpha('grey30',.5))
+
+# Plot the fitted line...
+abline(alpha,beta,col="blue",lwd=4) # best linear unbiased estimator
+```
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Breakout
+
+Simulate the following model, 
+
+`$$y_i = 2.5 + -1.5x_i + 1.3z_i - s_i + \epsilon_i$$`
+
+Then do the following:
+
+1. Run a Monte Carlo simulation. Rerun the sim 100 simulations and plot the coefficients as histograms. 
+
+2. Try and make the model "wrong"?
+  
+  - Suggestions:
+      - What happens if you changed the variance on the error?
+      - What happens if you changed the mean of the error to something other than 0?
+
+
+---
+
+class: newsection
+
+# Precision of Estimates
+
+---
+
+## Variance of Estimates
+
+Variance of a coefficient estimate in a multivariate model:
+
+`$$var(\hat{\beta_j}) = \frac{\hat{\sigma}^2}{N\times var(x_j)(1-R^2_j)}$$`
+
+where `\(R^2_j\)` is the `\(R^2\)` for an "auxiliary regression",
+
+and
+
+`$$\hat{\sigma}^2 = \frac{\sum_{i=1}^N(y_i - \hat{y_i})^2}{N-k}$$`
+
+where `\(k\)` is the number of parameters in the model.
+
+---
+
+## Auxiliary Regressions
+
+There is a different `\(R^2_j\)` for each independent variable. If our model is
+
+`$$y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i$$`
+
+&lt;br&gt;
+
+there will be two different `\(R^2_j\)`s:
+
+- `\(R^2_1\)` is the `\(R^2\)` from `\(x_{1i} = \gamma_1 x_2 + \tau_i\)`
+
+- `\(R^2_2\)` is the `\(R^2\)` from `\(x_{2i} = \phi_1 x_1 + \omega_i\)`
+
+&lt;br&gt;
+
+These `\(R^2_j\)`s tell us how much the other variables explain `\(x_j\)`.
+
+---
+
+## Multicollinearity
+
+&lt;br&gt;
+
+Multicollinearity refers to the **strength of linear relationships among independent variables**
+
+![:space 5]
+
+1. Multicollinearity causes the variance of `\(\hat{\beta_1}\)` to be higher than if there were no multicollinearity.
+
+2. Multicollinearity does not cause the `\(\hat{\beta_1}\)` estimates to be biased.
+
+3. The standard `\(se(\hat{\beta_1})\)` produced by OLS accounts for multicollinearity.
+
+
+---
+
+## Consistency
+
+- Connection to the variance of the coefficient equation
+
+- Connection to statistical power
+
+&lt;br&gt;
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Confidence Intervals
+
+Interpreting a 95% confidence interval:
+
+1. The lower bound of a 95% confidence interval will be a value of `\(\beta_1\)` such that there is less than a 2.5% probability of observing a `\(\hat{\beta_1}\)` as high as the `\(\hat{\beta_1}\)` actually observed.
+
+2. The upper bound of a 95% confidence interval will be a value of `\(\beta_1\)` such that there is less than a 2.5% probability of observing a `\(\hat{\beta_1}\)` as low as the `\(\hat{\beta_1}\)` actually observed.
+
+.center[
+| Confidence Level | Critical Value | Confidence Interval |
+| ----- | ------ | -------|
+| 90% | 1.64 | `\(\hat{\beta_1} \pm 1.64 \times se(\hat{\beta_1})\)` |
+| 95% | 1.96 | `\(\hat{\beta_1} \pm 1.96 \times se(\hat{\beta_1})\)` |
+| 99% | 2.58 | `\(\hat{\beta_1} \pm 2.58 \times se(\hat{\beta_1})\)` |
+]
+
+---
+
+## Precision: summary
+
+`$$var(\hat{\beta_j}) = \frac{\hat{\sigma}^2}{N\times var(x_j)(1-R^2_j)}$$`
+
+**Four factors influence the variance of multivariate `\(\hat{\beta_j}\)` estimates**:
+
+1. **Model fit**: the better the model fits, the lower the `\(\hat{\sigma}^2\)` and `\(var(\hat{\beta_j})\)` will be.
+2. **Variation in `\(x_j\)`**: the more `\(x_j\)` varies, the lower the `\(var(\hat{\beta_j})\)` will be.
+3. **Sample size**: the more observations, the lower the `\(var(\hat{\beta_j})\)` will be.
+4. **Multicollinearity**: the less the other independent variables explain `\(x_j\)`, the lower the `\(R^2_j\)` and `\(var(\hat{\beta_j})\)` will be.
+
+---
+
+class: newsection
+
+# Confounding
+
+![:space 5]
+
+**![:text_color white](And what to do about it...)**
+
+---
+
+## Omitted Variable Bias
+
+![:space 5]
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Collider Bias
+
+![:space 5]
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Collider Bias
+
+Note that **_collider bias_** can occur even one controls on a **_collider's descendant!_**
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Backdoor Adjustment
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Backdoor Adjustment
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Breakout 
+
+Simulate the following DAG. The effect size for each relationship should be set at 1. Locate the minimal control set to satisfy the backdoor criteria. (_Extra_: Run your simulation 1000 times for 500 observations and plot the distribution for the effect ( `\(\beta\)` ) of X on Y.)
+
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Frontdoor Adjustment
+
+![:space 5]
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Measurement Error 
+
+![:space 5]
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Missing Data
+
+![:space 5]
+
+- **Missing completely at random** (MCAR) - missing data is independent of the observed and unobserved data. (Essentially just a form of measurement error.) 
+  + Data was randomly shuffled into training and test dataset. The test data fell off the truck. 
+
+- **Missing at random** (MAR) - data are systematically missing but on an observable data. 
+
+- **Missing not at random** (MNAR) - data are systematically missing due to an unobservable variable. 
+
+---
+
+
+## Missing at random
+
+Example: _Female survey respondents are more likely to complete the survey than their male counterparts. We can observe everyone's gender._
+
+![:space 2]
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+## Missing not at random
+
+Example: _Those more interested in politics are more likely to respond to a political survey than those who are less interested._ We cannot observe someone's latent interest in politics.
+
+&lt;img src="week-04_simulation_ppol561_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": true,
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
