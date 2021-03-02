@@ -32,6 +32,3 @@ remark.macros.text_size = function(size) {
 
 
 
-
-
-
