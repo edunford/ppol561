@@ -304,10 +304,10 @@ To install `RStudio`, download from the following (scroll to the bottom):
 ### _Week 6_: [Instrumental Variables](Lectures/week_06/week-06-instrumental-variables-ppol561.html)
 - **Table of Contents**
     + [Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#3)
-    + [Two Stage Least Squares (2SLS)](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#16)
-    + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#48)
-    + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#54)
-    + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#62)
+    + [Two Stage Least Squares (2SLS)](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#17)
+    + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#50)
+    + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#56)
+    + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#64)
     
 <br>
 
