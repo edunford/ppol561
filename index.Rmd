@@ -308,8 +308,23 @@ To install `RStudio`, download from the following (scroll to the bottom):
     + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#50)
     + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#56)
     + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_06/week-06-instrumental-variables-ppol561.html#64)
+
+
+<br>
+
+
+### _Week 7_: [Experiments](Lectures/week_7/week-7-experiments-ppol561.html)
+
+- **Table of Contents**
+    + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_7/week-7-experiments-ppol561.html#3)
+    + [Compliance & Intent-to-Treat](http://ericdunford.com/ppol561/Lectures/week_7/week-7-experiments-ppol561.html#21)
+    + [Assignment as Instrument](http://ericdunford.com/ppol561/Lectures/week_7/week-7-experiments-ppol561.html#42)
+    + [Attrition](http://ericdunford.com/ppol561/Lectures/week_7/week-7-experiments-ppol561.html#50)
+    + [Natural Experiments](http://ericdunford.com/ppol561/Lectures/week_7/week-7-experiments-ppol561.html#63)
     
 <br>
+
+
 
 <!-- ### _Week 3_: [OLS Review](Lectures/week_03/week-03_ppol561.html) -->
 
