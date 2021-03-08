@@ -313,14 +313,14 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <br>
 
 
-### _Week 7_: [Experiments](Lectures/week_7/week-07-experiments-ppol561.html)
+### _Week 7_: [Experiments](Lectures/week_07/week-07-experiments-ppol561.html)
 
 - **Table of Contents**
-    + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_7/week-07-experiments-ppol561.html#3)
-    + [Compliance & Intent-to-Treat](http://ericdunford.com/ppol561/Lectures/week_7/week-07-experiments-ppol561.html#21)
-    + [Assignment as Instrument](http://ericdunford.com/ppol561/Lectures/week_7/week-07-experiments-ppol561.html#42)
-    + [Attrition](http://ericdunford.com/ppol561/Lectures/week_7/week-07-experiments-ppol561.html#50)
-    + [Natural Experiments](http://ericdunford.com/ppol561/Lectures/week_7/week-07-experiments-ppol561.html#63)
+    + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_07/week-07-experiments-ppol561.html#3)
+    + [Compliance & Intent-to-Treat](http://ericdunford.com/ppol561/Lectures/week_07/week-07-experiments-ppol561.html#21)
+    + [Assignment as Instrument](http://ericdunford.com/ppol561/Lectures/week_07/week-07-experiments-ppol561.html#42)
+    + [Attrition](http://ericdunford.com/ppol561/Lectures/week_07/week-07-experiments-ppol561.html#50)
+    + [Natural Experiments](http://ericdunford.com/ppol561/Lectures/week_07/week-07-experiments-ppol561.html#63)
     
 <br>
 
