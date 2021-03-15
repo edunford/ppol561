@@ -328,7 +328,7 @@ To install `RStudio`, download from the following (scroll to the bottom):
 ### _Week 8_: [Regression Discontinuity](Lectures/week_08/week08-regression-discontinuity-ppol561.html)
 
 - **Table of Contents**
-    + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_08/week08-regression-discontinuity-ppol561.html#3)
+    + [Regression Discontinuity Design](http://ericdunford.com/ppol561/Lectures/week_08/week08-regression-discontinuity-ppol561.html#3)
     + [More flexible RD models](http://ericdunford.com/ppol561/Lectures/week_08/week08-regression-discontinuity-ppol561.html#27)
     + [Windows and Bins](http://ericdunford.com/ppol561/Lectures/week_08/week08-regression-discontinuity-ppol561.html#34)
     + [Limitations & Diagnostics](http://ericdunford.com/ppol561/Lectures/week_08/week08-regression-discontinuity-ppol561.html#46)
