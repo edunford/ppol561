@@ -336,7 +336,20 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <br>
 
 
+### _Week 9_: Midterm
 
+<br>
+
+### _Week 10_: [Matching](Lectures/week_10/week10-matching-ppol561.html)
+
+- **Table of Contents**
+    + [Model Dependency](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#3)
+    + [Matching](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#24)
+    + [Matching Methods](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#59)
+    + [Simulation](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#72)
+
+
+<br>
 
 
 
@@ -389,56 +402,6 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <!--   + [Heckman Selection Model](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#45) -->
 <!--   + [Example: Women's Labor Force Participation](http://ericdunford.com/ppol561/Lectures/week_06/week-06-selection-ppol561.html#62) -->
 
-<!-- <br>   -->
-
-<!-- ### _Week 7_: [Introduction to Causal Inference](Lectures/week_07/week-07-causal-inference-ppol561.html) -->
-
-<!-- - **Table of Contents** -->
-<!--     + [Causal Inference](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#3) -->
-<!--     + [Structural Causal Models (DAGs)](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#7) -->
-<!--     + [Interventions and Adjustments](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#35) -->
-<!--     + [Causal Discovery](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#60) -->
-<!--     + [Potential Outcomes](http://ericdunford.com/ppol561/Lectures/week_07/week-07-causal-inference-ppol561.html#82) -->
-
-<!-- <br>   -->
-
-<!-- ### _Week 8_: [Panel Data & DID](Lectures/week_08/week08-panel_data_and_did-ppol561.html) -->
-<!-- - **Table of Contents** -->
-<!--     + [Panel Data](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#3) -->
-<!--     + [Difference-in-Difference](http://ericdunford.com/ppol561/Lectures/week_08/week08-panel_data_and_did-ppol561.html#45) -->
-
-<!-- <br> -->
-
-<!-- ### _Week 9_: [Instrumental Variables](Lectures/week_09/week-09-instrumental-variables-ppol561.html) -->
-<!-- - **Table of Contents** -->
-<!--     + [Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#3) -->
-<!--     + [Two Stage Least Squares (2SLS)](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#16) -->
-<!--     + [Multiple Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#48) -->
-<!--     + [Weak Instruments](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#54) -->
-<!--     + [Precision of 2SLS](http://ericdunford.com/ppol561/Lectures/week_09/week-09-instrumental-variables-ppol561.html#62) -->
-
-
-
-<!-- <br>  -->
-
-
-<!-- ### _Week 11_: [Experiments](Lectures/week_11/week-11-experiments-ppol561.html) -->
-
-<!-- - **Table of Contents** -->
-<!--     + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#3) -->
-<!--     + [Compliance & Intent-to-Treat](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#16) -->
-<!--     + [Assignment as Instrument](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#35) -->
-<!--     + [Attrition](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#42) -->
-<!--     + [Natural Experiments](http://ericdunford.com/ppol561/Lectures/week_11/week-11-experiments-ppol561.html#54) -->
-
-<!-- <br>  -->
-
-<!-- ### _Week 12_: [Regression Discontinuity](Lectures/week_12/week12-regression-discontinuity-ppol561.html) -->
-
-<!-- - **Table of Contents** -->
-<!--     + [Randomization & Balance](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#3) -->
-<!--     + [More flexible RD models](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#30) -->
-<!--     + [Limitations & Diagnostics](http://ericdunford.com/ppol561/Lectures/week_12/week12-regression-discontinuity-ppol561.html#49)    -->
 
 
 <!-- <br>  -->
