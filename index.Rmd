@@ -346,7 +346,7 @@ To install `RStudio`, download from the following (scroll to the bottom):
     + [Model Dependency](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#3)
     + [Matching](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#24)
     + [Matching Methods](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#59)
-    + [Simulation](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#72)
+    + [Simulation](http://ericdunford.com/ppol561/Lectures/week_10/week10-matching-ppol561.html#98)
 
 
 <br>
