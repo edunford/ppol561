@@ -370,7 +370,7 @@ class: newsection
 
 ```r
 # Cigarette Sales Data
-smoking &lt;- read_csv("https://raw.githubusercontent.com/edunford/ppol561/master/Lectures/week_14/data/smoking.csv")
+smoking &lt;- read_csv("https://raw.githubusercontent.com/edunford/ppol561/master/Lectures/week_11/data/smoking.csv")
 smoking
 ```
 
@@ -462,11 +462,9 @@ trend_compare_plot
 
 ### Synthetic control method  in `R`
 
-![:space 3]
-
 Abadie et al. developed an implementation of the synthetic control method for `R` called `Synth`. However, the package leaves much to be desired ([see for yourself](https://www.jstatsoft.org/article/view/v042i13)).
 
-![:space 3]
+![:space 2]
 
 To get around `Synth`'s shortcomings, let's do away with it entirely (but keep the optimization logic). Instead, I've put together a package &amp;mdash; [`tidysynth`](https://github.com/edunford/tidysynth) &amp;mdash; that leverages best-practices in the tidy framework to streamline the method's implementation. 
 
@@ -478,6 +476,7 @@ devtools::install_github("edunford/tidysynth")
 # CRAN Version
 install.packages("tidysynth")
 
+# Import
 require(tidysynth)
 ```
 
