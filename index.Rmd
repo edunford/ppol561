@@ -362,35 +362,16 @@ To install `RStudio`, download from the following (scroll to the bottom):
 <br>
 
 
+### _Week 12_: [Binary Outcomes](Lectures/week_12/week-12_ppol561.html)
+
+- **Table of Contents**
+  + [Binary Dependent Variables](http://ericdunford.com/ppol561/Lectures/week_12/week-12_ppol561.html#4)
+  + [Maximum Likelihood Estimation](http://ericdunford.com/ppol561/Lectures/week_12/week-12_ppol561.html#40)
+  + [Substantive Effects](http://ericdunford.com/ppol561/Lectures/week_12/week-12_ppol561.html#50)
+  + [Simulating confidence intervals around substantive effects](http://ericdunford.com/ppol561/Lectures/week_12/week-12_ppol561.html#76)
 
 
-
-
-
-
-<!-- ### _Week 3_: [OLS Review](Lectures/week_03/week-03_ppol561.html) -->
-
-<!-- - **Table of Contents** -->
-<!--   + [Using Simulations](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#3) -->
-<!--   + [Multivariate Models](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#19) -->
-<!--   + [Omitted Variable Bias](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#26) -->
-<!--   + [Precision of Estimates](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#38) -->
-<!--   + [Model Specification](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#48) -->
-<!--   + [Dummy Variables](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#50) -->
-<!--   + [Standard Errors](http://ericdunford.com/ppol561/Lectures/week_03/week-03_ppol561.html#71) -->
-
-<!-- <br>   -->
-
-<!-- ### _Week 4_: [Binary Outcomes](Lectures/week_04/week-04_ppol561.html) -->
-
-<!-- - **Table of Contents** -->
-<!--   + [Binary Dependent Variables](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#4) -->
-<!--   + [Maximum Likelihood Estimation](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#40) -->
-<!--   + [Substantive Effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#50) -->
-<!--   + [Simulating confidence intervals around substantive effects](http://ericdunford.com/ppol561/Lectures/week_04/week-04_ppol561.html#76) -->
-
-
-<!-- <br>   -->
+<br>
 
 <!-- ### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ordered-multinomial_ppol561.html) -->
 
