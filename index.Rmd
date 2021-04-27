@@ -373,14 +373,14 @@ To install `RStudio`, download from the following (scroll to the bottom):
 
 <br>
 
-<!-- ### _Week 5_: [Ordered and Multinomial Outcomes](Lectures/week_05/week-05_ordered-multinomial_ppol561.html) -->
+### _Week 13_: [Ordered and Multinomial Outcomes](Lectures/week_13/week-13_ordered-multinomial_ppol561.html)
 
-<!-- - **Table of Contents** -->
-<!--   + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#3) -->
-<!--   + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_05/week-05_ordered-multinomial_ppol561.html#31) -->
+- **Table of Contents**
+  + [Ordered Outcomes](http://ericdunford.com/ppol561/Lectures/week_13/week-13_ordered-multinomial_ppol561.html#3)
+  + [Multinomial Outcomes](http://ericdunford.com/ppol561/Lectures/week_13/week-13_ordered-multinomial_ppol561.html#31)
 
 
-<!-- <br>   -->
+<br>
 
 <!-- ### _Week 6_: [Selection](Lectures/week_06/week-06-selection-ppol561.html) -->
 
@@ -395,16 +395,7 @@ To install `RStudio`, download from the following (scroll to the bottom):
 
 
 
-<!-- <br>  -->
 
-<!-- ### _Week 13_: [Matching](Lectures/week_13/week13-matching-ppol561.html) -->
-
-<!-- - **Table of Contents** -->
-<!--     + [_Refresh_ on Causal Effects](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#3) -->
-<!--     + [Model Dependency](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#14) -->
-<!--     + [Matching](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#35) -->
-<!--     + [Matching Methods](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#70) -->
-<!--     + [Simulation Example](http://ericdunford.com/ppol561/Lectures/week_13/week13-matching-ppol561.html#109) -->
 
 
 

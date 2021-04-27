@@ -1,4 +1,4 @@
-/* Color Scheme for PPOL670 Lecture Notes
+/* Color Scheme for PPOL651 Lecture Notes
 
 Dark Grey: #424242
 Dark Blue: #203f60
@@ -34,7 +34,7 @@ h1, h2 {
 
 h3 {
   color: #424242;
-  line-height: 1em;
+  line-height: 0.6em;
   text-shadow: 0 0 .5px #666666;
 }
 
@@ -62,17 +62,9 @@ table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
 tr:nth-child(even) { background: #eee }
 
-
-.pull-left {
-  float: left;
-  width: 47%;
+.MathJax_CHTML {
+  font-size: 30px !important;
 }
-
-.pull-right {
-  float: right;
-  width: 47%;
-}
-
 
 
 /*
@@ -239,6 +231,15 @@ div.slide-footer span {
 
 
 
+.pull-left {
+  float: left;
+  width: 47%;
+}
+
+.pull-right {
+  float: right;
+  width: 47%;
+}
 
 
 

@@ -1,0 +1,1207 @@
+---
+title: 
+    <font class = "title-panel"> PPOL561 | Accelerated Statistics for Public Policy II</font>
+  <font size=6, face="bold"> Week 13 </font> 
+  <br>
+  <br>
+  <font size=100, face="bold"> Ordered and Multinomial Outcomes </font>
+author: 
+  <font class = "title-footer"> 
+  &emsp;Prof. Eric Dunford &emsp;&#9670;&emsp; Georgetown University &emsp;&#9670;&emsp; McCourt School of Public Policy &emsp;&#9670;&emsp; eric.dunford@georgetown.edu</font>
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: "gu-theme.css"
+    nature:
+      highlightStyle: github
+      beforeInit: "macros.js"
+      countIncrementalSlides: False
+      highlightLines: true
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,message=F,error=F,warning = F)
+require(tidyverse)
+```
+
+layout: true
+
+<div class="slide-footer"><span> 
+PPOL561 | Accelerated Statistics for Public Policy II
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+Week 13 <!-- Week of the Footer Here -->
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+Ordered and Multinomial Outcomes <!-- Title of the lecture here -->
+
+</span></div> 
+
+---
+class: outline
+
+# Outline for Today 
+
+<br><br>
+- Modeling **ordered outcomes**
+
+<br><br>
+- Modeling **nominal outcomes**
+
+
+---
+
+class: newsection
+
+# Ordered Outcomes
+
+---
+
+### Ordered outcomes
+
+- Ordered dependent variables are outcomes that retain some inherent but discrete ordering. 
+
+  - **Likert Scales**: "Strongly Disagree", "Disagree", "Somewhat Disagree", "Somewhat Agree", ...
+  - **Policy options**: "privatize social security", "paritally privatize", "leave unchanged"
+  - **Ranks**: "some high School", "high school grad", "some college", "college grad", etc.
+
+- The distance between each category is of different unknown sizes. 
+
+- When the proper ordering of a variable is ambiguous, multinomial models should be considered.
+
+---
+
+### Why not OLS?
+
+<br>
+
+- Encounter the same problems as when using regression with a binary outcome:
+  + _heteroskedastic_
+  + _non-sensical predictions_
+  
+- Requires us to assume that the **distance between categories is equal**.
+
+- Difficult to interpret
+
+---
+
+### Latent Variable Approach 
+<br><br>
+Recall when discussing binary models we spoke about things in terms of a **latent variable** $y^*$. 
+
+$$y_i^* = \beta_0 + \beta_1x_i + \epsilon_i$$
+
+When $y^*$ is above a threshold $\tau_1$ we observe $y = 1$, otherwise we observe $y = 0$. 
+
+In this model, we assumed that the cutoff was 0 ( $\tau_1 = 0$ ). 
+
+---
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+set.seed(123)
+tibble(x = rnorm(500)) %>% 
+  mutate(ystar = 1*x + rnorm(500),
+         color = ifelse(ystar>0,"steelblue","grey30")) %>% 
+  ggplot(aes(x,ystar,color=color)) +
+  geom_point(size=3,alpha=.7) +
+  geom_hline(yintercept = 0,color="darkred",size=1,alpha=.5) +
+  geom_label(inherit.aes = F,x=-2.5,y=3,label="y = 1",
+            size=8,color="steelblue") +
+  geom_label(inherit.aes = F,x=-2.5,y=-3,label="y = 0",
+            size=8,color="grey30") +
+  geom_label(inherit.aes = F,x=0,y=0,label="cutoff",
+             size=8,color="darkred") +
+  scale_color_identity() +
+  xlim(-3,3) +
+  labs(y=latex2exp::TeX("$y^*$"),
+       title="Latent Variable for a Binary Response") +
+  theme_bw() +
+  theme(axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 20),
+        plot.title = element_text(family='serif',face='bold',size = 20)) 
+```
+
+
+---
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+set.seed(123)
+tibble(x = rnorm(500)) %>% 
+  mutate(ystar = 1*x + rnorm(500),
+         color = "grey30",
+         color = ifelse(ystar>=-1.5 & ystar < 1.5,"steelblue",color),
+         color = ifelse(ystar>=1.5,"orange",color)
+         ) %>% 
+  ggplot(aes(x,ystar,color=color)) +
+  geom_point(size=3,alpha=.7) +
+  
+  
+  # Third label
+    geom_label(inherit.aes = F,x=-2.5,y=2.5,label="y = 3",
+            size=8,color="orange") +
+ 
+  
+  # Second cut point
+  geom_hline(yintercept = 1.5,color="darkred",size=1,alpha=.5) +
+  geom_label(inherit.aes = F,x=-2.5,y=0,label="y = 2",
+            size=8,color="steelblue") +
+  geom_label(inherit.aes = F,x=0,y=1.5,label="cutoff 2",
+             size=8,color="darkred") +
+  
+  
+  # First cut point
+  geom_hline(yintercept = -1.5,color="darkred",size=1,alpha=.5) +
+  geom_label(inherit.aes = F,x=-2.5,y=-2.5,label="y = 1",
+            size=8,color="grey30") +
+  geom_label(inherit.aes = F,x=0,y=-1.5,label="cutoff 1",
+             size=8,color="darkred") +
+  
+  scale_color_identity() +
+  xlim(-3,3) +
+  labs(y=latex2exp::TeX("$y^*$"),
+       title="Latent Variable for an Ordered Response") +
+  theme_bw() +
+  theme(axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 20),
+        plot.title = element_text(family='serif',face='bold',size = 20)) 
+```
+
+---
+
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+set.seed(123)
+tibble(x = rnorm(500)) %>% 
+  mutate(ystar = 1*x + rnorm(500),
+         color = "grey30",
+         color = ifelse(ystar>=-1.5 & ystar < 1.5,"steelblue",color),
+         color = ifelse(ystar>=1.5,"orange",color),
+         ystar2 = 1,
+         ystar2 = ifelse(ystar>=-1.5 & ystar2 < 1.5,2,ystar2),
+         ystar2 = ifelse(ystar>=1.5,3,ystar2)
+         ) %>% 
+  ggplot(aes(x,factor(ystar2),color=color)) +
+  geom_point(size=3,alpha=.7) +
+
+  
+  scale_color_identity() +
+  xlim(-3,3) +
+  labs(y="y",
+       title="Ordered Response") +
+  theme_bw() +
+  theme(axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 20),
+        plot.title = element_text(family='serif',face='bold',size = 20)) 
+```
+
+
+---
+
+The probability of observing a specific response in the ordering _depends on which cut points
+$y^∗$ falls in-between_.
+
+- when <font color = "grey"> $y^* \le \tau_1$ </font>, we observe <font color = "grey"> $y=1$ </font>
+- when <font color = "steelblue"> $\tau_1 \le y^* < \tau_2$ </font>, we observe <font color = "steelblue"> $y=2$ </font>
+- when <font color = "orange"> $\tau_2 \ge y^*$ </font>, we observe <font color = "orange"> $y=3$ </font>
+
+```{r,echo=F,fig.align="center",fig.width=9,fig.height=4.5,cache=T,dpi=300}
+set.seed(123)
+tibble(x=seq(-3,3,.1),pr=dnorm(seq(-3,3,.1))) %>% 
+  mutate(pr1 = ifelse(x <= -1,pr,0),
+         x1 = ifelse(x <= - 1,x,-1),
+         pr2 = ifelse(x >= -1 & x <= 1 ,pr,0.2419707),
+         x2 = ifelse(x >= -1 & x <= 1,x,1),
+         pr3 = ifelse(x >= 1 ,pr,0),
+         x3 = ifelse(x> 1,x,1),
+         ) %>% 
+ggplot(aes(x,pr)) +
+  geom_area(alpha=.5,fill="grey") +
+  geom_area(aes(y=pr1,x1),alpha=.5,fill="grey30") +
+  geom_area(aes(y=pr2,x2),alpha=.5,fill="steelblue") +
+  geom_area(aes(y=pr3,x3),alpha=.5,fill="orange") +
+  geom_vline(xintercept = -1,color="darkred",size=1) +
+  geom_vline(xintercept = 1,color="darkred",size=1) +
+  geom_label(x=-1,y=.4,label=latex2exp::TeX("$\\tau_1"),size=6,color="darkred") +
+  geom_label(x=1,y=.4,label=latex2exp::TeX("$\\tau_2"),size=6,color="darkred") +
+  geom_text(x=-2,y=.42,label="y = 1",size=6,color="grey30") +
+  geom_text(x=0,y=.42,label="y = 2",size=6,color="steelblue") +
+  geom_text(x=2,y=.42,label="y = 3",size=6,color="orange") +
+  ylim(0,.45) +
+  labs(x = latex2exp::TeX("$\\y^*$"),
+       y="Density",
+       title="") +
+  theme_bw() +
+  theme(plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 20)) 
+```
+
+
+---
+
+### Identification
+<br><br>
+- To identify the model, we need to do one of two things
+
+  - set the **intercept** ( $\beta_0$ ) **equal to 0**
+  
+  - set the ** $\tau_0$ ** (our $-\infty$ cut point) ** equal to 0**
+  
+- The `polr()` function from the `MASS` package (which we'll use to estimate a ordered probit and logit model) opts to set the intercept to 0 by default
+
+---
+
+### Parallel Regressions Assumption
+
+<br><br>
+
+- When running the an ordered logit or probit model, we inherently make an assumption about "**parallel regressions**".
+
+- The effect of the coefficients is the same across all cutpoint ranges, i.e. the effect of $x$ on $y$ does not change when we move from one threshold to the next.
+
+- Because the relationship between all pairs of groups is the same, there is **_only one set of coefficients_** (only one model).  If this was not the case, we would need different models to describe the relationship between each pair of outcome groups. 
+
+---
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+x = seq(-5,5,.1)
+y1 = pnorm(x-2)
+y2 = pnorm(x)
+y3 = pnorm(x+2)
+bind_rows(tibble(x,y=y1,color="orange"),
+          tibble(x,y=y2,color="steelblue"),
+          tibble(x,y=y3,color="grey30")) %>% 
+  mutate(color = factor(color,levels = c("grey30","steelblue","orange"))) %>% 
+ggplot(aes(x,y,color=color)) +
+  geom_line(size=2) +
+  scale_color_identity() +
+  labs(y ="Probability",
+       title="Parallel Regressions") +
+  # xlim(-2,2) +
+  theme_bw() +
+  theme(plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 20)) 
+```
+
+---
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+x = seq(-5,5,.1)
+y1 = pnorm( 5*(x-2) )
+y2 = pnorm(2*x)
+y3 = pnorm( .8*(x+2) )
+bind_rows(tibble(x,y=y1,color="orange"),
+          tibble(x,y=y2,color="steelblue"),
+          tibble(x,y=y3,color="grey30")) %>% 
+  mutate(color = factor(color,levels = c("grey30","steelblue","orange"))) %>% 
+ggplot(aes(x,y,color=color)) +
+  geom_line(size=2) +
+  scale_color_identity() +
+  labs(y ="Probability",
+       title="Not Parallel Regressions") +
+  # xlim(-2,2) +
+  theme_bw() +
+  theme(plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 20)) 
+```
+
+
+---
+
+### Predicted Probabilities
+
+The key to calculating the predicted probabilities of any ordered outcome is **_keeping track of where the cutpoints fall_**. 
+
+<br>
+
+.center[
+|               |                                |
+| --------------|--------------------------------|
+| $pr(y_i = 1)$ | $\Phi(\tau_1 - \beta_1x_i) - 0$ |
+| $pr(y_i = 2)$ | $\Phi(\tau_2 - \beta_1 x_i) - \Phi(\tau_1 - \beta_1 x_i)$ |
+| $pr(y_i = 3)$ | $1 - \Phi(\tau_2 - \beta_1 x_i)$ | 
+]
+
+
+<br>
+
+Recall that this is a _probability distribution_, where the bounds fall between 0 and 1. Thus, why the lower bound is 0 and the upper bound is 1. 
+
+---
+
+### Predicted Probabilities
+
+For example, say $\tau_1 = -1$, $\tau_2 = 1$, $\beta_1 =.05$. 
+
+We can calculate the predicted probabilities of $y$ equalling a 1, 2 or 3 when $x = 15$ as follows
+
+<br>
+
+$$pr(y_i = 1) = \Phi((-1) - (.05)(15)) = .04$$
+
+$$pr(y_i = 2) = \Phi((1) - (.05)(15)) - \Phi((-1) - (.05)(15)) = .56$$
+
+$$pr(y_i = 3) = 1 - \Phi((1) - (.05)(15)) = .40$$
+
+<br>
+
+In this example, for an observation where $x = 15$, the probability that observed response will be 1 is 4%, 2 is 56%, and 3 is 40%. 
+
+---
+
+### Example: Student Support for the Iraq War
+
+Survey data draw from a sample of 500 college students in 2002 leading up to the Iraq war. The survey asked whether college students agreed with the United States entering into the Iraq War. 
+
+--
+
+Three variables: 
+  + `warsup`:  whether the respondent somewhat or strongly oppose/supported the War in Iraq
+  
+  + `dem`: 1 if the repondent was a democrat, 0 otherwise.
+  
+  + `female`: 1 if the repondent is female, 0 otherwise.
+
+--
+
+<br> 
+Our hypothesis is that democratic respondents are less likely to support the Iraq War than non-democratic respondents.
+
+
+---
+
+```{r,echo=F}
+dat <- read_csv('student_vote.csv')
+dat$warsup = factor(dat$warsup,levels=c('strongly oppose',
+                                        "somewhat oppose",
+                                        "somewhat support",
+                                        "strongly support"))
+```
+
+<br><br><br><br>
+```{r}
+summary(dat)
+```
+
+---
+
+```{r}
+war_ordered <- MASS::polr(warsup ~ dem + female, # Model
+                          method = "probit", # Probit model
+                          data = dat)
+summary(war_ordered,digits = 2)
+```
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is a democrat?
+
+--
+
+<br>
+
+```{r}
+# Grab the coefficients
+B = war_ordered$coefficients
+B
+```
+
+<br>
+
+```{r}
+# Grab the cut points
+cuts = war_ordered$zeta
+cuts
+```
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is a democrat?
+
+<br>
+
+```{r}
+# Grab the data
+X = model.matrix(war_ordered)[,-1] # drop intercept
+head(X)
+```
+
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is a democrat?
+
+<br>
+```{r}
+# Manipulate one value
+X[,1] = 1 # Respondent is a democrat
+```
+
+<br>
+Calculate the predicted probability for the "Somwhat support" category.
+
+```{r}
+pr_some_supp = pnorm(cuts[3] - X%*%B) - pnorm(cuts[2] - X%*%B)
+mean(pr_some_supp)
+```
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is _not_ a democrat?
+
+<br>
+```{r, highlight=T}
+# Manipulate one value
+X[,1] = 0 # Respondent is NOT a democrat #<<
+```
+
+<br>
+Calculate the predicted probability for the "Somwhat support" category.
+
+```{r}
+pr_some_supp = pnorm(cuts[3] - X%*%B) - pnorm(cuts[2] - X%*%B)
+mean(pr_some_supp)
+```
+
+---
+
+<br><br>
+The discrete difference between "Somewhat Supporting" the war given one...
+
+<br>
+
+- ...is a democrat = **17.7%**
+
+- ...is _not_ a democrat = **35.6%**
+
+<br><br>
+The probability of "Somewhat Supporting" the war **decreases by 17.8%** if the respondent is a Democrat verse if he or she is not.
+
+---
+
+### Simulating Confidence Intervals
+
+```{r,cache=T}
+require(obsval) # Load the package
+
+# Re-estimate the model using obsval
+war_ordered2 <- 
+  obsval(warsup ~ dem + female,
+         data = dat,
+         ci = .95,
+         n.draws = 1000,
+         reg.model = "oprobit",
+         effect.var = "dem",
+         effect.vals = c(0,1))
+```
+
+```{r}
+# Effect summary
+round(war_ordered2$effect_sum,3)
+```
+
+---
+
+<br>
+```{r}
+war_ordered2$high.ci
+```
+
+```{r}
+war_ordered2$means
+```
+
+```{r}
+war_ordered2$low.ci
+```
+
+
+---
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+# Function extracts the 2.5%, mean, and 97.5% interval
+extract = function(x) c(quantile(x,.025),ave_pred=mean(x),quantile(x,.975))
+
+# Apply to systematically draw it
+non_dem = apply(war_ordered2$preds[,,1],2,extract)
+dem = apply(war_ordered2$preds[,,2],2,extract)
+
+non_dem = data.frame(t(non_dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 0)
+dem = data.frame(t(dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 1)
+predicted_effects_ord = bind_rows(dem,non_dem)
+
+predicted_effects_ord %>%
+  mutate(category = factor(category,levels = levels(dat$warsup))) %>% 
+  ggplot(aes(category,ave_pred,color=factor(democrat))) + 
+  geom_point(size=3) +
+  geom_errorbar(aes(x=category,ymin=`X2.5.`,ymax=`X97.5.`),
+                    width=.1,size=1) +
+  labs(y="Predicted Probability",
+       x="\nDo you think the U.S. should Invade Iraq?",
+       color="") +
+  scale_color_manual(values=c("darkred","steelblue"),
+                     labels=c("Not Democrat","Democrat")) +
+  theme_bw() +
+  theme(legend.position = "top",
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 16),
+        legend.text = element_text(family='serif',face='bold',size = 20)) 
+```
+
+---
+
+class:newsection
+
+# Multinomial Outcomes
+
+---
+
+### Multinomial Outcomes
+
+- A nomial outcome variable is a variable with **discrete categories but no intrinsic ordering** 
+
+- See this when a variable is just "names" or stated preferences. 
+
+- The focus is analyzing **questions of "what", "which", "who", and "where"**, rather than questions regarding "how much" or "how many".
+
+- Examples: 
+  + Who did you vote for? 
+  + Which product did you purchase?
+  + What kind of job do you have?
+  + What is the ethnicity of a new hire?
+  
+---
+
+Say we have **three candidates** in an election: 
+
+```{r,echo=F,fig.align="center",fig.width=9,fig.height=4.5,cache=T,dpi=300}
+a <- 
+  tibble(y=rep(3,3),
+         x = c(1,3,5),
+         candidate= c("Sally","Jack","Bruce"),
+         size=c(75,75,75)) 
+a %>% 
+  ggplot(aes((x),(y),color=candidate,size=size)) +
+  geom_point() +
+  geom_text(color="white",aes(label=candidate),size=10) +
+  scale_color_manual(values = c("steelblue","darkred","#4f1a70","grey30")) +
+  scale_size_identity() +
+  ylim(0,4) + xlim(0,6) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+
+---
+
+Say we have **three candidates** in an election: 
+
+```{r,echo=F,fig.align="center",fig.width=9,fig.height=4.5,cache=T,dpi=300}
+a <- 
+  tibble(y=rep(3,3),
+         x = c(1,3,5),
+         candidate= c("Sally","Jack","Bruce"),
+         size=c(75,75,75))  
+b <- tibble(y = 1,
+            x = 3,
+            candidate= c("Voter"),
+            size=50)
+D = expand.grid(2,1:3)
+bind_rows(a,b) %>% 
+  ggplot(aes((x),(y),color=candidate,size=size)) +
+  geom_segment(x=3,xend=5,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=3,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=1,y=1,yend=3,size=1,alpha=.5) +
+  geom_point() +
+  geom_text(color="white",aes(label=candidate),size=10) +
+  scale_color_manual(values = c("steelblue","darkred","#4f1a70","grey30")) +
+  scale_size_identity() +
+  ylim(0,4) + xlim(0,6) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+A voter is deciding which candidate to vote for. 
+
+How do we figure out the probability of voting for one candidate (say, Sally) given one can also vote for Bruce or Jack?
+
+---
+
+One solution would be to treat the problem as a binary response.
+
+```{r,echo=F,fig.align="center",fig.width=9,fig.height=4.5,cache=T,dpi=300}
+a <- 
+  tibble(y=rep(3,3),
+         x = c(1,3,5),
+         candidate= c("Sally","Jack","Bruce"),
+         size=c(75,75,75))  
+b <- tibble(y = 1,
+            x = 3,
+            candidate= c("Voter"),
+            size=50)
+D = expand.grid(2,1:3)
+bind_rows(a,b) %>% 
+  ggplot(aes((x),(y),color=candidate,size=size)) +
+  geom_segment(x=3,xend=5,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=3,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=1,y=1,yend=3,size=1,alpha=.5) +
+  geom_point() +
+  geom_text(color="white",aes(label=candidate),size=10) +
+  scale_color_manual(values = c("grey90","grey90","#4f1a70","grey30")) +
+  scale_size_identity() +
+  ylim(0,4) + xlim(0,6) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+We just calculated the probability of voting for Sally (1) or not (0). 
+
+
+**$$pr(vote_{sally} = 1) = \frac{exp(x_i\beta^{sally})}{1 + exp(x_i\beta^{sally})}$$**
+
+---
+
+One solution would be to treat the problem as a binary response.
+
+```{r,echo=F,fig.align="center",fig.width=9,fig.height=4.5,cache=T,dpi=300}
+a <- 
+  tibble(y=rep(3,3),
+         x = c(1,3,5),
+         candidate= c("Sally","Jack","Bruce"),
+         size=c(75,75,75))  
+b <- tibble(y = 1,
+            x = 3,
+            candidate= c("Voter"),
+            size=50)
+D = expand.grid(2,1:3)
+bind_rows(a,b) %>% 
+  ggplot(aes((x),(y),color=candidate,size=size)) +
+  geom_segment(x=3,xend=5,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=3,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=1,y=1,yend=3,size=1,alpha=.5) +
+  geom_point() +
+  geom_text(color="white",aes(label=candidate),size=10) +
+  scale_color_manual(values = c("steelblue","grey90","grey90","grey30")) +
+  scale_size_identity() +
+  ylim(0,4) + xlim(0,6) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+We can just re-arrange to calculate the probability another candidate. 
+**$$pr(vote_{bruce} = 1) = \frac{exp(x_i\beta^{bruce})}{1 + exp(x_i\beta^{bruce})}$$**
+
+---
+
+One solution would be to treat the problem as a binary response.
+
+```{r,echo=F,fig.align="center",fig.width=9,fig.height=4.5,cache=T,dpi=300}
+a <- 
+  tibble(y=rep(3,3),
+         x = c(1,3,5),
+         candidate= c("Sally","Jack","Bruce"),
+         size=c(75,75,75))  
+b <- tibble(y = 1,
+            x = 3,
+            candidate= c("Voter"),
+            size=50)
+D = expand.grid(2,1:3)
+bind_rows(a,b) %>% 
+  ggplot(aes((x),(y),color=candidate,size=size)) +
+  geom_segment(x=3,xend=5,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=3,y=1,yend=3,size=1,alpha=.5) +
+  geom_segment(x=3,xend=1,y=1,yend=3,size=1,alpha=.5) +
+  geom_point() +
+  geom_text(color="white",aes(label=candidate),size=10) +
+  scale_color_manual(values = c("grey90","darkred","grey90","grey30")) +
+  scale_size_identity() +
+  ylim(0,4) + xlim(0,6) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+We can just re-arrange to calculate the probability another candidate. 
+**$$pr(vote_{jack} = 1) = \frac{exp(x_i\beta^{jack})}{1 + exp(x_i\beta^{jack})}$$**
+
+---
+
+### Multinomial model
+
+The multinomial logit model allows us to estimate all these binary logits for the different outcome categories simultaneously.
+
+<br>
+
+We can estimate the probability of making one choice _given all the alternative options_.
+
+<br>
+
+$$pr(vote = sally) = \frac{exp(x_i\beta^{sally})}{exp(x_i\beta^{bruce}) + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+---
+
+### Identification
+
+To identify the model, we need to constrain the coefficients for one of the choices (i.e. candidates) to equal 0. This choice will be the **reference category**.
+
+From our candidates, let's choose Bruce to be the reference category: $$\beta^{bruce}=0$$ 
+
+Thus, the multinomial logit model is as follows:
+
+<br>
+
+$$pr(vote = sally) = \frac{exp(x_i\beta^{sally})}{1 + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+---
+
+### Predicted Probability
+
+To figure out probability of voting for any of the other candidates, we just need to re-arrange this equation.
+
+<br>
+
+$$pr(vote = jack) = \frac{exp(x_i\beta^{jack})}{1 + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+<br><br>
+
+$$pr(vote = bruce) = \frac{1}{1 + exp(x_i\beta^{jack}) + exp(x_i\beta^{sally})}$$
+
+---
+
+### Predicted Probability
+
+Say $x_i$ is a dummy variable that takes on the value of 0 and 1. To calculate the probability of voting for **Sally** given $x_i=1$ we do as follow:
+
+$$\frac{exp(\beta_0^{sally} + \beta_1^{sally} x_i)}{1 + exp(\beta_0^{jack} + \beta_1^{jack} x_i) + exp(\beta_0^{sally} + \beta_1^{sally} x_i)}$$
+
+<br>
+
+** $$\frac{exp(\beta_0^{sally} + \beta_1^{sally} (1))}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (1)) + exp(\beta_0^{sally} + \beta_1^{sally} (1))}$$ **
+
+---
+
+### Predicted Probability
+
+Say $x_i$ is a dummy variable that takes on the value of 0 and 1. To calculate the probability of voting for **Jack** given $x_i=1$ we do as follow:
+
+$$\frac{exp(\beta_0^{jack} + \beta_1^{jack} x_i)}{1 + exp(\beta_0^{jack} + \beta_1^{jack} x_i) + exp(\beta_0^{sally} + \beta_1^{sally} x_i)}$$
+
+<br>
+
+** $$\frac{exp(\beta_0^{jack} + \beta_1^{jack} (1))}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (1)) + exp(\beta_0^{sally} + \beta_1^{sally} (1))}$$ **
+
+---
+
+### Predicted Probability
+
+Say $x_i$ is a dummy variable that takes on the value of 0 and 1. To calculate the probability of voting for **Bruce** given $x_i=1$ we do as follow:
+
+$$\frac{1}{1 + exp(\beta_0^{jack} + \beta_1^{jack} x_i) + exp(\beta_0^{sally} + \beta_1^{sally} x_i)}$$
+
+<br>
+
+** $$\frac{1}{1 + exp(\beta_0^{jack} + \beta_1^{jack} (1)) + exp(\beta_0^{sally} + \beta_1^{sally} (1))}$$ **
+
+<br>
+
+and so on...
+
+---
+
+### Discrete Differences in the Predicted Probability
+
+<br><br>
+If we wanted to calculate the discrete difference for voting for Sally given different values of $x$, we can simply calculate the difference in probabilities as we did with other models. 
+
+<br><br>
+
+$$pr(vote = sally | x = 1) - pr(vote = sally | x = 0)$$
+
+---
+
+### IIA Assumption 
+
+<br>
+
+- A key assumption for a multinomial choice model is the **independence of irrelevant alternatives assumption (IIA)**. 
+
+- The idea is that the relative probability of existing alternatives (choices) is not affected by changes to the choice set (i.e. adding or removing choices). 
+
+- Adding and dropping a choice doesn't impact the underlying probability of the choices left on the table. 
+
+- If this assumption is violated, estimates will be biased.
+
+---
+
+Say we had commuters deciding between three modes of travel: bus, train, and car.
+
+Each segment represents the probability of choosing that transportation option. Here the probability of choosing any one mode of transportation is roughly equal.
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=5,cache=T,dpi=300}
+tibble(options = factor(c("car",'train',"bus"),levels=c("bus","car",'train')),
+       pos = rep(1,3),
+       probs = c(.32,.34,.34)) %>% 
+  ggplot(aes(pos,probs,fill=options)) +
+  geom_bar(position = "stack",stat = "identity") +
+  coord_flip() + 
+  labs(fill="",y="\nProbabilities") +
+  theme_minimal() +
+  scale_fill_manual(values = c("black","grey30","grey70")) +
+  theme(legend.position = "top",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text.x = element_text(family='serif',face='bold',size = 20),
+        legend.text = element_text(family='serif',face='bold',size = 25))
+```
+
+---
+
+Say we had commuters deciding between three modes of travel: bus, train, and car.
+
+Each segment represents the probability of choosing that transportation option. Here it is not.
+<br><br>
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=5,cache=T,dpi=300}
+tibble(options = factor(c("car",'train',"bus"),levels=c("bus","car",'train')),
+       pos = rep(1,3),
+       probs = c(.5,.33,.17)) %>% 
+  ggplot(aes(pos,probs,fill=options)) +
+  geom_bar(position = "stack",stat = "identity") +
+  coord_flip() + 
+  labs(fill="",y="\nProbabilities") +
+  theme_minimal() +
+  scale_fill_manual(values = c("black","grey30","grey70")) +
+  theme(legend.position = "top",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text.x = element_text(family='serif',face='bold',size = 20),
+        legend.text = element_text(family='serif',face='bold',size = 25))
+```
+
+---
+
+Say we had commuters deciding between three modes of travel: bus, train, and car.
+
+Now say that we added another option to the table: the chance to ride a <font color ="red">red</font> or <font color ="blue">blue</font> bus. As long as the addition of these new choices doesn't change the probability of choosing any other choices, IIA is satisfied.
+<br>
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=5,cache=T,dpi=300}
+tibble(options = factor(c("car",'train',"red bus","blue bus"),
+                        levels=c("red bus","blue bus","car",'train')),
+       pos = rep(1,4),
+       probs = c(.5,.33,.085,.085)) %>% 
+  ggplot(aes(pos,probs,fill=options)) +
+  geom_bar(position = "stack",stat = "identity") +
+  coord_flip() + 
+  labs(fill="",y="\nProbabilities") +
+  theme_minimal() +
+  scale_fill_manual(values = c("red","blue","grey30","grey70")) +
+  theme(legend.position = "top",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text.x = element_text(family='serif',face='bold',size = 20),
+        legend.text = element_text(family='serif',face='bold',size = 25))
+```
+
+---
+
+Say we had commuters deciding between three modes of travel: bus, train, and car.
+
+Now say that we added another option to the table: the chance to ride a <font color ="red">red</font> or <font color ="blue">blue</font> bus. If this is not the case (new bus colors made you more likely to take the bus over the train or car), then <font color = "darkred"> IIA would be violated </font>. 
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=5,cache=T,dpi=300}
+tibble(options = factor(c("car",'train',"red bus","blue bus"),
+                        levels=c("red bus","blue bus","car",'train')),
+       pos = rep(1,4),
+       probs = c(.4,.23,.085,.285)) %>% 
+  ggplot(aes(pos,probs,fill=options)) +
+  geom_bar(position = "stack",stat = "identity") +
+  coord_flip() + 
+  labs(fill="",y="\nProbabilities") +
+  theme_minimal() +
+  scale_fill_manual(values = c("red","blue","grey30","grey70")) +
+  theme(legend.position = "top",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text.x = element_text(family='serif',face='bold',size = 20),
+        legend.text = element_text(family='serif',face='bold',size = 25))
+```
+
+---
+
+### Example: Student Support for the Iraq War
+
+Let's use the survey data from of 500 college students in 2002 leading up to the Iraq war. 
+
+```{r,echo=F}
+dat <- read_csv('student_vote.csv')
+dat$warsup = factor(dat$warsup,levels=c('strongly oppose',
+                                        "somewhat oppose",
+                                        "somewhat support",
+                                        "strongly support"))
+```
+<br>
+```{r}
+summary(dat)
+```
+<br>
+> This time rather than treat the outcome as an ordered categories, we'll treat it as **discrete choices**.
+
+---
+```{r}
+multi_mod <- nnet::multinom(warsup ~ dem + female,data=dat)
+multi_mod
+```
+
+---
+
+<br><br>
+```{r,highlight=T}
+broom::tidy(multi_mod, 
+            exponentiate = F #<<
+            ) %>% 
+  mutate_if(is.numeric, function(x) round(x,3))
+```
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is a democrat?
+
+--
+
+```{r}
+# Extract the coefficients
+
+B_all <- coefficients(multi_mod)
+B_all
+```
+<br>
+```{r}
+B_so = B_all[1,] # Coefs for "somewhat oppose"
+B_ss = B_all[2,] # Coefs for "somewhat support"
+B_SS = B_all[3,] # Coefs for "strongly support"
+```
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is a democrat?
+
+```{r}
+# Extract the data 
+
+X = model.matrix(multi_mod)
+X
+```
+
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is a democrat?
+
+```{r}
+# Manipulate one value 
+X[,2] = 1 # Respondent is a democrat
+```
+
+Calculate the predicted probability for the "Somwhat support" choice category. 
+```{r}
+# Denominator of all options
+denominator <- 1 + exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS)
+
+# Probability of "Somewhat Support"
+pr_some_supp = exp(X%*%B_ss)/denominator
+
+# Average across all observations
+mean(pr_some_supp)
+```
+
+---
+
+What is the probability of "Somewhat Supporting" the war given one is _not_ a democrat?
+
+```{r,highlight=T}
+# Manipulate one value 
+X[,2] = 0 # Respondent is not a democrat #<<
+```
+
+Calculate the predicted probability for the "Somwhat support" choice category. 
+```{r}
+# Denominator of all options
+denominator <- 1 + exp(X%*%B_so) + exp(X%*%B_ss) + exp(X%*%B_SS)
+
+# Probability of "Somewhat Support"
+pr_some_supp = exp(X%*%B_ss)/denominator
+
+# Average across all observations
+mean(pr_some_supp)
+```
+
+---
+
+<br><br>
+The discrete difference between "Somewhat Supporting" the war given one...
+
+<br>
+
+- ...is a democrat = **14.4%**
+
+- ...is _not_ a democrat = **38.2%**
+
+<br><br>
+The probability of "Somewhat Supporting" the war **decreases by 23.8%** if the respondent is a Democrat verse if he or she is not.
+
+---
+
+### Simulating Confidence Intervals
+
+```{r,highlight=T,cache=T}
+require(obsval) # Load the package
+
+# Re-estimate the model using obsval
+multi_mod2 <- 
+  obsval(warsup ~ dem + female,
+         data = dat,
+         ci = .95,
+         n.draws = 1000,
+         baseline.category = "strongly oppose", #<<
+         reg.model = "mlogit",
+         effect.var = "dem",
+         effect.vals = c(0,1))
+```
+
+---
+
+### Simulating Confidence Intervals
+
+```{r}
+round(multi_mod2$effect_sum,3)
+```
+
+---
+
+<br>
+```{r}
+multi_mod2$high.ci
+```
+
+```{r}
+multi_mod2$means
+```
+
+```{r}
+multi_mod2$low.ci
+```
+
+---
+
+```{r,echo=F,fig.align="center",fig.width=10,fig.height=8,cache=T,dpi=300}
+# Function extracts the 2.5%, mean, and 97.5% interval
+extract = function(x) c(quantile(x,.025),ave_pred=mean(x),quantile(x,.975))
+
+categories = c("Strongly Oppose","Somewhat Oppose",
+               "Somewhat Support","Strongly Support")
+
+# Apply to systematically draw it
+non_dem = apply(multi_mod2$preds[,,1],2,extract)
+dem = apply(multi_mod2$preds[,,2],2,extract)
+
+non_dem = data.frame(t(non_dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 0)
+dem = data.frame(t(dem)) %>% 
+  rownames_to_column("category") %>% 
+  mutate(democrat = 1)
+predicted_effects_nom = bind_rows(dem,non_dem)
+
+predicted_effects_nom %>%
+  mutate(category = factor(category,levels = tolower(categories))) %>% 
+  ggplot(aes(category,ave_pred,color=factor(democrat))) + 
+  geom_point(size=3) +
+  geom_errorbar(aes(x=category,ymin=`X2.5.`,ymax=`X97.5.`),
+                    width=.1,size=1) +
+  labs(y="Predicted Probability",
+       x="\nDo you think the U.S. should Invade Iraq?",
+       color="") +
+  scale_color_manual(values=c("darkred","steelblue"),
+                     labels=c("Not Democrat","Democrat")) +
+  theme_bw() +
+  theme(legend.position = "top",
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 16),
+        legend.text = element_text(family='serif',face='bold',size = 20)) 
+```
+
+
+---
+
+### Compare
+
+.pull-left[
+.center[**Ordered**]
+```{r,echo=F,fig.align="center",fig.height=9,fig.width=8,cache=T,dpi=300}
+predicted_effects_ord %>%
+  mutate(category = factor(category,levels = levels(dat$warsup))) %>% 
+  ggplot(aes(category,ave_pred,color=factor(democrat))) + 
+  geom_point(size=5) +
+  geom_errorbar(aes(x=category,ymin=`X2.5.`,ymax=`X97.5.`),
+                    width=.1,size=2) +
+  labs(y="Predicted Probability",
+       x="\nDo you think the U.S. should Invade Iraq?",
+       color="") +
+  scale_color_manual(values=c("darkred","steelblue"),
+                     labels=c("Not Democrat","Democrat")) +
+  theme_bw() +
+  ylim(0,.65) +
+  theme(legend.position = "top",
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 16),
+        legend.text = element_text(family='serif',face='bold',size = 20)) 
+```
+]
+
+.pull-right[
+.center[**Nominal**]
+```{r,echo=F,fig.align="center",fig.height=9,fig.width=8,cache=T,dpi=300}
+predicted_effects_nom %>%
+  mutate(category = factor(category,levels = tolower(categories))) %>% 
+  ggplot(aes(category,ave_pred,color=factor(democrat))) + 
+  geom_point(size=5) +
+  geom_errorbar(aes(x=category,ymin=`X2.5.`,ymax=`X97.5.`),
+                    width=.1,size=2) +
+  labs(y="",
+       x="\nDo you think the U.S. should Invade Iraq?",
+       color="") +
+  scale_color_manual(values=c("darkred","steelblue"),
+                     labels=c("Not Democrat","Democrat")) +
+  ylim(0,.65) +
+  theme_bw() +
+  theme(legend.position = "top",
+        plot.title = element_text(family='serif',face='bold',size = 20),
+        axis.title = element_text(family='serif',face='bold',size = 20),
+        axis.text = element_text(family='serif',face='bold',size = 16),
+        legend.text = element_text(family='serif',face='bold',size = 20)) 
+```
+]

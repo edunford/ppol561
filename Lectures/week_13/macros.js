@@ -24,10 +24,7 @@ remark.macros.text_color = function(color) {
 };
 
 
-remark.macros.text_size = function(size) {
-  const text = this;
-  return `<font size="${size}">${text}</font>`;
-};
+
 
 
 
